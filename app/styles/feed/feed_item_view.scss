@@ -1,0 +1,100 @@
+@import "../constants";
+
+// These styles are used for feed item views.
+
+.book {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+
+  // These styles hide the CTA buttons when the user clicks on `review`
+  // The `active` class is added to the book in the JS view
+  &.active {
+    .rating {
+      display: block;
+    }
+
+    .free-sample,
+    .review-book {
+      display: none;
+    }
+  }
+}
+
+.rating {
+  display: none;
+  padding-top: 8px;
+}
+
+.book-actions {
+  padding: 10px;
+  display: flex;
+  flex: 1;
+}
+
+// This whole style block controls hover interactions with star icons
+// Read on for more details
+.star {
+  // Nothing special here, just resizing the svg
+  // Normally wouldn't do this because designers would provide these icons w/ exact measurements
+  // But since I googled the SVG for the stars I'm resizing it with CSS
+  svg {
+    height: 24px;
+    width: 24px;
+  }
+
+  // If the star element also has a selected class, we will:
+  &.selected {
+    // Select all siblings after the selected star, and set their color to $STAR-GRAY
+    ~ .star polygon {
+      fill: $STAR-GRAY;
+      stroke: $STAR-GRAY;
+
+      // However, for the sibling that is hovered, we'll style it back to $STAR-GOLD
+      // This is to make sure there's user feedback, so the selected star
+      // is always in sight (it's the latest star that is golden),
+      // but it's also evident which star you are hovering over
+      &:hover {
+        fill: $STAR-GOLD;
+        stroke: $STAR-GOLD;
+      }
+    }
+  }
+
+  // This is the default star color when there's no selected stars
+  // Not particularly great, but I'm yet still to find a way around this that doesn't involve JS
+  // This is because the ~ selector catches siblings after the hovered/selected star
+  // But without a way to select the previous ones, we need all of them to be golden
+  // to achieve the sense of "cascade filling" of stars
+  polygon {
+    fill: $STAR-GOLD;
+    stroke: $STAR-GOLD;
+  }
+
+  // Whenever we hover over a star:
+  &:hover {
+    cursor: pointer;
+
+    // Use the sibling selector to catch all stars after the hovered one
+    // and reset their color to $STAR-GRAY
+    ~ .star polygon {
+      fill: $STAR-GRAY;
+      stroke: $STAR-GRAY;
+    }
+  }
+}
+
+.book-info {
+  padding: 15px;
+}
+
+.book-cover {
+  display: block;
+  width: 100px;
+  height: 150px;
+  border-radius: 3px 0 0 3px;
+}
+
+.book-cover-container {
+  display: inline-block;
+}

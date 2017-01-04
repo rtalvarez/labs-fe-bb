@@ -1,0 +1,51 @@
+@import "../constants";
+
+.article {
+  display: block;
+}
+
+// Overriding display: flex from feed_view.scss
+.feed-item {
+  &.article {
+    display: block;
+  }
+}
+
+.article-cover-container {
+  position: relative;
+}
+
+.article-cover-img {
+  width: 100%;
+  //height: 269px;
+  border-radius: 2px 2px 0 0;
+}
+
+.article-info,
+.article-actions {
+  padding: 10px;
+}
+
+.article-actions {
+  border-top: 1px solid $BORDER-GRAY;
+}
+
+// This article name is the text that shows over the image, thus also justified use for position: absolute
+.article-name {
+  position: absolute;
+  bottom: 7%;
+  left: 4%;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  opacity: 0.9;
+}
+
+//@media (min-width: $TWO-COLUMN-WIDTH) {
+//  .feed-item {
+//    &.article {
+//      display: inline-block;
+//    }
+//  }
+//}
+

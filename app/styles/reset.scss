@@ -1,0 +1,58 @@
+@import "_constants";
+// Reset-type styles are defined here
+// The selectors provided here are meant to provide a default styling
+// however, they are loose enough so that they can be overriden at any time
+
+body {
+  margin: 0;
+  background-color: $BACKGROUND-GRAY;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+h1,
+span,
+h2,
+section,
+p {
+  margin: 0;
+  line-height: 1.5;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+}
+
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid $FORM-BORDER;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  margin: 0 0 15px 0;
+  transition: all .5s;
+
+  &:focus {
+    color: $INPUT-TEXT;
+    border-bottom: 1px solid $INPUT-TEXT;
+  }
+
+  &.has-error {
+    color: $ERROR-RED;
+    border-bottom: 1px solid $ERROR-RED;
+  }
+
+  &:disabled {
+    border-bottom: 1px dotted $FORM-BORDER;
+    opacity: 0.4;
+  }
+}
+
+input[type="radio"] {
+  cursor: pointer;
+}
+

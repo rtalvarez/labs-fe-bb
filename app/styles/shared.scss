@@ -1,0 +1,66 @@
+@import "_constants";
+@import "_mixins";
+
+// Styles defined here are shared throughout the app
+// Made it this way so that changing these styles only needs to happen here
+// This way it's easier to maintain
+
+.btn-main {
+  color: $MAIN-CTA;
+}
+
+.btn-secondary {
+  color: $SECONDARY-CTA;
+}
+
+.btn-main,
+.btn-secondary {
+  @include unstyled-button();
+  font-weight: bold;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+// These styles make it so that the element is invisible to regular users, but it's still in the DOM
+// That way, it will still be accessible to screen readers
+.a11y-desc {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.card-header {
+  font-weight: lighter;
+}
+
+.card-description {
+  opacity: 0.4;
+}
+
+.card-actions {
+  border-top: 1px solid $BORDER-GRAY;
+  padding: 10px;
+}
+
+.card-body-content {
+  font-weight: lighter;
+}
+
+// Styles for the background mask used for the dialog and for the expanded nav
+// Gives the impression of pausing everything else to focus on the dialog/dropdown
+.mask {
+  background: $LIGHT-GRAY;
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,87 @@
+@import "../_mixins";
+@import "../constants";
+
+// Styles for the AddBookDialogView
+
+.add-book-form-label {
+  display: block;
+  opacity: 0.7;
+}
+
+.book-cover-container {
+  height: 100%;
+}
+
+.add-book-form {
+  &.has-error {
+    .error-message {
+      display: inline-block;
+      color: $ERROR-RED;
+    }
+  }
+}
+
+.error-message {
+  display: none;
+}
+
+.entry-type-options {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.entry-type-header {
+  margin: 0;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+// This one already had an ID for a11y purposes, so just leveraging that here
+#confirm-add {
+  @include unstyled-button();
+  color: $MAIN-RED;
+  opacity: 0.9;
+  font-size: 1rem;
+  padding-left: 0;
+}
+
+
+.add-book-header {
+  margin-bottom: 15px;
+  color: $MAIN-RED;
+  font-weight: lighter;
+}
+
+.close-dialog {
+  display: flex;
+  justify-content: flex-end;
+
+  // Adding some hover styles to the `X` svg to close the dialog
+  // Just meant to provide some feedback to the user that this `X` is clickable
+  svg {
+    &:hover {
+      background-color: $LIGHT-GRAY;
+      border-radius: 50%;
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+}
+
+.dialog-content {
+  padding: 20px;
+  position: relative;
+  background: white;
+  z-index: 1;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+// Generally not a fan of position: absolute, however I believe a dialog popup box is a legit usecase for it
+.dialog {
+  position: absolute;
+  background: white;
+  top: 0;
+  left: 10%;
+  width: 80%;
+}

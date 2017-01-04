@@ -1,0 +1,21 @@
+// Mixin that removes user agent styles for buttons
+@mixin unstyled-button() {
+  background: none;
+  border: none;
+  text-decoration: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+// Mixin that applies the styles for columns
+@mixin columns($count) {
+  columns: $count;
+  -webkit-columns: $count;
+  -moz-columns: $count;
+}
+
+// Mixin that applies the break-inside value for columns
+@mixin column-break($value) {
+  -webkit-column-break-inside: $value;
+  page-break-inside: $value;
+}

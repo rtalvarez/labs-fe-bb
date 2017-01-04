@@ -1,0 +1,42 @@
+<div aria-hidden="true" class="mask dialog-mask"></div>
+
+<div class="dialog-content">
+  <div class="close-dialog">
+    {{include-icon "close"}}
+  </div>
+  <section class="add-new-book">
+    <h2 class="add-book-header">Add a new book or article</h2>
+    <form class="add-book-form" autocomplete="off">
+
+      <section class="entry-type-options">
+        <h4 class="entry-type-header">Select the type of entry</h4>
+        <label for="book-entry-type">Book</label>
+        <input name="type" id="book-entry-type" type="radio" value="book" checked aria-checked="true">
+
+        <label for="article-entry-type">Article</label>
+        <input name="type" id="article-entry-type" type="radio" value="article">
+      </section>
+
+      <label class="add-book-form-label" for="book-name-input">Book or article name :</label>
+      <input class="add-book-form-input" required aria-required="true" name="name" id="book-name-input" type="text" placeholder="Enter article or book's name here ...">
+
+      <label class="add-book-form-label" for="book-author-input">Book or article author :</label>
+      <input class="add-book-form-input" required aria-required="true" name="author" type="text" id="book-author-input" placeholder="Enter article or book's author here ...">
+
+      <label class="add-book-form-label" for="book-description-input">Description: </label>
+      <input disabled class="add-book-form-input" id="book-description-input" name="description" type="text" placeholder="Enter article description">
+
+      <label class="add-book-form-label" for="book-cover-input">Book or article cover art :</label>
+      <input class="add-book-form-input" aria-required="false" name="coverUrl" type="text" id="book-cover-input" placeholder="(Optional) Url to article or book's cover art ...">
+
+      <label class="add-book-form-label" for="book-sample-link">Book or article's resource url :</label>
+      <input class="add-book-form-input" aria-required="false" name="sampleUrl" type="text" id="book-sample-link" placeholder="(Optional) Url to the resource ...">
+
+      <div class="dialog-actions">
+        <label class="a11y-desc confirm-add" for="confirm-add">Add the book</label>
+        <input id="confirm-add" class="btn-main" type="submit" value="ADD">
+        <span class="error-message">This name is already in use</span>
+      </div>
+    </form>
+  </section>
+</div>
