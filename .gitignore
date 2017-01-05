@@ -1,4 +1,5 @@
 node_modules
 vendor
 public
-.idea/*
+.idea
+npm-debug.log
