@@ -1,14 +1,16 @@
 import NavTpl from 'templates/nav/nav';
 
-export default class NavCtrl {
-    constructor() {
-        console.log('constructed nav view');
+export default class NavCtrl extends Backbone.View.extend({}) {
+    initialize() {
+        console.log('init 2', this);
         this.render();
     }
-    
+
     render() {
-        this.template = require('templates/nav/nav');
-        console.log('template', this.template({ trolls: 'TROLLS' }));
-        console.log('template import', NavTpl);
+        const html = NavTpl({
+            trolls: 'dafuq'
+        });
+
+        this.$el.html(html);
     }
 }
