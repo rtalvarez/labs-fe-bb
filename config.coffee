@@ -9,7 +9,7 @@ exports.config =
       defaultExtension: 'js'
       joinTo:
         'javascripts/app.js': /^app/
-        'javascripts/vendor.js': /^vendor/
+        'javascripts/vendor.js': /^(vendor|node_modules)/
         'test/javascripts/test.js': /^test(\/|\\)(?!vendor)/
         'test/javascripts/test-vendor.js': /^test(\/|\\)(?=vendor)/
       order:
@@ -25,7 +25,7 @@ exports.config =
     stylesheets:
       defaultExtension: 'styl'
       joinTo:
-        'stylesheets/app.css': /^(app|vendor)/
+        'stylesheets/app.css': /^(app|vendor|node_modules)/
         'test/stylesheets/test.css': /^test/
       order:
         before: ['vendor/styles/normalize.css']
@@ -42,3 +42,10 @@ exports.config =
       ]
 
   minify: no
+
+  npm:
+    styles:
+      'materialize-css': ['dist/css/materialize.min.css']
+    static: [
+      'materialize-css/dist/js/materialize.min.js'
+    ]
