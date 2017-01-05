@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c488317-7b15-4285-9185-ae5e6f216f9c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/app.hbs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascripts/nav/NavView.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/AppView.hbs" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/javascripts/nav/nav.controller.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/templates/app.hbs" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/templates/nav/nav.hbs" afterPath="$PROJECT_DIR$/app/templates/nav/NavView.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/index.html" afterPath="$PROJECT_DIR$/app/assets/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/initialize.js" afterPath="$PROJECT_DIR$/app/initialize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascripts/nav/nav.controller.js" afterPath="$PROJECT_DIR$/app/javascripts/nav/nav.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/nav/nav.hbs" afterPath="$PROJECT_DIR$/app/templates/nav/nav.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascripts/AppView.js" afterPath="$PROJECT_DIR$/app/javascripts/AppView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascripts/shared/BaseView.js" afterPath="$PROJECT_DIR$/app/javascripts/shared/BaseView.js" />
     </list>
     <ignored path="labs-fe-bb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,10 +35,11 @@
       <file leaf-file-name="initialize.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/initialize.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <element signature="e#146#188#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -42,18 +48,38 @@
       <file leaf-file-name="AppView.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/javascripts/AppView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+            <state relative-caret-position="15">
+              <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.hbs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/app.hbs">
+      <file leaf-file-name="AppView.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/AppView.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/javascripts/shared/Constants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -79,18 +105,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/javascripts/nav/nav.controller.js">
+      <file leaf-file-name="NavView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/javascripts/nav/NavView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+            <state relative-caret-position="15">
+              <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.hbs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/nav/nav.hbs">
+      <file leaf-file-name="NavView.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/nav/NavView.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
@@ -122,10 +148,14 @@
         <option value="$PROJECT_DIR$/app/nav.controller.js" />
         <option value="$PROJECT_DIR$/app/javascripts/nav/index.js" />
         <option value="$PROJECT_DIR$/app/javascripts/nav/nav.controller.js" />
-        <option value="$PROJECT_DIR$/app/initialize.js" />
-        <option value="$PROJECT_DIR$/app/templates/AppView.hbs" />
-        <option value="$PROJECT_DIR$/app/templates/nav/nav.hbs" />
         <option value="$PROJECT_DIR$/app/javascripts/shared/BaseView.js" />
+        <option value="$PROJECT_DIR$/app/templates/nav/nav.hbs" />
+        <option value="$PROJECT_DIR$/app/templates/app.hbs" />
+        <option value="$PROJECT_DIR$/app/initialize.js" />
+        <option value="$PROJECT_DIR$/app/assets/index.html" />
+        <option value="$PROJECT_DIR$/app/templates/AppView.hbs" />
+        <option value="$PROJECT_DIR$/app/javascripts/nav/NavController.js" />
+        <option value="$PROJECT_DIR$/app/javascripts/shared/Constants.js" />
         <option value="$PROJECT_DIR$/app/javascripts/AppView.js" />
       </list>
     </option>
@@ -312,7 +342,73 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nav" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labs-fe-bb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labs-fe-bb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labs-fe-bb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labs-fe-bb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shared" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labs-fe-bb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labs-fe-bb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nav" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -415,12 +511,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1483497209876</updated>
-      <workItem from="1483497212141" duration="9445000" />
+      <workItem from="1483497212141" duration="10743000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9445000" />
+    <option name="totallyTimeSpent" value="10743000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -458,7 +554,7 @@
         <state relative-caret-position="34">
           <caret line="12353" column="0" selection-start-line="12353" selection-start-column="0" selection-end-line="12353" selection-end-column="0" />
           <folding>
-            <marker date="1483573927000" expanded="true" signature="350635:350952" ph="/** |-------------------| ...*/" />
+            <marker date="1483577139000" expanded="true" signature="350635:350952" ph="/** |-------------------| ...*/" />
           </folding>
         </state>
       </provider>
@@ -474,14 +570,6 @@
     <entry file="file://$PROJECT_DIR$/public/javascripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1686">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -519,32 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/initialize.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascripts/nav/nav.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/nav/nav.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascripts/shared/BaseView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -553,18 +615,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app.hbs">
+    <entry file="file://$PROJECT_DIR$/app/initialize.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#146#188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascripts/nav/NavView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/nav/NavView.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascripts/shared/Constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/AppView.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascripts/AppView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        <state relative-caret-position="15">
+          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
           <folding />
         </state>
       </provider>

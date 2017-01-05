@@ -1,0 +1,187 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/cilop/.nvm/versions/node/v4.7.0/bin/node',
+1 verbose cli   '/Users/cilop/.nvm/versions/node/v4.7.0/bin/npm',
+1 verbose cli   'install' ]
+2 info using npm@2.15.11
+3 info using node@v4.7.0
+4 verbose readDependencies loading dependencies from /Users/cilop/labs/labs-fe-bb/package.json
+5 warn package.json package-name@0.0.1 No license field.
+6 verbose install where, deps [ '/Users/cilop/labs/labs-fe-bb',
+6 verbose install   [ 'auto-reload-brunch',
+6 verbose install     'clean-css-brunch',
+6 verbose install     'coffee-script-brunch',
+6 verbose install     'css-brunch',
+6 verbose install     'handlebars-brunch',
+6 verbose install     'javascript-brunch',
+6 verbose install     'sass-brunch',
+6 verbose install     'uglify-js-brunch',
+6 verbose install     'babel-brunch',
+6 verbose install     'babel-preset-es2015',
+6 verbose install     'babel-preset-es2016' ] ]
+7 verbose install where, peers [ '/Users/cilop/labs/labs-fe-bb', [] ]
+8 verbose installManyTop reading for lifecycle /Users/cilop/labs/labs-fe-bb/package.json
+9 info preinstall package-name@0.0.1
+10 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/auto-reload-brunch/package.json
+11 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/babel-brunch/package.json
+12 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/babel-preset-es2015/package.json
+13 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/babel-preset-es2016/package.json
+14 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/buster-core/package.json
+15 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/buster-format/package.json
+16 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/clean-css/package.json
+17 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/clean-css-brunch/package.json
+18 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/coffee-script/package.json
+19 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/coffee-script-brunch/package.json
+20 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/commander/package.json
+21 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/css-brunch/package.json
+22 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/handlebars/package.json
+23 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/handlebars-brunch/package.json
+24 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/javascript-brunch/package.json
+25 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/optimist/package.json
+26 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/options/package.json
+27 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/sass-brunch/package.json
+28 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/tinycolor/package.json
+29 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/uglify-js/package.json
+30 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/uglify-js-brunch/package.json
+31 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/wordwrap/package.json
+32 verbose installManyTop reading scoped package data from /Users/cilop/labs/labs-fe-bb/node_modules/ws/package.json
+33 info package.json clean-css@0.8.3 No license field.
+34 info package.json auto-reload-brunch@1.4.0 No license field.
+35 info package.json buster-format@0.5.6 No license field.
+36 info package.json clean-css-brunch@1.4.0 No license field.
+37 info package.json buster-core@0.6.4 No license field.
+38 info package.json coffee-script-brunch@1.4.1 No license field.
+39 info package.json commander@0.6.1 No license field.
+40 info package.json coffee-script@1.3.3 No license field.
+41 info package.json handlebars@1.0.7 No license field.
+42 info package.json handlebars-brunch@1.4.0 No license field.
+43 info package.json css-brunch@1.3.0 No license field.
+44 info package.json options@0.0.6 No license field.
+45 info package.json sass-brunch@1.4.2 No license field.
+46 info package.json javascript-brunch@1.3.0 No license field.
+47 info package.json optimist@0.3.7 license should be a valid SPDX license expression
+48 info package.json tinycolor@0.0.1 No license field.
+49 info package.json ws@0.4.20 No license field.
+50 info package.json uglify-js@1.2.6 No license field.
+51 info package.json uglify-js-brunch@1.3.1 No license field.
+52 verbose readDependencies loading dependencies from /Users/cilop/labs/labs-fe-bb/package.json
+53 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/auto-reload-brunch/package.json
+54 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/babel-brunch/package.json
+55 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/babel-preset-es2015/package.json
+56 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/babel-preset-es2016/package.json
+57 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/buster-core/package.json
+58 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/buster-format/package.json
+59 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/clean-css/package.json
+60 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/clean-css-brunch/package.json
+61 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/coffee-script/package.json
+62 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/coffee-script-brunch/package.json
+63 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/commander/package.json
+64 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/css-brunch/package.json
+65 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/handlebars/package.json
+66 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/handlebars-brunch/package.json
+67 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/javascript-brunch/package.json
+68 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/optimist/package.json
+69 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/options/package.json
+70 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/sass-brunch/package.json
+71 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/tinycolor/package.json
+72 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/uglify-js/package.json
+73 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/uglify-js-brunch/package.json
+74 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/wordwrap/package.json
+75 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/ws/package.json
+76 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/.bin/cake/package.json
+77 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/.bin/cleancss/package.json
+78 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/.bin/coffee/package.json
+79 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/.bin/handlebars/package.json
+80 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/.bin/uglifyjs/package.json
+81 verbose targetResolver reading package data from /Users/cilop/labs/labs-fe-bb/node_modules/.bin/wscat/package.json
+82 verbose already installed skipping handlebars-brunch@>= 1.0 < 1.5 /Users/cilop/labs/labs-fe-bb
+83 verbose already installed skipping javascript-brunch@>= 1.0 < 1.5 /Users/cilop/labs/labs-fe-bb
+84 verbose already installed skipping sass-brunch@1.4.2 /Users/cilop/labs/labs-fe-bb
+85 verbose already installed skipping uglify-js-brunch@>= 1.0 < 1.5 /Users/cilop/labs/labs-fe-bb
+86 verbose already installed skipping babel-brunch@^6.0.6 /Users/cilop/labs/labs-fe-bb
+87 verbose already installed skipping babel-preset-es2015@^6.18.0 /Users/cilop/labs/labs-fe-bb
+88 verbose already installed skipping babel-preset-es2016@^6.16.0 /Users/cilop/labs/labs-fe-bb
+89 verbose already installed skipping auto-reload-brunch@1.4.0 /Users/cilop/labs/labs-fe-bb
+90 verbose already installed skipping clean-css-brunch@>= 1.0 < 1.5 /Users/cilop/labs/labs-fe-bb
+91 verbose already installed skipping coffee-script-brunch@>= 1.0 < 1.5 /Users/cilop/labs/labs-fe-bb
+92 verbose already installed skipping css-brunch@>= 1.0 < 1.5 /Users/cilop/labs/labs-fe-bb
+93 silly install resolved []
+94 info build /Users/cilop/labs/labs-fe-bb
+95 info linkStuff package-name@0.0.1
+96 silly linkStuff package-name@0.0.1 has /Users/cilop/labs as its parent node_modules
+97 verbose linkBins package-name@0.0.1
+98 verbose linkMans package-name@0.0.1
+99 verbose rebuildBundles package-name@0.0.1
+100 verbose rebuildBundles [ '.bin',
+100 verbose rebuildBundles   'auto-reload-brunch',
+100 verbose rebuildBundles   'babel-brunch',
+100 verbose rebuildBundles   'babel-preset-es2015',
+100 verbose rebuildBundles   'babel-preset-es2016',
+100 verbose rebuildBundles   'buster-core',
+100 verbose rebuildBundles   'buster-format',
+100 verbose rebuildBundles   'clean-css',
+100 verbose rebuildBundles   'clean-css-brunch',
+100 verbose rebuildBundles   'coffee-script',
+100 verbose rebuildBundles   'coffee-script-brunch',
+100 verbose rebuildBundles   'commander',
+100 verbose rebuildBundles   'css-brunch',
+100 verbose rebuildBundles   'handlebars',
+100 verbose rebuildBundles   'handlebars-brunch',
+100 verbose rebuildBundles   'javascript-brunch',
+100 verbose rebuildBundles   'optimist',
+100 verbose rebuildBundles   'options',
+100 verbose rebuildBundles   'sass-brunch',
+100 verbose rebuildBundles   'tinycolor',
+100 verbose rebuildBundles   'uglify-js',
+100 verbose rebuildBundles   'uglify-js-brunch',
+100 verbose rebuildBundles   'wordwrap',
+100 verbose rebuildBundles   'ws' ]
+101 verbose rebuild bundle /Users/cilop/labs/labs-fe-bb/node_modules/buster-core
+102 info build /Users/cilop/labs/labs-fe-bb/node_modules/buster-core
+103 info preinstall buster-core@0.6.4
+104 info linkStuff buster-core@0.6.4
+105 silly linkStuff buster-core@0.6.4 has /Users/cilop/labs/labs-fe-bb/node_modules as its parent node_modules
+106 verbose linkBins buster-core@0.6.4
+107 verbose linkMans buster-core@0.6.4
+108 verbose rebuildBundles buster-core@0.6.4
+109 info install buster-core@0.6.4
+110 info postinstall buster-core@0.6.4
+111 verbose rebuild bundle /Users/cilop/labs/labs-fe-bb/node_modules/buster-format
+112 info build /Users/cilop/labs/labs-fe-bb/node_modules/buster-format
+113 info preinstall buster-format@0.5.6
+114 info linkStuff buster-format@0.5.6
+115 silly linkStuff buster-format@0.5.6 has /Users/cilop/labs/labs-fe-bb/node_modules as its parent node_modules
+116 verbose linkBins buster-format@0.5.6
+117 verbose linkMans buster-format@0.5.6
+118 verbose rebuildBundles buster-format@0.5.6
+119 info install buster-format@0.5.6
+120 info postinstall buster-format@0.5.6
+121 verbose rebuild bundle /Users/cilop/labs/labs-fe-bb/node_modules/clean-css
+122 info build /Users/cilop/labs/labs-fe-bb/node_modules/clean-css
+123 info preinstall clean-css@0.8.3
+124 info linkStuff clean-css@0.8.3
+125 silly linkStuff clean-css@0.8.3 has /Users/cilop/labs/labs-fe-bb/node_modules as its parent node_modules
+126 verbose linkBins clean-css@0.8.3
+127 verbose link bins [ { cleancss: './bin/cleancss' },
+127 verbose link bins   '/Users/cilop/labs/labs-fe-bb/node_modules/.bin',
+127 verbose link bins   false ]
+128 verbose linkMans clean-css@0.8.3
+129 verbose rebuildBundles clean-css@0.8.3
+130 silly gentlyRm /Users/cilop/labs/labs-fe-bb/node_modules/.bin/cleancss is being purged
+131 verbose gentlyRm don't care about contents; nuking /Users/cilop/labs/labs-fe-bb/node_modules/.bin/cleancss
+132 silly vacuum-fs purging /Users/cilop/labs/labs-fe-bb/node_modules/.bin/cleancss
+133 silly vacuum-fs quitting because other entries in /Users/cilop/labs/labs-fe-bb/node_modules/.bin
+134 verbose stack Error: EEXIST: file already exists, symlink '../clean-css/bin/cleancss' -> '/Users/cilop/labs/labs-fe-bb/node_modules/.bin/cleancss'
+134 verbose stack     at Error (native)
+135 verbose cwd /Users/cilop/labs/labs-fe-bb
+136 error Darwin 15.5.0
+137 error argv "/Users/cilop/.nvm/versions/node/v4.7.0/bin/node" "/Users/cilop/.nvm/versions/node/v4.7.0/bin/npm" "install"
+138 error node v4.7.0
+139 error npm  v2.15.11
+140 error path ../clean-css/bin/cleancss
+141 error code EEXIST
+142 error errno -17
+143 error syscall symlink
+144 error EEXIST: file already exists, symlink '../clean-css/bin/cleancss' -> '/Users/cilop/labs/labs-fe-bb/node_modules/.bin/cleancss'
+File exists: ../clean-css/bin/cleancss
+Move it away, and try again.
+145 verbose exit [ -17, true ]
