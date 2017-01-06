@@ -1,3 +1,34 @@
 <section class="capture-patient-view-content">
     <h3>Datos del Paciente</h3>
+
+    <section class="row">
+        <h5>Paciente</h5>
+        <div class="input-field">
+            Typeahead
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="input-field col s4">
+            <input name="capturePatient-firstName"
+                   id="capturePatient-firstName"
+                   type="text"
+                   class="validate autocomplete">
+            <label for="capturePatient-firstName">Nombre</label>
+        </div>
+        <div class="input-field col s4">
+            <input name="capturePatient-lastName"
+                   id="capturePatient-lastName"
+                   type="text"
+                   class="validate">
+            <label for="capturePatient-lastName">Apellidos</label>
+        </div>
+        <div class="input-field col s4">
+            <input name="capturePatient-DoB"
+                   type="date"
+                   id="capturePatient-DoB"
+                   class="datepicker">
+            <label for="capturePatient-DoB">Fecha de nacimiento</label>
+        </div>
+    </section>
 </section>

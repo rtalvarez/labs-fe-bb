@@ -47,5 +47,5 @@ exports.config =
     styles:
       'materialize-css': ['dist/css/materialize.min.css']
     static: [
-      'materialize-css/dist/js/materialize.min.js'
+      'node_modules/materialize-css/dist/js/materialize.min.js'
     ]
