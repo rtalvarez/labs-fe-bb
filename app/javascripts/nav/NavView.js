@@ -1,9 +1,16 @@
 import BaseView from 'javascripts/shared/BaseView';
 import NavTpl from 'templates/nav/NavView';
 
-export default class NavCtrl extends BaseView {
+export default class NavView extends BaseView({
+    events: {
+        'click .schedule-appointment-action': 'onScheduleAppointmentClick'
+    }
+}) {
     initialize() {
-        console.log('init 2', this);
         this.render(NavTpl);
+    }
+
+    onScheduleAppointmentClick(evt) {
+        this.navigate(evt);
     }
 }

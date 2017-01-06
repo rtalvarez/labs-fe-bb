@@ -6,7 +6,7 @@ import CreateAppointmentView from 'javascripts/appointments/create/CreateAppoint
 import PubSub from 'javascripts/PubSub';
 import NavView from 'javascripts/nav/NavView';
 
-export default class extends BaseView {
+export default class extends BaseView() {
     initialize() {
         this.render(AppTpl);
         this.initViews();

@@ -8,6 +8,7 @@ export default {
 
     EVENTS: {
         NAVIGATE: {
+            TO: 'naviate:to',
             NEW_APPOINTMENT: 'navigate:newAppointment'
         }
     }
