@@ -2,6 +2,7 @@ import AppTpl from 'templates/AppView';
 import AppRouter from 'javascripts/AppRouter';
 import BaseView from 'javascripts/shared/BaseView';
 import CONSTANTS from 'javascripts/shared/Constants';
+import CreateAppointmentView from 'javascripts/appointments/create/CreateAppointmentView';
 import PubSub from 'javascripts/PubSub';
 import NavView from 'javascripts/nav/NavView';
 
@@ -25,6 +26,9 @@ export default class extends BaseView {
 
     onNewAppointmentNavigate() {
         console.log('navigate from appview');
+        this.createAppointmentView = new CreateAppointmentView({
+            el: this.$el.find(CONSTANTS.SELECTORS.CREATE_APPOINTMENT_VIEW)
+        });
     }
 
     registerEvents() {
