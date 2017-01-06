@@ -1,22 +1,33 @@
-import NavView from 'javascripts/nav/NavView';
-import BaseView from 'javascripts/shared/BaseView';
 import AppTpl from 'templates/AppView';
+import AppRouter from 'javascripts/AppRouter';
+import BaseView from 'javascripts/shared/BaseView';
 import CONSTANTS from 'javascripts/shared/Constants';
-// import AppTpl from 'templates/nav/nav';
+import PubSub from 'javascripts/PubSub';
+import NavView from 'javascripts/nav/NavView';
 
 export default class extends BaseView {
     initialize() {
-        console.log('init app');
-
         this.render(AppTpl);
         this.initViews();
+        this.initRouter();
+        this.registerEvents();
+    }
+
+    initRouter() {
+        this.appRouter = new AppRouter();
     }
     
     initViews() {
         this.navView = new NavView({
             el: this.$el.find(CONSTANTS.SELECTORS.NAV_VIEW)
         });
+    }
 
-        console.log('inited views')
+    onNewAppointmentNavigate() {
+        console.log('navigate from appview');
+    }
+
+    registerEvents() {
+        this.listenTo(PubSub, CONSTANTS.EVENTS.NAVIGATE.NEW_APPOINTMENT, this.onNewAppointmentNavigate);
     }
 }
