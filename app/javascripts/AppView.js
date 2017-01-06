@@ -9,9 +9,10 @@ import NavView from 'javascripts/nav/NavView';
 export default class extends BaseView() {
     initialize() {
         this.render(AppTpl);
+        this.registerEvents();
+
         this.initViews();
         this.initRouter();
-        this.registerEvents();
     }
 
     initRouter() {
@@ -25,7 +26,6 @@ export default class extends BaseView() {
     }
 
     onNewAppointmentNavigate() {
-        console.log('navigate from appview');
         this.createAppointmentView = new CreateAppointmentView({
             el: this.$el.find(CONSTANTS.SELECTORS.CREATE_APPOINTMENT_VIEW)
         });
