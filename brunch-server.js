@@ -6,7 +6,7 @@ http = require('http');
 httpProxy = require('http-proxy');
 
 apiProxy = httpProxy.createServer({
-  target: 'http://localhost:3000'
+  target: 'http://localhost:8080'
 });
 
 exports.startServer = function(port, path, callback) {
@@ -18,6 +18,7 @@ exports.startServer = function(port, path, callback) {
     app.all("/api/*", function(req, res) {
         delete req.headers.host;
 
+        console.log('[PROXY]: Routing request: ', req.url);
         return apiProxy.web(req, res);
     });
 

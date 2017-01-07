@@ -2,38 +2,44 @@ import BaseView from 'javascripts/shared/BaseView';
 import TypeaheadViewTpl from 'templates/shared/TypeaheadView';
 import TypeaheadModel from 'javascripts/shared/TypeaheadModel';
 
+import CONSTANTS from 'javascripts/shared/Constants';
+
 export default class TypeaheadView extends BaseView({
     model: new TypeaheadModel(),
     events: {
         'input .typeahead-input': '_onTypeaheadInputChange'
     }
 }) {
-    initialize(data) {
-        console.log('Typeahead view initialized');
-
+    initialize(config) {
         this.render(TypeaheadViewTpl);
-        console.log(data);
-        console.log('model', this.model);
-        // this.test();
+        this._baseUrl = config.url;
+
+        this._onTypeaheadInputChange = _.debounce(this._onTypeaheadInputChange.bind(this), 300);
+        this._$typeahead = this.$el.find(CONSTANTS.SELECTORS.TYPEAHEAD_INPUT);
+        this.transformData = config.transformData;
     }
 
-    test() {
-        const data = {
-            Google: { id: 1 },
-            Apple: { id: 2 }
-        };
-
-        this.$el.find('.typeahead-input').autocomplete({ data });
+    setTypeaheadData(data) {
+        this._$typeahead.autocomplete({ data });
     }
 
     _onTypeaheadInputChange(evt) {
+        const input = $(evt.target).val();
+        const query = this._constructQuery(input);
         evt.preventDefault();
 
-        console.log($(evt.target).val());
-        this.fetchTypeaheadData();
+        if (input.length > 2) {
+            this.fetchTypeaheadData(query)
+                .then((data) => this.setTypeaheadData(data));
+        }
     }
 
-    fetchTypeaheadData() {
-        this.model.fetchData();
+    fetchTypeaheadData(url) {
+        return this.collection.fetch(url)
+            .then((data) => this.collection.transformData(data));
+    }
+
+    _constructQuery(query) {
+        return this._baseUrl.replace(/\$/, query);
     }
 }

@@ -4,6 +4,8 @@ import CapturePatientViewTpl from 'templates/appointments/create/CapturePatientV
 import TypeaheadView from 'javascripts/shared/TypeaheadView';
 import CONSTANTS from 'javascripts/shared/Constants';
 
+import PatientCollection from 'javascripts/appointments/create/PatientCollection';
+
 export default class CapturePatientView extends BaseView() {
     initialize() {
         this.render(CapturePatientViewTpl);
@@ -14,7 +16,8 @@ export default class CapturePatientView extends BaseView() {
     initViews() {
         this._typeaheadView = new TypeaheadView({
             el: this.$el.find(CONSTANTS.SELECTORS.TYPEAHEAD_VIEW),
-            url: CONSTANTS.URLS.SEARCH_PATIENT
+            url: CONSTANTS.URLS.SEARCH_PATIENT,
+            collection: new PatientCollection([])
         });
     }
 }

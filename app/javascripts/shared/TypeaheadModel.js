@@ -11,5 +11,7 @@ export default class TypeaheadModel extends BaseModel() {
 
     fetchData(url) {
         console.log('fetcherino');
+
+        return $.get(url);
     }
 }
