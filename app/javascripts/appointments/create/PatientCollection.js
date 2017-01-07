@@ -5,7 +5,7 @@ export default class PatientCollection extends BaseCollection({
     model: PatientModel
 }) {
     initialize() {
-
+        this._typeaheadData = {};
     }
 
     fetch(query) {
@@ -14,13 +14,15 @@ export default class PatientCollection extends BaseCollection({
     }
 
     transformData(patients) {
-        debugger;
         const data = {};
 
         _.each(patients, (patient) => {
-            const key = `${patient.firstName} ${patient.lastName} (${patient.DoB})`;
+            const key = `${patient.firstName} ${patient.lastName} (${patient.dateOfBirth})`;
 
-            data[key] = patient;
+            if (!this._typeaheadData[key]) {
+                data[key] = patient;
+                this._typeaheadData[key] = true;
+            }
         });
 
         return data;

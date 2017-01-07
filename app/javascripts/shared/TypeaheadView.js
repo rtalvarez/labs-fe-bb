@@ -19,7 +19,10 @@ export default class TypeaheadView extends BaseView({
     }
 
     setTypeaheadData(data) {
-        this._$typeahead.autocomplete({ data });
+        // const data = JSON.parse('{"Ondalacio Contreras (1923/23/4)":{"id":1,"firstName":"Ondalacio","lastName":"Contreras","dateOfBirth":"1923/23/4"},"Ondalacio 2 Contreras 2 (1989/1/1)":{"id":2,"firstName":"Ondalacio 2","lastName":"Contreras 2","dateOfBirth":"1989/1/1"}}')
+        console.log('setting', { data })
+        // this._$typeahead.autocomplete({ data });
+        $('.typeahead-input').autocomplete({ data });
     }
 
     _onTypeaheadInputChange(evt) {
