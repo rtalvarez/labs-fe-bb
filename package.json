@@ -24,7 +24,7 @@
     "handlebars-brunch": ">= 1.0 < 1.5",
     "http-proxy": "^1.16.2",
     "javascript-brunch": ">= 1.0 < 1.5",
-    "materialize-css": "^0.97.8",
+    "materialize-css": "git@github.com:rtalvarez/materialize.git#3fb589592ab907e43365d82f07693ea68be28ff5",
     "sass-brunch": "1.4.2",
     "uglify-js-brunch": ">= 1.0 < 1.5"
   },
