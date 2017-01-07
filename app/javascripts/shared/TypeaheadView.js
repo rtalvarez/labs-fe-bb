@@ -12,7 +12,6 @@ export default class TypeaheadView extends BaseView({
 }) {
     initialize(config) {
         this.render(TypeaheadViewTpl);
-        this._baseUrl = config.url;
 
         this._onTypeaheadInputChange = _.debounce(this._onTypeaheadInputChange.bind(this), 300);
         this._$typeahead = this.$el.find(CONSTANTS.SELECTORS.TYPEAHEAD_INPUT);
@@ -24,22 +23,17 @@ export default class TypeaheadView extends BaseView({
     }
 
     _onTypeaheadInputChange(evt) {
-        const input = $(evt.target).val();
-        const query = this._constructQuery(input);
+        const query = $(evt.target).val();
         evt.preventDefault();
 
-        if (input.length > 2) {
+        if (query.length > 2) {
             this.fetchTypeaheadData(query)
                 .then((data) => this.setTypeaheadData(data));
         }
     }
 
-    fetchTypeaheadData(url) {
-        return this.collection.fetch(url)
+    fetchTypeaheadData(query) {
+        return this.collection.fetch(query)
             .then((data) => this.collection.transformData(data));
-    }
-
-    _constructQuery(query) {
-        return this._baseUrl.replace(/\$/, query);
     }
 }

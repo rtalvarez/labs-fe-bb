@@ -9,10 +9,12 @@ export default class PatientCollection extends BaseCollection({
     }
 
     fetch(query) {
-       return $.get('/api/patients?query=' + query);
+       return $.get('/api/patients?query=' + query)
+           .then((resp) => JSON.parse(resp));
     }
 
     transformData(patients) {
+        debugger;
         const data = {};
 
         _.each(patients, (patient) => {
