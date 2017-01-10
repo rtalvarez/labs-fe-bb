@@ -11,11 +11,18 @@ export default class TypeaheadView extends BaseView({
     }
 }) {
     initialize(config) {
+        super.initialize.call(this);
         this.render(TypeaheadViewTpl);
 
         this._onTypeaheadInputChange = _.debounce(this._onTypeaheadInputChange.bind(this), 300);
         this._$typeahead = this.$el.find(CONSTANTS.SELECTORS.TYPEAHEAD_INPUT);
         this.transformData = config.transformData;
+
+        this.attachEvents();
+    }
+
+    attachEvents() {
+        this._$typeahead.on('change', (evt, evtData) => this._onTypeaheadItemSelected(evt, evtData));
     }
 
     setTypeaheadData(data) {
@@ -31,6 +38,15 @@ export default class TypeaheadView extends BaseView({
             this.fetchTypeaheadData(query)
                 .then((data) => this.setTypeaheadData(data));
         }
+    }
+
+    _onTypeaheadItemSelected(evt, evtData) {
+        if (!evtData) {
+            return;
+        }
+
+        evt.preventDefault();
+        console.log('selected', evtData.option.data('id'));
     }
 
     fetchTypeaheadData(query) {
