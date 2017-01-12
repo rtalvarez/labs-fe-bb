@@ -3,13 +3,12 @@ import CapturePatientViewTpl from 'templates/appointments/create/CapturePatientV
 
 import DatepickerView from 'javascripts/shared/DatepickerView';
 import TypeaheadView from 'javascripts/shared/TypeaheadView';
-import CONSTANTS from 'javascripts/shared/Constants';
 
 import PatientCollection from 'javascripts/appointments/create/PatientCollection';
-import PubSub from 'javascripts/PubSub';
 
 export default class CapturePatientView extends BaseView() {
     initialize() {
+        super.initialize();
         this.render(CapturePatientViewTpl);
 
         this._selectors = {
@@ -44,9 +43,9 @@ export default class CapturePatientView extends BaseView() {
     }
 
     attachEvents() {
-        const typeaheadId = CONSTANTS.TYPEAHEAD_IDS.PATIENTS;
+        const typeaheadId = this.CONSTANTS.TYPEAHEAD_IDS.PATIENTS;
 
-        this.listenTo(PubSub, CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onPatientsTypeaheadSelect(data));
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onPatientsTypeaheadSelect(data));
     }
 
     initCollections() {
@@ -55,9 +54,9 @@ export default class CapturePatientView extends BaseView() {
 
     initViews() {
         this._typeaheadView = new TypeaheadView({
-            el: this.$el.find(CONSTANTS.SELECTORS.TYPEAHEAD_VIEW),
+            el: this.$el.find(this.CONSTANTS.SELECTORS.TYPEAHEAD_VIEW),
             collection: this._patientsTypeaheadCollection,
-            id: CONSTANTS.TYPEAHEAD_IDS.PATIENTS,
+            id: this.CONSTANTS.TYPEAHEAD_IDS.PATIENTS,
         });
 
         this._datepickerView = new DatepickerView({
@@ -72,7 +71,7 @@ export default class CapturePatientView extends BaseView() {
     }
 
     _fillInputs(patient) {
-        const classes = CONSTANTS.CLASSES;
+        const classes = this.CONSTANTS.CLASSES;
 
         _.each(this._inputs, (value, key) => {
             this.$el
