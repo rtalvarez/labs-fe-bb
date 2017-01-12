@@ -8,6 +8,12 @@ export default {
         TYPEAHEAD_INPUT: '.typeahead-input'
     },
 
+    // Universal classes only!
+    CLASSES: {
+        ACTIVE: 'active',
+        VALID: 'valid'
+    },
+
     EVENTS: {
         NAVIGATE: {
             TO: 'naviate:to',

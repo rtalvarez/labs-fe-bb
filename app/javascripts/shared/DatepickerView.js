@@ -9,4 +9,17 @@ export default class extends BaseView() {
         // Need a fresh jquery-iezed version of the element for the plugin to work /shrug
         this._$datepicker = this.$el.pickadate(this._datepickerConfig);
     }
+
+    setDate(date) {
+        const formattedDate = date
+            .replace(/[()]/g,'')
+            .split('/')
+            .map((digit) => digit.length === 1 ? '0' + digit : digit)
+            .join('/');
+
+        // :aliens: this pickadate API
+        this._$datepicker
+            .pickadate('picker')
+            .set('select', formattedDate, { format: 'mm/dd/yyyy' });
+    }
 }

@@ -21,7 +21,10 @@ export default class PatientCollection extends BaseCollection({
             const key = `${patient.get('firstName')} ${patient.get('lastName')} (${patient.get('dateOfBirth')})`;
 
             if (!this._typeaheadData[key]) {
-                data[key] = patient;
+                data[key] = {
+                    id: patient.get('id'),
+                };
+
                 this._typeaheadData[key] = true;
             }
         });

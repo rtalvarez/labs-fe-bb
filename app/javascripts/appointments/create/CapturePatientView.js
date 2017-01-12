@@ -13,12 +13,34 @@ export default class CapturePatientView extends BaseView() {
         this.render(CapturePatientViewTpl);
 
         this._selectors = {
-            captureDoB: '#capturePatient-DoB'
+            captureDoB: '#capturePatient-DoB',
+            captureFirstName: '#capturePatient-firstName',
+            captureLastName: '#capturePatient-lastName',
+            captureDoBLabel: '#capturePatient-DoB + label',
+            captureFirstNameLabel: '#capturePatient-firstName + label',
+            captureLastNameLabel: '#capturePatient-lastName + label'
         };
 
         this.initCollections();
         this.initViews();
         this.attachEvents();
+        this.setInputData();
+    }
+
+    setInputData() {
+        const selectors = this._selectors;
+
+        this._inputs = {
+            dateOfBirth: selectors.captureDoB,
+            firstName: selectors.captureFirstName,
+            lastName: selectors.captureLastName,
+        };
+
+        this._labels = {
+            dateOfBirth: selectors.captureDoBLabel,
+            firstName: selectors.captureFirstNameLabel,
+            lastName: selectors.captureLastNameLabel
+        };
     }
 
     attachEvents() {
@@ -46,7 +68,28 @@ export default class CapturePatientView extends BaseView() {
 
     _onPatientsTypeaheadSelect(data) {
         const selectedPatient = this._patientsTypeaheadCollection.get(data.selectedItemId);
-        
+
         console.log('patient', selectedPatient);
+        this._fillInputs(selectedPatient);
+    }
+
+    _fillInputs(patient) {
+        const classes = CONSTANTS.CLASSES;
+
+        _.each(this._inputs, (value, key) => {
+            this.$el
+                .find(value)
+                .val(patient.get(key))
+                .addClass(classes.VALID);
+        });
+
+        // Special treatment for datepicker, since processing of date needs to be made
+        this._datepickerView.setDate(patient.get('dateOfBirth'));
+
+        _.each(this._labels, (value) => {
+            this.$el
+                .find(value)
+                .addClass(classes.ACTIVE);
+        });
     }
 }
