@@ -4,6 +4,7 @@ export default {
         NAV_VIEW: '.nav-view',
         CREATE_APPOINTMENT_VIEW: '.create-appointment-view',
         CAPTURE_PATIENT_VIEW: '.capture-patient-view',
+        CAPTURE_DOCTOR_VIEW: '.capture-doctor-view',
         TYPEAHEAD_VIEW: '.typeahead-view',
         TYPEAHEAD_INPUT: '.typeahead-input'
     },
@@ -29,6 +30,7 @@ export default {
     },
 
     TYPEAHEAD_IDS: {
-        PATIENTS: 'patients'
+        PATIENTS: 'patients',
+        DOCTORS: 'doctors',
     }
 }

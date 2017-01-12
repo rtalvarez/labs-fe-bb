@@ -56,7 +56,6 @@ export default class CapturePatientView extends BaseView() {
     initViews() {
         this._typeaheadView = new TypeaheadView({
             el: this.$el.find(CONSTANTS.SELECTORS.TYPEAHEAD_VIEW),
-            url: CONSTANTS.URLS.SEARCH_PATIENT,
             collection: this._patientsTypeaheadCollection,
             id: CONSTANTS.TYPEAHEAD_IDS.PATIENTS,
         });
