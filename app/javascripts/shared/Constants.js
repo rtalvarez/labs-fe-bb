@@ -12,10 +12,17 @@ export default {
         NAVIGATE: {
             TO: 'naviate:to',
             NEW_APPOINTMENT: 'navigate:newAppointment'
+        },
+        TYPEAHEAD: {
+            ITEM_SELECTED: (id) => `typeahead-${id}:itemSelected`
         }
     },
 
     URLS: {
         SEARCH_PATIENT: '/api/patients?query=$'
+    },
+
+    TYPEAHEAD_IDS: {
+        PATIENTS: 'patients'
     }
 }

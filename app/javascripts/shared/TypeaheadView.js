@@ -1,6 +1,7 @@
 import BaseView from 'javascripts/shared/BaseView';
 import TypeaheadViewTpl from 'templates/shared/TypeaheadView';
 import TypeaheadModel from 'javascripts/shared/TypeaheadModel';
+import PubSub from 'javascripts/PubSub';
 
 import CONSTANTS from 'javascripts/shared/Constants';
 
@@ -17,6 +18,7 @@ export default class TypeaheadView extends BaseView({
         this._onTypeaheadInputChange = _.debounce(this._onTypeaheadInputChange.bind(this), 300);
         this._$typeahead = this.$el.find(CONSTANTS.SELECTORS.TYPEAHEAD_INPUT);
         this.transformData = config.transformData;
+        this._typeaheadId = config.id;
 
         this.attachEvents();
     }
@@ -26,6 +28,7 @@ export default class TypeaheadView extends BaseView({
     }
 
     setTypeaheadData(data) {
+        console.log('data', data);
         // Need a fresh jquery-iezed version of the element for the plugin to work /shrug
         $(this._$typeahead).autocomplete({ data });
     }
@@ -46,6 +49,10 @@ export default class TypeaheadView extends BaseView({
         }
 
         evt.preventDefault();
+        PubSub.trigger(CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(this._typeaheadId), {
+            selectedItemId: evtData.option.data('id'),
+        });
+
         console.log('selected', evtData.option.data('id'));
     }
 

@@ -5,8 +5,8 @@ export default class TypeaheadModel extends BaseModel() {
         super();
     }
 
-    initialize() {
-        this.sayHello();
+    initialize(data) {
+        super.initialize(data);
     }
 
     fetchData(url) {

@@ -9,15 +9,16 @@ export default class PatientCollection extends BaseCollection({
     }
 
     fetch(query) {
-       return $.get('/api/patients?query=' + query)
-           .then((resp) => JSON.parse(resp));
+        return $.get('/api/patients?query=' + query)
+           .then((resp) => JSON.parse(resp))
+           .then((items) => this.add(items));
     }
 
-    transformData(patients) {
+    transformData() {
         const data = {};
 
-        _.each(patients, (patient) => {
-            const key = `${patient.firstName} ${patient.lastName} (${patient.dateOfBirth})`;
+        this.each((patient) => {
+            const key = `${patient.get('firstName')} ${patient.get('lastName')} (${patient.get('dateOfBirth')})`;
 
             if (!this._typeaheadData[key]) {
                 data[key] = patient;
