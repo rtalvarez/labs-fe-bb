@@ -3,6 +3,7 @@ import CreateAppointmentViewTpl from 'templates/appointments/create/CreateAppoin
 
 import CaptureDoctorView from 'javascripts/appointments/create/CaptureDoctorView';
 import CapturePatientView from 'javascripts/appointments/create/CapturePatientView';
+import CaptureDetailsView from 'javascripts/appointments/create/CaptureDetailsView';
 
 export default class CreateAppointmentView extends BaseView() {
     initialize() {
@@ -22,6 +23,10 @@ export default class CreateAppointmentView extends BaseView() {
 
         this._captureDoctorView = new CaptureDoctorView({
             el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_DOCTOR_VIEW)
+        });
+
+        this._captureDetailsView = new CaptureDetailsView({
+            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_DETAILS_VIEW)
         });
     }
 }

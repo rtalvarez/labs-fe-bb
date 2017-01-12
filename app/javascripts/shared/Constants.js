@@ -5,7 +5,9 @@ export default {
         CREATE_APPOINTMENT_VIEW: '.create-appointment-view',
         CAPTURE_PATIENT_VIEW: '.capture-patient-view',
         CAPTURE_DOCTOR_VIEW: '.capture-doctor-view',
+        CAPTURE_DETAILS_VIEW: '.capture-details-view',
         TYPEAHEAD_VIEW: '.typeahead-view',
+        PILLS_TYPEAHEAD_VIEW: '.pills-typeahead-view',
         TYPEAHEAD_INPUT: '.typeahead-input'
     },
 
@@ -32,5 +34,6 @@ export default {
     TYPEAHEAD_IDS: {
         PATIENTS: 'patients',
         DOCTORS: 'doctors',
+        STUDIES: 'studies'
     }
 }

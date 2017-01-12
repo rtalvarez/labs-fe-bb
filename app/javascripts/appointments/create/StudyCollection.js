@@ -1,8 +1,8 @@
 import BaseCollection from 'javascripts/shared/BaseCollection';
-import DoctorModel from 'javascripts/appointments/create/DoctorModel';
+import StudyModel from 'javascripts/appointments/create/StudyModel';
 
-export default class DoctorCollection extends BaseCollection({
-    model: DoctorModel
+export default class extends BaseCollection({
+    model: StudyModel
 }) {
     initialize() {
         super.initialize();
@@ -10,7 +10,7 @@ export default class DoctorCollection extends BaseCollection({
     }
 
     fetch(query) {
-        return $.get('/api/doctors?query=' + query)
+        return $.get('/api/studies?query=' + query)
             .then((resp) => JSON.parse(resp))
             .then((items) => this.add(items));
     }
@@ -18,12 +18,12 @@ export default class DoctorCollection extends BaseCollection({
     transformData() {
         const data = {};
 
-        this.each((doctor) => {
-            const key = `${doctor.get('firstName')} ${doctor.get('lastName')}`;
+        this.each((study) => {
+            const key = `${study.get('name')} ($ ${study.get('price')})`;
 
             if (!this._typeaheadData[key]) {
                 data[key] = {
-                    id: doctor.get('id'),
+                    id: study.get('id'),
                 };
 
                 this._typeaheadData[key] = true;
