@@ -10,9 +10,31 @@ export default class extends BaseView() {
         super.initialize();
         this.render(CaptureDoctorViewTpl);
 
+        this._selectors = {
+            captureFirstName: '#captureDoctor-firstName',
+            captureLastName: '#captureDoctor-lastName',
+            captureFirstNameLabel: '#captureDoctor-firstName + label',
+            captureLastNameLabel: '#captureDoctor-lastName + label'
+        };
+
         this.initCollections();
         this.initViews();
         this.attachEvents();
+        this.setInputData();
+    }
+
+    setInputData() {
+        const selectors = this._selectors;
+
+        this._inputs = {
+            firstName: selectors.captureFirstName,
+            lastName: selectors.captureLastName,
+        };
+
+        this._labels = {
+            firstName: selectors.captureFirstNameLabel,
+            lastName: selectors.captureLastNameLabel
+        };
     }
 
     attachEvents() {
@@ -33,7 +55,26 @@ export default class extends BaseView() {
         });
     }
 
-    _onDoctorsTypeaheadSelect(doctor) {
-        console.log('selected', doctor)
+    _onDoctorsTypeaheadSelect(data) {
+        const selectedDoctor = this._doctorsTypeaheadCollection.get(data.selectedItemId);
+
+        this._fillInputs(selectedDoctor);
+    }
+
+    _fillInputs(doctor) {
+        const classes = this.CONSTANTS.CLASSES;
+
+        _.each(this._inputs, (value, key) => {
+            this.$el
+                .find(value)
+                .val(doctor.get(key))
+                .addClass(classes.VALID);
+        });
+
+        _.each(this._labels, (value) => {
+            this.$el
+                .find(value)
+                .addClass(classes.ACTIVE);
+        });
     }
 }
