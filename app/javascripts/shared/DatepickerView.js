@@ -6,7 +6,6 @@ export default class extends BaseView() {
         super.initialize.call(this);
         this._datepickerConfig = config.datepickerConfig || DATEPICKER_OPTIONS;
 
-        // Need a fresh jquery-iezed version of the element for the plugin to work /shrug
         this._$datepicker = this.$el.pickadate(this._datepickerConfig);
     }
 

@@ -69,7 +69,6 @@ export default class CapturePatientView extends BaseView() {
     _onPatientsTypeaheadSelect(data) {
         const selectedPatient = this._patientsTypeaheadCollection.get(data.selectedItemId);
 
-        console.log('patient', selectedPatient);
         this._fillInputs(selectedPatient);
     }
 

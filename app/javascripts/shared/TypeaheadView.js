@@ -28,9 +28,7 @@ export default class TypeaheadView extends BaseView({
     }
 
     setTypeaheadData(data) {
-        console.log('data', data);
-        // Need a fresh jquery-iezed version of the element for the plugin to work /shrug
-        $(this._$typeahead).autocomplete({ data });
+        this._$typeahead.autocomplete({ data });
     }
 
     _onTypeaheadInputChange(evt) {
@@ -52,8 +50,6 @@ export default class TypeaheadView extends BaseView({
         PubSub.trigger(CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(this._typeaheadId), {
             selectedItemId: evtData.option.data('id'),
         });
-
-        console.log('selected', evtData.option.data('id'));
     }
 
     fetchTypeaheadData(query) {
