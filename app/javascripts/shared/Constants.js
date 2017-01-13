@@ -8,7 +8,8 @@ export default {
         CAPTURE_DETAILS_VIEW: '.capture-details-view',
         TYPEAHEAD_VIEW: '.typeahead-view',
         PILLS_TYPEAHEAD_VIEW: '.pills-typeahead-view',
-        TYPEAHEAD_INPUT: '.typeahead-input'
+        TYPEAHEAD_INPUT: '.typeahead-input',
+        CHIPS: '.chips'
     },
 
     // Universal classes only!
