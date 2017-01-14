@@ -47,10 +47,13 @@ export default class extends BaseView({
     _onTypeaheadItemSelected(data) {
         const selectedEntity = this.collection.get(data.selectedItemId);
         const pillTagName = selectedEntity.get('pillTagName');
+        const constants = this.CONSTANTS;
 
-        console.log('selected entity', selectedEntity);
         this._addChip(pillTagName);
-        this.$el.find('.input').addClass('hidden');
-        this.$el.find('.typeahead-input').val('');
+        this.$el.find(constants.SELECTORS.INPUT)
+            .addClass(constants.CLASSES.HIDDEN);
+
+        this.$el.find(constants.SELECTORS.TYPEAHEAD_INPUT)
+            .val('');
     }
 }

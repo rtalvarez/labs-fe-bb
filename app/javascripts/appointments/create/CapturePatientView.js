@@ -5,6 +5,7 @@ import DatepickerView from 'javascripts/shared/DatepickerView';
 import TypeaheadView from 'javascripts/shared/TypeaheadView';
 
 import PatientCollection from 'javascripts/appointments/create/PatientCollection';
+import PatientModel from 'javascripts/appointments/create/PatientModel';
 
 export default class CapturePatientView extends BaseView() {
     initialize() {
@@ -20,10 +21,24 @@ export default class CapturePatientView extends BaseView() {
             captureLastNameLabel: '#capturePatient-lastName + label'
         };
 
+        _.bindAll(this,
+            'checkForErrors');
+
+        this.initModels();
         this.initCollections();
         this.initViews();
+
         this.attachEvents();
         this.setInputData();
+    }
+
+    initModels() {
+        this._selectedPatient = new PatientModel({});
+    }
+
+    checkForErrors() {
+
+        console.log('dob', this._selectedPatient.get('dateOfBirth'))
     }
 
     setInputData() {
@@ -44,8 +59,12 @@ export default class CapturePatientView extends BaseView() {
 
     attachEvents() {
         const typeaheadId = this.CONSTANTS.TYPEAHEAD_IDS.PATIENTS;
+        const datepickerId = this.CONSTANTS.DATEPICKER_IDS.PATIENTS;
 
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onPatientsTypeaheadSelect(data));
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.DATEPICKER.ITEM_SELECTED(datepickerId), (data) => this._onPatientsDatepickerSelect(data));
+        this.bindToModel(this.$el.find(this._selectors.captureFirstName), this._selectedPatient, 'firstName');
+        this.bindToModel(this.$el.find(this._selectors.captureLastName), this._selectedPatient, 'lastName');
     }
 
     initCollections() {
@@ -60,13 +79,19 @@ export default class CapturePatientView extends BaseView() {
         });
 
         this._datepickerView = new DatepickerView({
-            el: this.$el.find(this._selectors.captureDoB)
+            el: this.$el.find(this._selectors.captureDoB),
+            id: this.CONSTANTS.DATEPICKER_IDS.PATIENTS
         });
+    }
+
+    _onPatientsDatepickerSelect(selectedDate) {
+        console.log('selectedDate', selectedDate);
     }
 
     _onPatientsTypeaheadSelect(data) {
         const selectedPatient = this._patientsTypeaheadCollection.get(data.selectedItemId);
 
+        this._selectedPatient = selectedPatient;
         this._fillInputs(selectedPatient);
     }
 

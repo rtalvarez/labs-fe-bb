@@ -10,21 +10,23 @@
             <input name="capturePatient-firstName"
                    id="capturePatient-firstName"
                    type="text"
-                   class="validate autocomplete">
+                   pattern="[A-Za-z]+"
+                   class="validate" required>
             <label for="capturePatient-firstName">Nombre</label>
         </div>
         <div class="input-field col s4">
             <input name="capturePatient-lastName"
                    id="capturePatient-lastName"
                    type="text"
-                   class="validate">
+                   pattern="[A-Za-z]+"
+                   class="validate" required>
             <label for="capturePatient-lastName">Apellidos</label>
         </div>
         <div class="input-field col s4">
             <input name="capturePatient-DoB"
                    type="date"
                    id="capturePatient-DoB"
-                   class="datepicker">
+                   class="datepicker" required>
             <label for="capturePatient-DoB">Fecha de nacimiento</label>
         </div>
     </section>

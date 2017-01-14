@@ -8,6 +8,7 @@ export default class extends BaseView() {
     initialize() {
         this.render(CaptureDetailsViewTpl);
         super.initialize();
+        this._selectedStudies = {};
 
         this.initCollections();
         this.initViews();
@@ -33,9 +34,9 @@ export default class extends BaseView() {
     }
 
     _onStudiesTypeaheadSelect(data) {
-        const selectedStudy = this._studiesTypeaheadCollection.get(data.selectedItemId);
+        const id = data.selectedItemId;
+        const selectedStudy = this._studiesTypeaheadCollection.get(id);
 
-        console.log('selected sutyd', selectedStudy)
-
+        this._selectedStudies[id] = selectedStudy;
     }
 }

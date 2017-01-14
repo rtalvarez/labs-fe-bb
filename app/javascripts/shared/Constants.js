@@ -9,13 +9,15 @@ export default {
         TYPEAHEAD_VIEW: '.typeahead-view',
         PILLS_TYPEAHEAD_VIEW: '.pills-typeahead-view',
         TYPEAHEAD_INPUT: '.typeahead-input',
-        CHIPS: '.chips'
+        CHIPS: '.chips',
+        INPUT: '.input'
     },
 
     // Universal classes only!
     CLASSES: {
         ACTIVE: 'active',
-        VALID: 'valid'
+        VALID: 'valid',
+        HIDDEN: 'hidden'
     },
 
     EVENTS: {
@@ -25,6 +27,9 @@ export default {
         },
         TYPEAHEAD: {
             ITEM_SELECTED: (id) => `typeahead-${id}:itemSelected`
+        },
+        DATEPICKER: {
+            ITEM_SELECTED: (id) => `datepicker-${id}:itemSelected`
         }
     },
 
@@ -36,5 +41,9 @@ export default {
         PATIENTS: 'patients',
         DOCTORS: 'doctors',
         STUDIES: 'studies'
+    },
+
+    DATEPICKER_IDS: {
+        PATIENTS: 'patients'
     }
 }
