@@ -95,6 +95,10 @@ export default class CapturePatientView extends BaseView() {
 
     _onPatientsDatepickerSelect(selectedDate) {
         this._selectedPatient.set('dateOfBirth', selectedDate);
+
+        this.$el.find(this._selectors.captureDoB)
+            .addClass(this.CONSTANTS.CLASSES.VALID)
+            .removeClass(this.CONSTANTS.CLASSES.INVALID);
     }
 
     _onPatientsTypeaheadSelect(data) {

@@ -7,7 +7,7 @@ export const DATEPICKER_OPTIONS = {
     clear: 'borrar',
     close: 'cerrar',
     firstDay: 1,
-    format: 'dddd d !de mmmm !de yyyy',
+    format: 'd !de mmmm !de yyyy',
     formatSubmit: 'yyyy/mm/dd',
     selectMonths: true,
     selectYears: 200
