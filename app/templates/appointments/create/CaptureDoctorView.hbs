@@ -10,14 +10,16 @@
             <input name="captureDoctor-firstName"
                    id="captureDoctor-firstName"
                    type="text"
-                   class="validate autocomplete">
+                   pattern="[A-Za-z]+"
+                   class="validate" required>
             <label for="captureDoctor-firstName">Nombre</label>
         </div>
         <div class="input-field col s6">
             <input name="captureDoctor-lastName"
                    id="captureDoctor-lastName"
                    type="text"
-                   class="validate">
+                   pattern="[A-Za-z]+"
+                   class="validate" required>
             <label for="captureDoctor-lastName">Apellidos</label>
         </div>
     </section>

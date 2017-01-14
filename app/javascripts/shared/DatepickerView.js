@@ -12,12 +12,12 @@ export default class extends BaseView() {
     }
 
     attachEvents() {
-        this._$datepicker.on('change', (evt) => {
+        this._$datepicker.on('change', () => {
             const evtName = this.CONSTANTS.EVENTS.DATEPICKER.ITEM_SELECTED(this._widgetId);
             const formattedDate = this._getFormattedDate();
 
             this.PubSub.trigger(evtName, formattedDate);
-        })
+        });
     }
 
     initWidget() {

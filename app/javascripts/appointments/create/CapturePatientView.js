@@ -37,8 +37,17 @@ export default class CapturePatientView extends BaseView() {
     }
 
     checkForErrors() {
+        const patient = this._selectedPatient;
+        let hasErrors = false;
 
-        console.log('dob', this._selectedPatient.get('dateOfBirth'))
+        _.each(this._inputs, (selector, inputName) => {
+            if (_.isEmpty(patient.get(inputName))) {
+                this.$el.find(selector).addClass(this.CONSTANTS.CLASSES.INVALID);
+                hasErrors = true;
+            }
+        });
+
+        return hasErrors;
     }
 
     setInputData() {
@@ -85,7 +94,7 @@ export default class CapturePatientView extends BaseView() {
     }
 
     _onPatientsDatepickerSelect(selectedDate) {
-        console.log('selectedDate', selectedDate);
+        this._selectedPatient.set('dateOfBirth', selectedDate);
     }
 
     _onPatientsTypeaheadSelect(data) {

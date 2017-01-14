@@ -43,7 +43,7 @@ export default class CreateAppointmentView extends BaseView({
         evt.preventDefault();
 
         const patientErrors = this._capturePatientView.checkForErrors();
-        // const doctorErrors = this._captureDoctorView.checkForErrors();
+        const doctorErrors = this._captureDoctorView.checkForErrors();
         // const detailsErrors = this._captureDetailsView.checkForErrors();
 
         return false;

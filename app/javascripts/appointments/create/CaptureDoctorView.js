@@ -3,6 +3,7 @@ import CaptureDoctorViewTpl from 'templates/appointments/create/CaptureDoctorVie
 
 import TypeaheadView from 'javascripts/shared/TypeaheadView';
 
+import DoctorModel from 'javascripts/appointments/create/DoctorModel';
 import DoctorCollection from 'javascripts/appointments/create/DoctorCollection';
 
 export default class extends BaseView() {
@@ -17,10 +18,29 @@ export default class extends BaseView() {
             captureLastNameLabel: '#captureDoctor-lastName + label'
         };
 
+        this.initModel();
         this.initCollections();
         this.initViews();
         this.attachEvents();
         this.setInputData();
+    }
+
+    initModel() {
+        this._selectedDoctor = new DoctorModel({});
+    }
+
+    checkForErrors() {
+        const doctor = this._selectedDoctor;
+        let hasErrors = false;
+
+        _.each(this._inputs, (selector, inputName) => {
+            if (_.isEmpty(doctor.get(inputName))) {
+                this.$el.find(selector).addClass(this.CONSTANTS.CLASSES.INVALID);
+                hasErrors = true;
+            }
+        });
+
+        return hasErrors;
     }
 
     setInputData() {
@@ -41,6 +61,8 @@ export default class extends BaseView() {
         const typeaheadId = this.CONSTANTS.TYPEAHEAD_IDS.DOCTORS;
 
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onDoctorsTypeaheadSelect(data));
+        this.bindToModel(this.$el.find(this._selectors.captureFirstName), this._selectedDoctor, 'firstName');
+        this.bindToModel(this.$el.find(this._selectors.captureLastName), this._selectedDoctor, 'lastName');
     }
 
     initCollections() {
@@ -57,6 +79,7 @@ export default class extends BaseView() {
 
     _onDoctorsTypeaheadSelect(data) {
         const selectedDoctor = this._doctorsTypeaheadCollection.get(data.selectedItemId);
+        this._selectedDoctor = selectedDoctor;
 
         this._fillInputs(selectedDoctor);
     }

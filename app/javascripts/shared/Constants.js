@@ -17,7 +17,8 @@ export default {
     CLASSES: {
         ACTIVE: 'active',
         VALID: 'valid',
-        HIDDEN: 'hidden'
+        HIDDEN: 'hidden',
+        INVALID: 'invalid'
     },
 
     EVENTS: {
