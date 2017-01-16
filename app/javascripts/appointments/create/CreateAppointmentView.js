@@ -44,7 +44,13 @@ export default class CreateAppointmentView extends BaseView({
 
         const patientErrors = this._capturePatientView.checkForErrors();
         const doctorErrors = this._captureDoctorView.checkForErrors();
-        // const detailsErrors = this._captureDetailsView.checkForErrors();
+        const detailsErrors = this._captureDetailsView.checkForErrors();
+
+        if (!patientErrors && !doctorErrors && !detailsErrors) {
+            console.log('submit form');
+        } else {
+            console.log('show error message');
+        }
 
         return false;
     }

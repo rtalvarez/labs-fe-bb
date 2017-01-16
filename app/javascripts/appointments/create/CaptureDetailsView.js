@@ -21,6 +21,18 @@ export default class extends BaseView() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onStudiesTypeaheadSelect(data));
     }
 
+    checkForErrors() {
+        const constants = this.CONSTANTS;
+        const hasErrors = _.isEmpty(this._selectedStudies);
+
+        if (hasErrors) {
+            this.$el.find(constants.SELECTORS.TYPEAHEAD_INPUT)
+                .addClass(constants.CLASSES.INVALID);
+        }
+
+        return hasErrors;
+    }
+
     initCollections() {
         this._studiesTypeaheadCollection = new StudyCollection([]);
     }
@@ -36,7 +48,11 @@ export default class extends BaseView() {
     _onStudiesTypeaheadSelect(data) {
         const id = data.selectedItemId;
         const selectedStudy = this._studiesTypeaheadCollection.get(id);
+        const constants = this.CONSTANTS;
 
         this._selectedStudies[id] = selectedStudy;
+        this.$el.find(constants.SELECTORS.TYPEAHEAD_INPUT)
+            .addClass(constants.CLASSES.VALID)
+            .removeClass(constants.CLASSES.INVALID);
     }
 }

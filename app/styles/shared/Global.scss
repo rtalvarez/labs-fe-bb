@@ -9,7 +9,7 @@
 }
 
 .hidden {
-    display: none;
+    display: none !important; // Need to override materialize styles
 }
 
 .chips {

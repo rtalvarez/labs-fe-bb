@@ -3,9 +3,7 @@ import TypeaheadView from 'javascripts/shared/TypeaheadView';
 
 import PillsTypeaheadViewTpl from 'templates/shared/PillsTypeaheadView';
 
-export default class extends BaseView({
-
-}) {
+export default class extends BaseView() {
     initialize(config) {
         super.initialize();
         this.render(PillsTypeaheadViewTpl);
@@ -21,6 +19,7 @@ export default class extends BaseView({
         const eventName = this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(config.id);
 
         this.listenTo(this.PubSub, eventName, (data) => this._onTypeaheadItemSelected(data));
+        this.$el.find('.chips').on('chip.delete', (evt, pill) => this._deletePill(evt, pill));
     }
 
     initViews(config) {
@@ -31,8 +30,14 @@ export default class extends BaseView({
         });
     }
 
-    _addChip(tagName) {
-        this._pillTagNames[tagName] = true;
+    _deletePill(evt, pill) {
+        evt.preventDefault();
+
+        delete this._pillTagNames[pill.tag];
+    }
+
+    _addChip(tagName, selectedEntity) {
+        this._pillTagNames[tagName] = selectedEntity;
 
         const tagNames = _.chain(this._pillTagNames)
             .keys()
@@ -49,7 +54,7 @@ export default class extends BaseView({
         const pillTagName = selectedEntity.get('pillTagName');
         const constants = this.CONSTANTS;
 
-        this._addChip(pillTagName);
+        this._addChip(pillTagName, selectedEntity);
         this.$el.find(constants.SELECTORS.INPUT)
             .addClass(constants.CLASSES.HIDDEN);
 
