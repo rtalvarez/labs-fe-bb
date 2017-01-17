@@ -12,7 +12,8 @@ export default class CreateAppointmentView extends BaseView({
 }) {
     initialize() {
         super.initialize();
-        this.render(CreateAppointmentViewTpl);
+        this.trolls = 'wasasd';
+        this.render(CreateAppointmentViewTpl, this);
 
         _.bindAll(this,
             '_onAppointmentFormSubmit');

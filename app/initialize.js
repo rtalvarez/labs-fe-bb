@@ -7,7 +7,12 @@
 import AppView from 'javascripts/AppView';
 import CONSTANTS from 'javascripts/shared/Constants';
 
+import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHeaderPanel';
+
 $(() => {
+    // This is suboptimal. TODO refactor
+    Handlebars.registerPartial('CollapsibleHeaderPanel',  CollapsibleHeaderPanel);
+
     new AppView({
         el: $(CONSTANTS.SELECTORS.MAIN_VIEW)
     });
