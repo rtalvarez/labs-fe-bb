@@ -31,6 +31,9 @@ export default {
         },
         DATEPICKER: {
             ITEM_SELECTED: (id) => `datepicker-${id}:itemSelected`
+        },
+        CHIPS: {
+            DELETE: 'chip.delete'
         }
     },
 

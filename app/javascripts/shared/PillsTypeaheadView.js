@@ -16,10 +16,11 @@ export default class extends BaseView() {
     }
 
     attachEvents(config) {
-        const eventName = this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(config.id);
+        const constants = this.CONSTANTS;
+        const eventName = constants.EVENTS.TYPEAHEAD.ITEM_SELECTED(config.id);
 
         this.listenTo(this.PubSub, eventName, (data) => this._onTypeaheadItemSelected(data));
-        this.$el.find('.chips').on('chip.delete', (evt, pill) => this._deletePill(evt, pill));
+        this.$el.find(constants.SELECTORS.CHIPS).on(constants.EVENTS.CHIPS.DELETE, (evt, pill) => this._deletePill(evt, pill));
     }
 
     initViews(config) {
@@ -31,9 +32,15 @@ export default class extends BaseView() {
     }
 
     _deletePill(evt, pill) {
+        const constants = this.CONSTANTS;
         evt.preventDefault();
 
         delete this._pillTagNames[pill.tag];
+
+        if (_.isEmpty(this._pillTagNames)) {
+            this.$el.find(constants.SELECTORS.TYPEAHEAD_INPUT)
+                .removeClass(constants.CLASSES.VALID);
+        }
     }
 
     _addChip(tagName, selectedEntity) {

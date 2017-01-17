@@ -19,6 +19,8 @@ export default class CreateAppointmentView extends BaseView({
 
         console.log('Init create appointment!');
 
+        $('.collapsible').collapsible();
+
         this.initViews();
     }
 
@@ -39,7 +41,6 @@ export default class CreateAppointmentView extends BaseView({
     }
 
     _onAppointmentFormSubmit(evt) {
-        console.log(evt);
         evt.preventDefault();
 
         const patientErrors = this._capturePatientView.checkForErrors();
