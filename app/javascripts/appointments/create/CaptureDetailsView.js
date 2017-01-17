@@ -16,9 +16,17 @@ export default class extends BaseView() {
     }
 
     attachEvents() {
-        const typeaheadId = this.CONSTANTS.TYPEAHEAD_IDS.STUDIES;
+        const constants = this.CONSTANTS;
+        const typeaheadId = constants.TYPEAHEAD_IDS.STUDIES;
 
-        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onStudiesTypeaheadSelect(data));
+        this.listenTo(this.PubSub, constants.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onStudiesTypeaheadSelect(data));
+        this.listenTo(this.PubSub, constants.EVENTS.CHIPS.DELETE, (data) => this._onDeleteStudy(data));
+    }
+
+    _onDeleteStudy(data) {
+        const deletedStudy = data.entity;
+
+        delete this._selectedStudies[deletedStudy.get('id')];
     }
 
     checkForErrors() {

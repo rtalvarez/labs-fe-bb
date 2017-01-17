@@ -32,8 +32,11 @@ export default class extends BaseView() {
     }
 
     _deletePill(evt, pill) {
-        const constants = this.CONSTANTS;
         evt.preventDefault();
+
+        const constants = this.CONSTANTS;
+        const deletedEntity = this._pillTagNames[pill.tag];
+
 
         delete this._pillTagNames[pill.tag];
 
@@ -41,6 +44,10 @@ export default class extends BaseView() {
             this.$el.find(constants.SELECTORS.TYPEAHEAD_INPUT)
                 .removeClass(constants.CLASSES.VALID);
         }
+
+        this.PubSub.trigger(constants.EVENTS.CHIPS.DELETE, {
+            entity: deletedEntity
+        });
     }
 
     _addChip(tagName, selectedEntity) {
