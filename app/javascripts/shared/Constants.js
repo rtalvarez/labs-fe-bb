@@ -10,7 +10,8 @@ export default {
         PILLS_TYPEAHEAD_VIEW: '.pills-typeahead-view',
         TYPEAHEAD_INPUT: '.typeahead-input',
         CHIPS: '.chips',
-        INPUT: '.input'
+        INPUT: '.input',
+        COLLAPSIBLE: '.collapsible'
     },
 
     // Universal classes only!

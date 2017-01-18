@@ -5,24 +5,33 @@ import CaptureDoctorView from 'javascripts/appointments/create/CaptureDoctorView
 import CapturePatientView from 'javascripts/appointments/create/CapturePatientView';
 import CaptureDetailsView from 'javascripts/appointments/create/CaptureDetailsView';
 
+import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHeaderPanel';
+
 export default class CreateAppointmentView extends BaseView({
     events: {
-        'submit .create-appointment-form': '_onAppointmentFormSubmit'
+        'click .create-appointment-next': '_onNextStepClick'
     }
 }) {
     initialize() {
         super.initialize();
-        this.trolls = 'wasasd';
         this.render(CreateAppointmentViewTpl, this);
 
         _.bindAll(this,
-            '_onAppointmentFormSubmit');
+            '_onNextStepClick');
 
         console.log('Init create appointment!');
 
-        $('.collapsible').collapsible();
+        this._selectors = {
+            step1Header: '.create-appointment-step-1-header',
+            step2Header: '.create-appointment-step-2-header'
+        };
 
+        this.initCollapsibleHeaders();
         this.initViews();
+    }
+
+    initCollapsibleHeaders() {
+        this.$el.find(this.CONSTANTS.SELECTORS.COLLAPSIBLE).collapsible();
     }
 
     initViews() {
@@ -41,7 +50,7 @@ export default class CreateAppointmentView extends BaseView({
         });
     }
 
-    _onAppointmentFormSubmit(evt) {
+    _onNextStepClick(evt) {
         evt.preventDefault();
 
         const patientErrors = this._capturePatientView.checkForErrors();
@@ -50,10 +59,21 @@ export default class CreateAppointmentView extends BaseView({
 
         if (!patientErrors && !doctorErrors && !detailsErrors) {
             console.log('submit form');
+            this._firstStepSuccess();
         } else {
             console.log('show error message');
         }
 
         return false;
+    }
+
+    _firstStepSuccess() {
+        const $header = this.$el.find(this._selectors.step1Header);
+
+        this.render(CollapsibleHeaderPanel, {
+            valid: true
+        }, $header);
+
+        this.$el.find(this._selectors.step2Header).click();
     }
 }

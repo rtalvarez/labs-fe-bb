@@ -1,3 +1,5 @@
+@import 'colors';
+
 // These styles make it so that the element is invisible to regular users, but it's still in the DOM
 // That way, it will still be accessible to screen readers
 .a11y-desc {
@@ -18,4 +20,8 @@
 
 .collapsible-body {
     padding: 1rem;
+}
+
+.icon-success {
+    color: color("teal", "base");
 }

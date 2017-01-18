@@ -9,8 +9,8 @@ export default (config = {}) => class extends Backbone.View.extend(config) {
         this._boundModelElements = [];
     }
 
-    render(templateGen, data = {}) {
-        this.$el.html(templateGen(data));
+    render(templateGen, data = {}, $el = this.$el) {
+        $el.html(templateGen(data));
     }
 
     navigate(evt) {

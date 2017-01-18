@@ -2,10 +2,12 @@
     <span class="appointment-panel-info">
         <i class="material-icons">assignment</i>
         <span>
-            Datos de la cita {{ trolls }}
+            Datos de la cita
         </span>
     </span>
-    <span class="appointment-panel-confirmation hidden">
-        <i class="material-icons">done</i>
-    </span>
+    {{#if valid}}
+        <span class="appointment-panel-confirmation">
+            <i class="material-icons icon-success">done</i>
+        </span>
+    {{/if}}
 </div>

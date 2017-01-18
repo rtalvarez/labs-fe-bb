@@ -5,8 +5,8 @@
 
     <form action="#" class="create-appointment-form" autocomplete="off">
         <ul class="collapsible" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header active">
+            <li class="step-1-item">
+                <div class="collapsible-header create-appointment-step-1-header active">
                     {{> CollapsibleHeaderPanel this }}
                 </div>
                 <div class="collapsible-body">
@@ -16,11 +16,14 @@
                 </div>
 
             </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">place</i>Pago</div>
+            <li class="step-2-item">
+                <div class="collapsible-header create-appointment-step-2-header">
+                    <i class="material-icons">place</i>
+                    Pago
+                </div>
                 <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
             </li>
-            <li>
+            <li class="step-3-item">
                 <div class="collapsible-header"><i class="material-icons">whatshot</i>Confirmacion</div>
                 <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
             </li>
@@ -28,11 +31,13 @@
 
         <div class="row">
             <div class="col s6 offset-s6">
-                <button class="create-appointment-view-submit btn waves-effect waves-light" type="submit" name="create-appointment-submit">
+                <button class="create-appointment-next btn waves-effect waves-light" type="button">
                     Siguiente
                     <i class="material-icons right">send</i>
                 </button>
             </div>
+
+            <button type="submit" class="hidden"></button>
         </div>
     </form>
 </section>

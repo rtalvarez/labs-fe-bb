@@ -36,6 +36,9 @@ exports.config =
       joinTo: 'javascripts/templates.js'
 
   plugins:
+#    sass:
+#      options:
+#        includePaths: ['node_modules/materialize-css/sass']
     babel:
       ignore: [
         /^(bower_components|vendor|node_modules)/
@@ -45,7 +48,7 @@ exports.config =
 
   npm:
     styles:
-      'materialize-css': ['dist/css/materialize.min.css']
+      'materialize-css': ['dist/css/materialize.css']
     static: [
       'node_modules/jquery/dist/jquery.min.js',
       'node_modules/materialize-css/dist/js/materialize.min.js'
