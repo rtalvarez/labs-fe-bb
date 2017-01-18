@@ -26,6 +26,8 @@ export default class CreateAppointmentView extends BaseView({
             step2Header: '.create-appointment-step-2-header'
         };
 
+        this._step = 1;
+
         this.initCollapsibleHeaders();
         this.initViews();
     }
@@ -53,6 +55,16 @@ export default class CreateAppointmentView extends BaseView({
     _onNextStepClick(evt) {
         evt.preventDefault();
 
+        switch (this._step) {
+            case 1:
+                this._processFirstStep();
+                break;
+        }
+
+        this._step++;
+    }
+
+    _processFirstStep() {
         const patientErrors = this._capturePatientView.checkForErrors();
         const doctorErrors = this._captureDoctorView.checkForErrors();
         const detailsErrors = this._captureDetailsView.checkForErrors();
@@ -63,8 +75,6 @@ export default class CreateAppointmentView extends BaseView({
         } else {
             console.log('show error message');
         }
-
-        return false;
     }
 
     _firstStepSuccess() {
@@ -74,6 +84,10 @@ export default class CreateAppointmentView extends BaseView({
             valid: true
         }, $header);
 
-        this.$el.find(this._selectors.step2Header).click();
+        this._showStep(2);
+    }
+
+    _showStep(numStep) {
+        this.$el.find(this._selectors[`step${numStep}Header`]).click();
     }
 }
