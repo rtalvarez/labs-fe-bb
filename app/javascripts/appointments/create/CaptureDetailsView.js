@@ -3,12 +3,18 @@ import CaptureDetailsViewTpl from 'templates/appointments/create/CaptureDetailsV
 
 import PillsTypeaheadView from 'javascripts/shared/PillsTypeaheadView';
 import StudyCollection from 'javascripts/appointments/create/StudyCollection';
+import DatepickerView from 'javascripts/shared/DatepickerView';
 
 export default class extends BaseView() {
     initialize() {
         this.render(CaptureDetailsViewTpl);
         super.initialize();
         this._selectedStudies = {};
+
+        this._selectors = {
+            selectTime: '#capture-details-select-time',
+            selectDate: '#capture-details-select-date'
+        };
 
         this.initCollections();
         this.initViews();
@@ -18,9 +24,16 @@ export default class extends BaseView() {
     attachEvents() {
         const constants = this.CONSTANTS;
         const typeaheadId = constants.TYPEAHEAD_IDS.STUDIES;
+        const datepickerId = constants.DATEPICKER_IDS.APPOINTMENT_DATE;
 
         this.listenTo(this.PubSub, constants.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onStudiesTypeaheadSelect(data));
         this.listenTo(this.PubSub, constants.EVENTS.CHIPS.DELETE, (data) => this._onDeleteStudy(data));
+        this.listenTo(this.PubSub, constants.EVENTS.DATEPICKER.ITEM_SELECTED(datepickerId), (data) => this._onAppointmentDateSelect(data));
+    }
+
+    _onAppointmentDateSelect(data) {
+        debugger;
+        console.log('select', data);
     }
 
     _onDeleteStudy(data) {
@@ -51,6 +64,13 @@ export default class extends BaseView() {
             collection: this._studiesTypeaheadCollection,
             id: this.CONSTANTS.TYPEAHEAD_IDS.STUDIES,
         });
+
+        this._datepickerView = new DatepickerView({
+            el: this.$el.find(this._selectors.selectDate),
+            id: this.CONSTANTS.DATEPICKER_IDS.APPOINTMENT_DATE
+        });
+
+        this.$el.find(this._selectors.selectTime).material_select();
     }
 
     _onStudiesTypeaheadSelect(data) {

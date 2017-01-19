@@ -49,6 +49,7 @@ export default {
     },
 
     DATEPICKER_IDS: {
-        PATIENTS: 'patients'
+        PATIENTS: 'patients',
+        APPOINTMENT_DATE: 'appointmentDate'
     }
 }
