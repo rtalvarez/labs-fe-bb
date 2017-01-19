@@ -5,6 +5,7 @@ import PillsTypeaheadView from 'javascripts/shared/PillsTypeaheadView';
 import AppointmentCollection from 'javascripts/appointments/create/AppointmentCollection';
 import StudyCollection from 'javascripts/appointments/create/StudyCollection';
 import DatepickerView from 'javascripts/shared/DatepickerView';
+import MaterializeSelectView from 'javascripts/shared/MaterializeSelectView';
 
 export default class extends BaseView() {
     initialize() {
@@ -36,7 +37,12 @@ export default class extends BaseView() {
         console.log('select', date);
 
         this._appointmentsCollection.fetchAvailableAppointmentHours(date)
+            .then(() => this._populateAvailableTimes())
             .then(() => console.log('apps', this._appointmentsCollection));
+    }
+
+    _populateAvailableTimes() {
+
     }
 
     _onDeleteStudy(data) {
@@ -74,7 +80,18 @@ export default class extends BaseView() {
             id: this.CONSTANTS.DATEPICKER_IDS.APPOINTMENT_DATE
         });
 
-        this.$el.find(this._selectors.selectTime).material_select();
+        this._timeSelect = new MaterializeSelectView({
+            el: this.$el.find('.capture-details-select-time'),
+            selectLabel: 'Selecterino',
+            options: [
+                {
+                    label: 'Opt1',
+                    value: 'val1'
+                }
+            ]
+        });
+
+        // this.$el.find(this._selectors.selectTime).material_select();
     }
 
     _onStudiesTypeaheadSelect(data) {

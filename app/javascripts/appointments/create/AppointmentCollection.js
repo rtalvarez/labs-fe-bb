@@ -28,7 +28,6 @@ export default class extends BaseCollection({
 
         const diff = _.difference(this.AVAILABLE_APPOINTMENT_TIMES, data);
 
-        debugger;
         return _.map(diff, (time) => {
             const date = new Date();
 
@@ -37,9 +36,7 @@ export default class extends BaseCollection({
             date.setMilliseconds(0);
             date.setHours(time);
 
-            return {
-                date
-            };
+            return { date };
         });
     }
 
