@@ -2,6 +2,7 @@ import BaseView from 'javascripts/shared/BaseView';
 import CaptureDetailsViewTpl from 'templates/appointments/create/CaptureDetailsView';
 
 import PillsTypeaheadView from 'javascripts/shared/PillsTypeaheadView';
+import AppointmentCollection from 'javascripts/appointments/create/AppointmentCollection';
 import StudyCollection from 'javascripts/appointments/create/StudyCollection';
 import DatepickerView from 'javascripts/shared/DatepickerView';
 
@@ -31,9 +32,11 @@ export default class extends BaseView() {
         this.listenTo(this.PubSub, constants.EVENTS.DATEPICKER.ITEM_SELECTED(datepickerId), (data) => this._onAppointmentDateSelect(data));
     }
 
-    _onAppointmentDateSelect(data) {
-        debugger;
-        console.log('select', data);
+    _onAppointmentDateSelect(date) {
+        console.log('select', date);
+
+        this._appointmentsCollection.fetchAvailableAppointmentHours(date)
+            .then(() => console.log('apps', this._appointmentsCollection));
     }
 
     _onDeleteStudy(data) {
@@ -55,6 +58,7 @@ export default class extends BaseView() {
     }
 
     initCollections() {
+        this._appointmentsCollection = new AppointmentCollection([]);
         this._studiesTypeaheadCollection = new StudyCollection([]);
     }
 
