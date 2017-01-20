@@ -14,8 +14,12 @@ export default class extends BaseView() {
         this._selectedStudies = {};
 
         this._selectors = {
-            selectTime: '#capture-details-select-time',
-            selectDate: '#capture-details-select-date'
+            selectTime: '.capture-details-select-time',
+            selectDate: '#capture-details-select-date',
+        };
+
+        this._copy = {
+            labelSelect: 'Selecciona una hora'
         };
 
         this.initCollections();
@@ -42,7 +46,7 @@ export default class extends BaseView() {
     }
 
     _populateAvailableTimes() {
-
+        this._timeSelect.render();
     }
 
     _onDeleteStudy(data) {
@@ -81,14 +85,10 @@ export default class extends BaseView() {
         });
 
         this._timeSelect = new MaterializeSelectView({
-            el: this.$el.find('.capture-details-select-time'),
-            selectLabel: 'Selecterino',
-            options: [
-                {
-                    label: 'Opt1',
-                    value: 'val1'
-                }
-            ]
+            el: this.$el.find(this._selectors.selectTime),
+            selectLabel: this._copy.labelSelect,
+            collection: this._appointmentsCollection,
+            disabled: true
         });
 
         // this.$el.find(this._selectors.selectTime).material_select();

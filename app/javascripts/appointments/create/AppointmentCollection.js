@@ -10,6 +10,10 @@ export default class extends BaseCollection({
         this.AVAILABLE_APPOINTMENT_TIMES = _.range(8, 19, 1);
     }
 
+    getSelectOptions() {
+        return this.map((model) => model.getSelectOption());
+    }
+
     fetchAvailableAppointmentHours(date) {
         const formattedDate = this._formatDate(date);
 

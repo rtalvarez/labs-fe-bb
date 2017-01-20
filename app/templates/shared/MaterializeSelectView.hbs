@@ -1,6 +1,6 @@
 <div class="materialize-select-view-content">
     <label for="capture-details-select-time">{{ selectLabel }}</label>
-    <select class="material-select" name="capture-details-select-time" id="capture-details-select-time">
+    <select class="material-select" name="capture-details-select-time" id="capture-details-select-time" {{#if disabled}}disabled{{/if}}>
         <option value="" disabled selected>Choose your option</option>
         {{#each options }}
             <option value="{{ this.value }}">{{ this.label }}</option>
