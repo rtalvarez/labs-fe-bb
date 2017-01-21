@@ -8,9 +8,10 @@ import PatientCollection from 'javascripts/appointments/create/PatientCollection
 import PatientModel from 'javascripts/appointments/create/PatientModel';
 
 export default class CapturePatientView extends BaseView() {
-    initialize() {
+    initialize(config) {
         super.initialize();
         this.render(CapturePatientViewTpl);
+        this._appointmentModel = config.appointmentModel;
 
         this._selectors = {
             captureDoB: '#capturePatient-DoB',
@@ -47,7 +48,12 @@ export default class CapturePatientView extends BaseView() {
             }
         });
 
+        this.setAppointmentData();
         return hasErrors;
+    }
+
+    setAppointmentData() {
+        this._appointmentModel.set('patient', this._selectedPatient);
     }
 
     setInputData() {
@@ -72,8 +78,8 @@ export default class CapturePatientView extends BaseView() {
 
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onPatientsTypeaheadSelect(data));
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.DATEPICKER.ITEM_SELECTED(datepickerId), (data) => this._onPatientsDatepickerSelect(data));
-        this.bindToModel(this.$el.find(this._selectors.captureFirstName), this._selectedPatient, 'firstName');
-        this.bindToModel(this.$el.find(this._selectors.captureLastName), this._selectedPatient, 'lastName');
+        this.bindToModel(this.$el.find(this._selectors.captureFirstName), '_selectedPatient', 'firstName');
+        this.bindToModel(this.$el.find(this._selectors.captureLastName), '_selectedPatient', 'lastName');
     }
 
     initCollections() {

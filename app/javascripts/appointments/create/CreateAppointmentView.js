@@ -1,6 +1,7 @@
 import BaseView from 'javascripts/shared/BaseView';
 import CreateAppointmentViewTpl from 'templates/appointments/create/CreateAppointmentView';
 
+import AppointmentModel from 'javascripts/appointments/create/AppointmentModel';
 import CaptureDoctorView from 'javascripts/appointments/create/CaptureDoctorView';
 import CapturePatientView from 'javascripts/appointments/create/CapturePatientView';
 import CaptureDetailsView from 'javascripts/appointments/create/CaptureDetailsView';
@@ -10,7 +11,8 @@ import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHea
 export default class CreateAppointmentView extends BaseView({
     events: {
         'click .create-appointment-next': '_onNextStepClick'
-    }
+    },
+    model: new AppointmentModel({})
 }) {
     initialize() {
         super.initialize();
@@ -38,17 +40,21 @@ export default class CreateAppointmentView extends BaseView({
 
     initViews() {
         const $el = this.$el;
+        const model = this.model;
 
         this._capturePatientView = new CapturePatientView({
-            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_PATIENT_VIEW)
+            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_PATIENT_VIEW),
+            appointmentModel: model,
         });
 
         this._captureDoctorView = new CaptureDoctorView({
-            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_DOCTOR_VIEW)
+            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_DOCTOR_VIEW),
+            appointmentModel: model,
         });
 
         this._captureDetailsView = new CaptureDetailsView({
-            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_DETAILS_VIEW)
+            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_DETAILS_VIEW),
+            appointmentModel: model,
         });
     }
 

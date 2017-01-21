@@ -9,10 +9,11 @@ import DatepickerView from 'javascripts/shared/DatepickerView';
 import MaterializeSelectView from 'javascripts/shared/MaterializeSelectView';
 
 export default class extends BaseView() {
-    initialize() {
+    initialize(config) {
         this.render(CaptureDetailsViewTpl);
         super.initialize();
         this._selectedStudies = {};
+        this._appointmentModel = config.appointmentModel;
 
         this._selectors = {
             selectTime: '.capture-details-select-time',
@@ -40,19 +41,19 @@ export default class extends BaseView() {
         this.listenTo(this.PubSub, constants.EVENTS.DATEPICKER.ITEM_SELECTED(datepickerId), (data) => this._onAppointmentDateSelect(data));
         this.listenTo(this.PubSub, constants.EVENTS.MATERIAL_SELECT.ITEM_SELECTED(materialSelectId), (data) => this._onAppointmentTimeSelect(data));
 
-        this.bindToModel(this.$el.find(this._selectors.notes), this._selectedAppointment, 'notes');
+        this.bindToModel(this.$el.find(this._selectors.notes), '_selectedAppointment', 'notes');
     }
 
     _onAppointmentTimeSelect(time) {
         const notes = this._selectedAppointment.get('notes');
 
+        console.log('notes', notes);
         this._selectedAppointment = this._appointmentsCollection.findWhere({ epochTime: +time });
         this._selectedAppointment.set('notes', notes);
+        console.log('app', this._selectedAppointment.get('notes'))
     }
 
     _onAppointmentDateSelect(date) {
-        console.log('select', date);
-
         this._appointmentsCollection.fetchAvailableAppointmentHours(date)
             .then(() => this._populateAvailableTimes());
     }
@@ -76,7 +77,16 @@ export default class extends BaseView() {
                 .addClass(constants.CLASSES.INVALID);
         }
 
+        this.setAppointmentData();
         return hasErrors;
+    }
+
+    setAppointmentData() {
+        debugger;
+
+        this._appointmentModel.set({
+            notes: this._selectedAppointment.get('notes')
+        })
     }
 
     initCollections() {

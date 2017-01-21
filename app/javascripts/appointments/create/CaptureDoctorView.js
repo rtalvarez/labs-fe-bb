@@ -7,9 +7,10 @@ import DoctorModel from 'javascripts/appointments/create/DoctorModel';
 import DoctorCollection from 'javascripts/appointments/create/DoctorCollection';
 
 export default class extends BaseView() {
-    initialize() {
+    initialize(config) {
         super.initialize();
         this.render(CaptureDoctorViewTpl);
+        this._appointmentModel = config.appointmentModel;
 
         this._selectors = {
             captureFirstName: '#captureDoctor-firstName',
@@ -40,7 +41,12 @@ export default class extends BaseView() {
             }
         });
 
+        this.setAppointmentData();
         return hasErrors;
+    }
+
+    setAppointmentData() {
+        this._appointmentModel.set('doctor', this._selectedDoctor);
     }
 
     setInputData() {
@@ -61,8 +67,8 @@ export default class extends BaseView() {
         const typeaheadId = this.CONSTANTS.TYPEAHEAD_IDS.DOCTORS;
 
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onDoctorsTypeaheadSelect(data));
-        this.bindToModel(this.$el.find(this._selectors.captureFirstName), this._selectedDoctor, 'firstName');
-        this.bindToModel(this.$el.find(this._selectors.captureLastName), this._selectedDoctor, 'lastName');
+        this.bindToModel(this.$el.find(this._selectors.captureFirstName), '_selectedDoctor', 'firstName');
+        this.bindToModel(this.$el.find(this._selectors.captureLastName), '_selectedDoctor', 'lastName');
     }
 
     initCollections() {
