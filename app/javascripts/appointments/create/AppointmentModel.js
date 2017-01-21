@@ -6,7 +6,9 @@ export default class extends BaseModel({
     initialize(data) {
         super.initialize();
 
-        this.set('epochTime', data.date.getTime());
+        if (data.date) {
+            this.set('epochTime', data.date.getTime());
+        }
     }
 
     getSelectOption() {
