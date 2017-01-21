@@ -18,8 +18,6 @@ export default class extends BaseView({
             renderedSelect: 'input.select-dropdown'
         };
 
-        this._onMaterialSelectChange = _.debounce((evt) => this._emitChangeEvent(evt), 100);
-
         this.config = config;
         this.render(true);
     }
@@ -32,12 +30,10 @@ export default class extends BaseView({
         this.$el.find(this._selectors.select).material_select();
     }
 
-    _onMaterialSelectChange() {}
-
-    _emitChangeEvent(evt) {
+    // TODO: fix, this event runs twice
+    _onMaterialSelectChange(evt) {
         const evtName = this.CONSTANTS.EVENTS.MATERIAL_SELECT.ITEM_SELECTED(this.config.id);
 
-        console.log('changerino', $(evt.target).val());
         this.PubSub.trigger(evtName, $(evt.target).val());
     }
 }

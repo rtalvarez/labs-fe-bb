@@ -44,20 +44,17 @@ export default class extends BaseView() {
     }
 
     _onAppointmentTimeSelect(time) {
-        debugger;
         const notes = this._selectedAppointment.get('notes');
 
-        this._selectedAppointment = this._appointmentsCollection.where({ epochTime: +time });
+        this._selectedAppointment = this._appointmentsCollection.findWhere({ epochTime: +time });
         this._selectedAppointment.set('notes', notes);
-        console.log(this._selectedAppointment);
     }
 
     _onAppointmentDateSelect(date) {
         console.log('select', date);
 
         this._appointmentsCollection.fetchAvailableAppointmentHours(date)
-            .then(() => this._populateAvailableTimes())
-            .then(() => console.log('apps', this._appointmentsCollection));
+            .then(() => this._populateAvailableTimes());
     }
 
     _populateAvailableTimes() {
@@ -87,7 +84,6 @@ export default class extends BaseView() {
         this._studiesTypeaheadCollection = new StudyCollection([]);
 
         this._selectedAppointment = new AppointmentModel({});
-        debugger;
     }
 
     initViews() {
@@ -109,8 +105,6 @@ export default class extends BaseView() {
             disabled: true,
             id: this.CONSTANTS.MATERIAL_SELECT_IDS.APPOINTMENT_TIME
         });
-
-        // this.$el.find(this._selectors.selectTime).material_select();
     }
 
     _onStudiesTypeaheadSelect(data) {
