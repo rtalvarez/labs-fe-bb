@@ -35,11 +35,18 @@ export default {
         },
         CHIPS: {
             DELETE: 'chip.delete'
+        },
+        MATERIAL_SELECT: {
+            ITEM_SELECTED: (id) => `materialSelect-${id}:itemSelected`
         }
     },
 
     URLS: {
         SEARCH_PATIENT: '/api/patients?query=$'
+    },
+
+    MATERIAL_SELECT_IDS: {
+        APPOINTMENT_TIME: 'appointmentTime'
     },
 
     TYPEAHEAD_IDS: {

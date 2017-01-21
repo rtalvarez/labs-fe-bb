@@ -31,10 +31,17 @@ export default class extends BaseView() {
         const constants = this.CONSTANTS;
         const typeaheadId = constants.TYPEAHEAD_IDS.STUDIES;
         const datepickerId = constants.DATEPICKER_IDS.APPOINTMENT_DATE;
+        const materialSelectId = constants.MATERIAL_SELECT_IDS.APPOINTMENT_TIME;
 
         this.listenTo(this.PubSub, constants.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onStudiesTypeaheadSelect(data));
         this.listenTo(this.PubSub, constants.EVENTS.CHIPS.DELETE, (data) => this._onDeleteStudy(data));
         this.listenTo(this.PubSub, constants.EVENTS.DATEPICKER.ITEM_SELECTED(datepickerId), (data) => this._onAppointmentDateSelect(data));
+        this.listenTo(this.PubSub, constants.EVENTS.MATERIAL_SELECT.ITEM_SELECTED(materialSelectId), (data) => this._onAppointmentTimeSelect(data));
+    }
+
+    _onAppointmentTimeSelect(time) {
+        this._selectedAppointment = this._appointmentsCollection.where({ epochTime: +time });
+        console.log(this._selectedAppointment);
     }
 
     _onAppointmentDateSelect(date) {
@@ -88,7 +95,8 @@ export default class extends BaseView() {
             el: this.$el.find(this._selectors.selectTime),
             selectLabel: this._copy.labelSelect,
             collection: this._appointmentsCollection,
-            disabled: true
+            disabled: true,
+            id: this.CONSTANTS.MATERIAL_SELECT_IDS.APPOINTMENT_TIME
         });
 
         // this.$el.find(this._selectors.selectTime).material_select();
