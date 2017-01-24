@@ -46,14 +46,19 @@ export default class extends BaseView() {
 
     _onAppointmentTimeSelect(time) {
         const notes = this._selectedAppointment.get('notes');
+        const date = this._selectedAppointment.get('date');
 
-        console.log('notes', notes);
         this._selectedAppointment = this._appointmentsCollection.findWhere({ epochTime: +time });
-        this._selectedAppointment.set('notes', notes);
-        console.log('app', this._selectedAppointment.get('notes'))
+        this._selectedAppointment.set({
+            notes,
+            date,
+        });
     }
 
     _onAppointmentDateSelect(date) {
+        this._selectedAppointment.set('date', date);
+        console.log(this._selectedAppointment.get('date'));
+
         this._appointmentsCollection.fetchAvailableAppointmentHours(date)
             .then(() => this._populateAvailableTimes());
     }
@@ -82,11 +87,12 @@ export default class extends BaseView() {
     }
 
     setAppointmentData() {
-        debugger;
-
         this._appointmentModel.set({
-            notes: this._selectedAppointment.get('notes')
-        })
+            notes: this._selectedAppointment.get('notes'),
+            date: this._selectedAppointment.get('date'),
+        });
+
+        debugger;
     }
 
     initCollections() {

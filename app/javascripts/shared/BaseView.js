@@ -1,8 +1,10 @@
 import CONSTANTS from 'javascripts/shared/Constants';
 import PubSub from 'javascripts/PubSub';
+import DependencyInjector from 'javascripts/utils/DependencyInjector';
 
 export default (config = {}) => class extends Backbone.View.extend(config) {
     initialize() {
+        DependencyInjector.register(config, this);
         this.$el = $(this.el);
         this.PubSub = PubSub;
         this.CONSTANTS = CONSTANTS;
