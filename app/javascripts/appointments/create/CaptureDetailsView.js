@@ -57,7 +57,6 @@ export default class extends BaseView() {
 
     _onAppointmentDateSelect(date) {
         this._selectedAppointment.set('date', date);
-        console.log(this._selectedAppointment.get('date'));
 
         this._appointmentsCollection.fetchAvailableAppointmentHours(date)
             .then(() => this._populateAvailableTimes());
@@ -91,8 +90,6 @@ export default class extends BaseView() {
             notes: this._selectedAppointment.get('notes'),
             date: this._selectedAppointment.get('date'),
         });
-
-        debugger;
     }
 
     initCollections() {
