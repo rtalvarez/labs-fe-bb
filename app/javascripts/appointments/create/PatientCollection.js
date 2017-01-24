@@ -18,7 +18,7 @@ export default class PatientCollection extends BaseCollection({
         const data = {};
 
         this.each((patient) => {
-            const key = `${patient.get('firstName')} ${patient.get('lastName')} (${patient.get('dateOfBirth')})`;
+            const key = patient.getTypeaheadLabel();
 
             if (!this._typeaheadData[key]) {
                 data[key] = {

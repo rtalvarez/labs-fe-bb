@@ -24,12 +24,12 @@ export default (config = {}) => class extends Backbone.View.extend(config) {
         PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.TO, path);
     }
 
-    bindToModel(element, modelName, property) {
+    bindToModel(element, modelName, property, callback = _.noop) {
         element.on('input', _.debounce((evt) => {
             const newVal = $(evt.target).val();
 
             this[modelName].set(property, newVal);
-            console.log('set new val', newVal, 'on', this[modelName]);
+            callback.call(this);
         }, 400));
 
         this._boundModelElements.push(element);

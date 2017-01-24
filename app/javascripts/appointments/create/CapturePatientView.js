@@ -42,12 +42,13 @@ export default class CapturePatientView extends BaseView() {
         let hasErrors = false;
 
         _.each(this._inputs, (selector, inputName) => {
-            if (_.isEmpty(patient.get(inputName))) {
+            if (_.isUndefined(patient.get(inputName))) {
                 this.$el.find(selector).addClass(this.CONSTANTS.CLASSES.INVALID);
                 hasErrors = true;
             }
         });
 
+        debugger;
         this.setAppointmentData();
         return hasErrors;
     }
@@ -78,8 +79,12 @@ export default class CapturePatientView extends BaseView() {
 
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.TYPEAHEAD.ITEM_SELECTED(typeaheadId), (data) => this._onPatientsTypeaheadSelect(data));
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.DATEPICKER.ITEM_SELECTED(datepickerId), (data) => this._onPatientsDatepickerSelect(data));
-        this.bindToModel(this.$el.find(this._selectors.captureFirstName), '_selectedPatient', 'firstName');
-        this.bindToModel(this.$el.find(this._selectors.captureLastName), '_selectedPatient', 'lastName');
+        this.bindToModel(this.$el.find(this._selectors.captureFirstName), '_selectedPatient', 'firstName', this.onFirstOrLastNameChange);
+        this.bindToModel(this.$el.find(this._selectors.captureLastName), '_selectedPatient', 'lastName', this.onFirstOrLastNameChange);
+    }
+
+    onFirstOrLastNameChange() {
+        this._selectedPatient.unset('id');
     }
 
     initCollections() {
@@ -124,7 +129,6 @@ export default class CapturePatientView extends BaseView() {
                 .addClass(classes.VALID);
         });
 
-        // Special treatment for datepicker, since processing of date needs to be made
         this._datepickerView.setDate(patient.get('dateOfBirth'));
 
         _.each(this._labels, (value) => {

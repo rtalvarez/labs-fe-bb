@@ -35,7 +35,7 @@ export default class extends BaseView() {
         let hasErrors = false;
 
         _.each(this._inputs, (selector, inputName) => {
-            if (_.isEmpty(doctor.get(inputName))) {
+            if (_.isUndefined(doctor.get(inputName))) {
                 this.$el.find(selector).addClass(this.CONSTANTS.CLASSES.INVALID);
                 hasErrors = true;
             }

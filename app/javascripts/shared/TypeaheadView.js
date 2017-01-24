@@ -14,7 +14,6 @@ export default class TypeaheadView extends BaseView({
 
         this._onTypeaheadInputChange = _.debounce(this._onTypeaheadInputChange.bind(this), 300);
         this._$typeahead = this.$el.find(this.CONSTANTS.SELECTORS.TYPEAHEAD_INPUT);
-        this.transformData = config.transformData;
         this._typeaheadId = config.id;
 
         this.attachEvents();

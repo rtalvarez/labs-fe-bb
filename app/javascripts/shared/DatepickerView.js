@@ -14,9 +14,11 @@ export default class extends BaseView() {
     attachEvents() {
         this._$datepicker.on('change', () => {
             const evtName = this.CONSTANTS.EVENTS.DATEPICKER.ITEM_SELECTED(this._widgetId);
-            const formattedDate = this._getFormattedDate();
+            const date = this._$datepicker
+                .pickadate('picker')
+                .get('select');
 
-            this.PubSub.trigger(evtName, formattedDate);
+            this.PubSub.trigger(evtName, date.obj);
         });
     }
 
@@ -24,37 +26,14 @@ export default class extends BaseView() {
         this._$datepicker = this.$el.pickadate(this._datepickerConfig);
     }
 
+    /**
+     * Sets a given date in the datepicker widget
+     * @param {date} date The date object to use
+     */
     setDate(date) {
-        const formattedDate = date
-            .replace(/[()]/g,'')
-            .split('/')
-            .map((digit) => digit.length === 1 ? '0' + digit : digit)
-            .join('/');
-
         // :aliens: this pickadate API
         this._$datepicker
             .pickadate('picker')
-            .set('select', formattedDate, { format: 'mm/dd/yyyy' });
-    }
-
-    _getFormattedDate() {
-        const data = this._$datepicker
-            .pickadate('picker')
-            .get('select');
-
-        data.month = data.month + 1;
-
-        _.chain(data)
-            .pick('date', 'month', 'year')
-            .each((val, key) => data[key] = String(val))
-            .value();
-
-        const elements = [
-            data.month.length === 2 ? data.month : `0${data.month}`,
-            data.date.length === 2 ? data.date : `0${data.date}`,
-            data.year
-        ];
-
-        return elements.join('/');
+            .set('select', date);
     }
 }

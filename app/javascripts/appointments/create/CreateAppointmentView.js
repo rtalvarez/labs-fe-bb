@@ -78,6 +78,7 @@ export default class CreateAppointmentView extends BaseView({
         if (!patientErrors && !doctorErrors && !detailsErrors) {
             console.log('submit form');
             this._firstStepSuccess();
+            debugger;
         } else {
             console.log('show error message');
         }
