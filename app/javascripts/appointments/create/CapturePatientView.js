@@ -48,7 +48,6 @@ export default class CapturePatientView extends BaseView() {
             }
         });
 
-        debugger;
         this.setAppointmentData();
         return hasErrors;
     }
