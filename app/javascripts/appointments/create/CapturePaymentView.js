@@ -3,7 +3,7 @@ import CapturePaymentViewTpl from 'templates/appointments/create/CapturePaymentV
 
 export default class extends BaseView({
     events: {
-        'submit #capture-payment-form': '_onPaymentFormSubmit'
+        'submit .capture-payment-form': '_onPaymentFormSubmit'
     }
 }) {
     initialize() {
