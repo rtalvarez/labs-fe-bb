@@ -3,43 +3,43 @@
 
     <p class="create-appointment-form-error hidden">Favor de corregir los campos marcados en rojo</p>
 
-    <form action="#" class="create-appointment-form" autocomplete="off">
-        <ul class="collapsible" data-collapsible="accordion">
-            <li class="step-1-item">
-                <div class="collapsible-header create-appointment-step-1-header active">
-                    {{> CollapsibleHeaderPanel this }}
-                </div>
-                <div class="collapsible-body">
+    <ul class="collapsible" data-collapsible="accordion">
+        <li class="step-1-item">
+            <div class="collapsible-header create-appointment-step-1-header active">
+                {{> CollapsibleHeaderPanel this }}
+            </div>
+            <div class="collapsible-body">
+                <form action="#" class="create-appointment-form" autocomplete="off" novalidate>
                     <div class="capture-patient-view"></div>
                     <div class="capture-doctor-view"></div>
                     <div class="capture-details-view"></div>
-                </div>
-
-            </li>
-            <li class="step-2-item">
-                <div class="collapsible-header create-appointment-step-2-header">
-                    <i class="material-icons">place</i>
-                    Pago
-                </div>
-                <div class="collapsible-body">
-                    <div class="capture-payment-view"></div>
-                </div>
-            </li>
-            <li class="step-3-item">
-                <div class="collapsible-header"><i class="material-icons">whatshot</i>Confirmacion</div>
-                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-            </li>
-        </ul>
-
-        <div class="row">
-            <div class="col s6 offset-s6">
-                <button class="create-appointment-next btn waves-effect waves-light" type="button">
-                    Siguiente
-                    <i class="material-icons right">send</i>
-                </button>
+                    
+                    <button type="submit" class="hidden"></button>
+                </form>
             </div>
+        </li>
+        <li class="step-2-item">
+            <div class="collapsible-header create-appointment-step-2-header">
+                <i class="material-icons">place</i>
+                Pago
+            </div>
+            <div class="collapsible-body">
+                <div class="capture-payment-view"></div>
+            </div>
+        </li>
+        <li class="step-3-item">
+            <div class="collapsible-header"><i class="material-icons">whatshot</i>Confirmacion</div>
+            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+        </li>
+    </ul>
 
-            <button type="submit" class="hidden"></button>
+    <div class="row">
+        <div class="col s6 offset-s6">
+            <button class="create-appointment-next btn waves-effect waves-light" type="button">
+                Siguiente
+                <i class="material-icons right">send</i>
+            </button>
         </div>
-    </form>
+
+    </div>
 </section>
