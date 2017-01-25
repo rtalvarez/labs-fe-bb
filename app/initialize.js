@@ -10,7 +10,7 @@ import CONSTANTS from 'javascripts/shared/Constants';
 import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHeaderPanel';
 
 $(() => {
-    Conekta.setPublicKey(CONSTANTS.CONEKTA.PUBLIC_KEY);
+    window.Conekta.setPublicKey(CONSTANTS.CONEKTA.PUBLIC_KEY);
 
     // This is suboptimal. TODO refactor
     Handlebars.registerPartial('CollapsibleHeaderPanel',  CollapsibleHeaderPanel);
