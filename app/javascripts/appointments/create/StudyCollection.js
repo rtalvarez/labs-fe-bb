@@ -19,7 +19,7 @@ export default class extends BaseCollection({
         const data = {};
 
         this.each((study) => {
-            const key = `${study.get('name')} ($ ${study.get('price')})`;
+            const key = `${study.get('name')} ($${study.get('price')})`;
 
             if (!this._typeaheadData[key]) {
                 data[key] = {

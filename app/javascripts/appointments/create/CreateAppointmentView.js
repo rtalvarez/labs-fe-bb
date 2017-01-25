@@ -5,6 +5,7 @@ import AppointmentModel from 'javascripts/appointments/create/AppointmentModel';
 import CaptureDoctorView from 'javascripts/appointments/create/CaptureDoctorView';
 import CapturePatientView from 'javascripts/appointments/create/CapturePatientView';
 import CaptureDetailsView from 'javascripts/appointments/create/CaptureDetailsView';
+import CapturePaymentView from 'javascripts/appointments/create/CapturePaymentView';
 
 import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHeaderPanel';
 
@@ -25,7 +26,11 @@ export default class CreateAppointmentView extends BaseView({
 
         this._selectors = {
             step1Header: '.create-appointment-step-1-header',
-            step2Header: '.create-appointment-step-2-header'
+            step2Header: '.create-appointment-step-2-header',
+            capturePatientView: '.capture-patient-view',
+            captureDoctorView: '.capture-doctor-view',
+            captureDetailsView: '.capture-details-view',
+            capturePaymentView: '.capture-payment-view'
         };
 
         this._step = 1;
@@ -41,20 +46,25 @@ export default class CreateAppointmentView extends BaseView({
     initViews() {
         const $el = this.$el;
         const model = this.model;
+        const selectors = this._selectors;
 
         this._capturePatientView = new CapturePatientView({
-            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_PATIENT_VIEW),
+            el: $el.find(selectors.capturePatientView),
             appointmentModel: model,
         });
 
         this._captureDoctorView = new CaptureDoctorView({
-            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_DOCTOR_VIEW),
+            el: $el.find(selectors.captureDoctorView),
             appointmentModel: model,
         });
 
         this._captureDetailsView = new CaptureDetailsView({
-            el: $el.find(this.CONSTANTS.SELECTORS.CAPTURE_DETAILS_VIEW),
+            el: $el.find(selectors.captureDetailsView),
             appointmentModel: model,
+        });
+
+        this._capturePaymentView = new CapturePaymentView({
+            el: $el.find(selectors.capturePaymentView)
         });
     }
 

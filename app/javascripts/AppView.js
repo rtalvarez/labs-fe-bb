@@ -10,6 +10,11 @@ export default class extends BaseView() {
         this.render(AppTpl);
         this.registerEvents();
 
+        this._selectors = {
+            createAppointmentView: '.create-appointment-view',
+            navView: '.nav-view',
+        };
+
         this.initViews();
         this.initRouter();
     }
@@ -20,13 +25,13 @@ export default class extends BaseView() {
     
     initViews() {
         this.navView = new NavView({
-            el: this.$el.find(this.CONSTANTS.SELECTORS.NAV_VIEW)
+            el: this.$el.find(this._selectors.navView)
         });
     }
 
     onNewAppointmentNavigate() {
         this.createAppointmentView = new CreateAppointmentView({
-            el: this.$el.find(this.CONSTANTS.SELECTORS.CREATE_APPOINTMENT_VIEW)
+            el: this.$el.find(this._selectors.createAppointmentView)
         });
     }
 

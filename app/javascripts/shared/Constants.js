@@ -1,17 +1,16 @@
 export default {
     SELECTORS: {
         MAIN_VIEW: '.main-view',
-        NAV_VIEW: '.nav-view',
-        CREATE_APPOINTMENT_VIEW: '.create-appointment-view',
-        CAPTURE_PATIENT_VIEW: '.capture-patient-view',
-        CAPTURE_DOCTOR_VIEW: '.capture-doctor-view',
-        CAPTURE_DETAILS_VIEW: '.capture-details-view',
         TYPEAHEAD_VIEW: '.typeahead-view',
         PILLS_TYPEAHEAD_VIEW: '.pills-typeahead-view',
         TYPEAHEAD_INPUT: '.typeahead-input',
         CHIPS: '.chips',
         INPUT: '.input',
         COLLAPSIBLE: '.collapsible'
+    },
+
+    CONEKTA: {
+        PUBLIC_KEY: 'key_DzejhJHXeNKsy9BynuoHibw',
     },
 
     // Universal classes only!
