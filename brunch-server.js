@@ -1,4 +1,4 @@
-var apiProxy, express, http, httpProxy, sysPath;
+var apiProxy, conektaProxy, express, http, httpProxy, sysPath;
 
 express = require('express');
 sysPath = require('path');
@@ -9,17 +9,28 @@ apiProxy = httpProxy.createServer({
   target: 'http://localhost:8080'
 });
 
+conektaProxy = httpProxy.createServer({
+    target: 'http://localhost:3000'
+});
+
 exports.startServer = function(port, path, callback) {
     var app, server;
 
     app = express();
-    app.use(express["static"](path));
+    app.use(express.static(path));
 
-    app.all("/api/*", function(req, res) {
+    app.all('/api/*', function(req, res) {
         delete req.headers.host;
 
         console.log('[PROXY]: Routing request: ', req.url);
         return apiProxy.web(req, res);
+    });
+
+    app.all('/conekta/*', function(req, res) {
+        delete req.headers.host;
+
+        console.log('[PROXY]: Routing request: ', req.url);
+        return conektaProxy.web(req, res);
     });
 
     app.all(/.css/, function(request, response) {
