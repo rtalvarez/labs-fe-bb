@@ -1,12 +1,16 @@
 import BaseView from 'javascripts/shared/BaseView';
 import CapturePaymentViewTpl from 'templates/appointments/create/CapturePaymentView';
 
+import PaymentModel from 'javascripts/appointments/create/PaymentModel';
+
 export default class extends BaseView({
     events: {
         'submit .capture-payment-form': '_onPaymentFormSubmit'
-    }
+    },
+    model: PaymentModel
 }) {
     initialize() {
+        super.initialize();
         this.render(CapturePaymentViewTpl);
 
         _.bindAll(this,
@@ -14,7 +18,36 @@ export default class extends BaseView({
             '_onConektaError',
             '_onPaymentFormSubmit');
 
+        this._selectors = {
+            cardholderName: '#cardholder-name',
+            cardNumber: '#card-number',
+            cardCVC: '#card-cvc',
+            cardExpirationM: '#card-expiration-m',
+            cardExpirationY: '#card-expiration-y',
+            cardStreet: '#card-street',
+            cardTown: '#card-town',
+            cardCity: '#card-city',
+            cardState: '#card-state',
+            cardCP: '#card-cp',
+            cardCountry: '#card-country'
+        };
+
         this.prefillTestingData();
+        this.attachEvents();
+    }
+
+    attachEvents() {
+        this.bindToModel('cardholderName', 'model', 'cardholderName');
+        this.bindToModel('cardNumber', 'model', 'cardNumber');
+        this.bindToModel('cardCVC', 'model', 'cardCVC');
+        this.bindToModel('cardExpirationM', 'model', 'cardExpirationM');
+        this.bindToModel('cardExpirationY', 'model', 'cardExpirationY');
+        this.bindToModel('cardStreet', 'model', 'cardStreet');
+        this.bindToModel('cardTown', 'model', 'cardTown');
+        this.bindToModel('cardCity', 'model', 'cardCity');
+        this.bindToModel('cardState', 'model', 'cardState');
+        this.bindToModel('cardCP', 'model', 'cardCP');
+        this.bindToModel('cardCountry', 'model', 'cardCountry');
     }
 
     _onPaymentFormSubmit(evt) {

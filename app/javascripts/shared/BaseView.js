@@ -15,6 +15,18 @@ export default (config = {}) => class extends Backbone.View.extend(config) {
         $el.html(templateGen(data));
     }
 
+    getModel() {
+        return this.model;
+    }
+
+    $find(selector) {
+        if (!selector || !this._selectors[selector]) {
+            throw new TypeError(`Invalid selector key: ${selector} or value ${this._selectors[selector]}`);
+        }
+
+        return this.$el.find(this._selectors[selector]);
+    }
+
     navigate(evt) {
         const path = $(evt.target)
             .closest('a')
@@ -24,8 +36,21 @@ export default (config = {}) => class extends Backbone.View.extend(config) {
         PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.TO, path);
     }
 
+    /**
+     * Binds the value of a local element's input to a model's property
+     * @param element The element reference that holds the value to bind, or a selector string to it
+     * @param modelName The name of the model scoped inside `this`
+     * @param property The property inside the model to bind the input's value to
+     * @param callback An optional callback to execute when the value changes
+     */
     bindToModel(element, modelName, property, callback = _.noop) {
-        element.on('input', _.debounce((evt) => {
+        let $el = element;
+
+        if (typeof element === 'string') {
+            $el = this.$find(element);
+        }
+
+        $el.on('input', _.debounce((evt) => {
             const newVal = $(evt.target).val();
 
             this[modelName].set(property, newVal);
