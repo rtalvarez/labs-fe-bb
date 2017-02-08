@@ -37,7 +37,11 @@ export default {
         },
         MATERIAL_SELECT: {
             ITEM_SELECTED: (id) => `materialSelect-${id}:itemSelected`
-        }
+        },
+        CONEKTA: {
+            PAYMENT_SUCCESS: 'conekta:paymentSuccess',
+            PAYMENT_ERROR: 'conekta:paymentError',
+        },
     },
 
     URLS: {

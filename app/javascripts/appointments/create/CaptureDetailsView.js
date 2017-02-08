@@ -82,6 +82,7 @@ export default class extends BaseView() {
         }
 
         this.setAppointmentData();
+        debugger;
         return hasErrors;
     }
 
@@ -89,6 +90,7 @@ export default class extends BaseView() {
         this._appointmentModel.set({
             notes: this._selectedAppointment.get('notes'),
             date: this._selectedAppointment.get('date'),
+            studies: _.values(this._selectedStudies),
         });
     }
 

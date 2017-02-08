@@ -7,7 +7,7 @@ export default class extends BaseView({
     events: {
         'submit .capture-payment-form': '_onPaymentFormSubmit'
     },
-    model: PaymentModel
+    model: new PaymentModel()
 }) {
     initialize() {
         super.initialize();
@@ -60,10 +60,12 @@ export default class extends BaseView({
 
     _onConektaSuccess(data) {
         console.log('success', data);
+        this.PubSub.trigger(this.CONSTANTS.EVENTS.CONEKTA.PAYMENT_SUCCESS, data, this.model);
     }
 
     _onConektaError(data) {
         console.log('error', data);
+        this.PubSub.trigger(this.CONSTANTS.EVENTS.CONEKTA.PAYMENT_SUCCESS, data, this.model);
     }
 
     prefillTestingData() {

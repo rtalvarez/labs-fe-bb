@@ -20,6 +20,8 @@ export default class CreateAppointmentView extends BaseView({
         this.render(CreateAppointmentViewTpl, this);
 
         _.bindAll(this,
+            '_showError',
+            '_postAppointment',
             '_onNextStepClick');
 
         console.log('Init create appointment!');
@@ -37,6 +39,12 @@ export default class CreateAppointmentView extends BaseView({
 
         this.initCollapsibleHeaders();
         this.initViews();
+        this.attachEvents();
+    }
+
+    attachEvents() {
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CONEKTA.PAYMENT_SUCCESS, this._postAppointment);
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CONEKTA.PAYMENT_ERROR, this._showError);
     }
 
     initCollapsibleHeaders() {
@@ -66,6 +74,33 @@ export default class CreateAppointmentView extends BaseView({
         this._capturePaymentView = new CapturePaymentView({
             el: $el.find(selectors.capturePaymentView)
         });
+    }
+
+    _showError(data) {
+        console.log('show error', data);
+    }
+
+    _postAppointment(conektaResponse, paymentModel) {
+        // Do not send card data to our servers - just the conekta token
+        paymentModel.set('cardNumber', conektaResponse.id);
+
+        const appointment = this.model.toJSON();
+        appointment.doctor = appointment.doctor.toJSON();
+        appointment.patient = appointment.patient.toJSON();
+        appointment.date = appointment.date.toJSON();
+        appointment.studies = _.map(appointment.studies, study => study.toJSON());
+        appointment.patient.dateOfBirth = appointment.patient.dateOfBirth.toJSON();
+
+        const request = {
+            payment: paymentModel.toJSON(),
+            appointment,
+        };
+
+        console.log('post app', request);
+        this.model.postAppointment(request)
+            .then((resp) => {
+                console.log('resp', resp);
+            });
     }
 
     _onNextStepClick(evt) {

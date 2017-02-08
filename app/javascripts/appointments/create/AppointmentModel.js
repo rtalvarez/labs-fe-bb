@@ -1,7 +1,6 @@
 import BaseModel from 'javascripts/shared/BaseModel';
 
 export default class extends BaseModel({
-    // idAttribute: _getModelAttribute()
 }) {
     initialize(data) {
         super.initialize();
@@ -16,5 +15,9 @@ export default class extends BaseModel({
             value: this.get('epochTime'),
             label: this.get('date').getHours(),
         };
+    }
+
+    postAppointment(request) {
+        return this.post('/api/appointments/create', request);
     }
 }
