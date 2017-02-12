@@ -1,90 +1,65 @@
 <section class="capture-payment-view-content section">
     <h5>Datos del pago</h5>
-    <!--<form action="">-->
-        <!--<input type="text">-->
-    <!--</form>-->
 
     <form class="capture-payment-form">
         <span class="card-errors"></span>
         <div class="row">
-            <div class="col s12">
-                <label for="cardholder-name">
-                    <span>Nombre del tarjetahabiente</span>
-                    <input id="cardholder-name" type="text" size="20" data-conekta="card[name]"/>
-                </label>
+            <div class="col s12 input-field">
+                <label for="cardholder-name">Nombre del tarjetahabiente</label>
+                <input class="validate" id="cardholder-name" type="text" size="20" data-conekta="card[name]"/>
             </div>
         </div>
         <div class="row">
-            <div class="col s6">
-                <label for="card-number">
-                    <span>Número de tarjeta de crédito</span>
-                    <input id="card-number" type="text" size="20" data-conekta="card[number]"/>
-                </label>
+            <div class="col s6 input-field">
+                <label for="card-number">Número de tarjeta de crédito</label>
+                <input class="validate" id="card-number" type="text" size="20" data-conekta="card[number]"/>
             </div>
-            <div class="col s3">
-                <label for="card-cvc">
-                    <span>CVC</span>
-                    <input id="card-cvc" type="text" size="4" data-conekta="card[cvc]"/>
-                </label>
+            <div class="col s3 input-field">
+                <label for="card-cvc">CVC</label>
+                <input class="validate" id="card-cvc" type="text" size="4" data-conekta="card[cvc]"/>
             </div>
         </div>
         <div class="row">
-            <div class="col s6">
-                <label for="card-expiration-m">
-                    <span>Fecha de expiración (MM)</span>
-                    <input id="card-expiration-m" type="text" size="2" data-conekta="card[exp_month]"/>
-                </label>
+            <div class="col s6 input-field">
+                <label for="card-expiration-m">Fecha de expiración (MM)</label>
+                <input class="validate" id="card-expiration-m" type="text" size="2" data-conekta="card[exp_month]"/>
             </div>
-            <div class="col s6">
-                <label for="card-expiration-y">
-                    <span>Fecha de expiracion (YYYY)</span>
-                    <input id="card-expiration-y" type="text" size="4" data-conekta="card[exp_year]"/>
-                </label>
+            <div class="col s6 input-field">
+                <label for="card-expiration-y">Fecha de expiracion (YYYY)</label>
+                <input class="validate" id="card-expiration-y" type="text" size="4" data-conekta="card[exp_year]"/>
             </div>
         </div>
         <!-- Información recomendada para sistema antifraude -->
         <div class="row">
-            <div class="col s12">
-                <label for="card-street">
-                    <span>Calle</span>
-                    <input id="card-street" type="text" size="25" data-conekta="card[address][street1]"/>
-                </label>
+            <div class="col s12 input-field">
+                <label for="card-street">Calle</label>
+                <input class="validate" id="card-street" type="text" size="25" data-conekta="card[address][street1]"/>
             </div>
         </div>
         <div class="row">
-            <div class="col s12">
-                <label for="card-town">
-                    <span>Colonia</span>
-                    <input id="card-town" type="text" size="25" data-conekta="card[address][street2]"/>
-                </label>
+            <div class="col s12 input-field">
+                <label for="card-town">Colonia</label>
+                <input class="validate" id="card-town" type="text" size="25" data-conekta="card[address][street2]"/>
             </div>
         </div>
         <div class="row">
-            <div class="col s6">
-                <label for="card-city">
-                    <span>Ciudad</span>
-                    <input id="card-city" type="text" size="25" data-conekta="card[address][city]"/>
-                </label>
+            <div class="col s6 input-field">
+                <label for="card-city">Ciudad</label>
+                <input class="validate" id="card-city" type="text" size="25" data-conekta="card[address][city]"/>
             </div>
-            <div class="col s6">
-                <label for="card-state">
-                    <span>Estado</span>
-                    <input id="card-state" type="text" size="25" data-conekta="card[address][state]"/>
-                </label>
+            <div class="col s6 input-field">
+                <label for="card-state">Estado</label>
+                <input class="validate" id="card-state" type="text" size="25" data-conekta="card[address][state]"/>
             </div>
         </div>
         <div class="row">
-            <div class="col s6">
-                <label for="card-cp">
-                    <span>CP</span>
-                    <input id="card-cp" type="text" size="5" data-conekta="card[address][zip]"/>
-                </label>
+            <div class="col s6 input-field">
+                <label for="card-cp">CP</label>
+                <input class="validate" id="card-cp" type="text" size="5" data-conekta="card[address][zip]"/>
             </div>
-            <div class="col s6">
-                <label for="card-country">
-                    <span>País</span>
-                    <input id="card-country" type="text" size="25" data-conekta="card[address][country]"/>
-                </label>
+            <div class="col s6 input-field">
+                <label for="card-country">País</label>
+                <input class="validate" id="card-country" type="text" size="25" data-conekta="card[address][country]"/>
             </div>
         </div>
 
