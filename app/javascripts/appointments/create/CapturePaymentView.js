@@ -1,5 +1,6 @@
 import BaseView from 'javascripts/shared/BaseView';
 import CapturePaymentViewTpl from 'templates/appointments/create/CapturePaymentView';
+import BannerView from 'javascripts/shared/BannerView';
 
 import PaymentModel from 'javascripts/appointments/create/PaymentModel';
 
@@ -29,11 +30,25 @@ export default class extends BaseView({
             cardCity: '#card-city',
             cardState: '#card-state',
             cardCP: '#card-cp',
-            cardCountry: '#card-country'
+            cardCountry: '#card-country',
+            paymentDisabled: '.payment-disabled',
+        };
+
+        this._copy = {
+            paymentDisabled: 'Favor de llenar la seccion de citas antes de proceder con el pago'
         };
 
         // this.prefillTestingData();
         this.attachEvents();
+        this.initViews();
+    }
+
+    initViews() {
+        this._bannerView = new BannerView({
+            type: 'warning',
+            msg: this._copy.paymentDisabled,
+            el: this.$find('paymentDisabled')
+        });
     }
 
     attachEvents() {

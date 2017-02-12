@@ -1,0 +1,20 @@
+@import 'colors';
+
+.banner {
+  align-items: center;
+  display: flex;
+  padding: 0.5rem;
+}
+
+.banner-message {
+  color: color('grey', 'darken-3');
+}
+
+.warning i {
+  color: color('orange', 'darken-1');
+}
+
+.icon-wrapper {
+  margin-right: 1rem;
+}
+

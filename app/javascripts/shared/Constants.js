@@ -9,6 +9,10 @@ export default {
         COLLAPSIBLE: '.collapsible'
     },
 
+    BANNER_CLASSES: {
+        warning: 'card-panel amber'
+    },
+
     CONEKTA: {
         PUBLIC_KEY: 'key_DzejhJHXeNKsy9BynuoHibw',
     },

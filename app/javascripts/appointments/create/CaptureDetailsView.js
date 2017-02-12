@@ -82,7 +82,6 @@ export default class extends BaseView() {
         }
 
         this.setAppointmentData();
-        debugger;
         return hasErrors;
     }
 
