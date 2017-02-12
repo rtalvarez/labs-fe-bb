@@ -4,6 +4,15 @@
   align-items: center;
   display: flex;
   padding: 0.5rem;
+  position: relative;
+
+  &::after {
+    content: " ";
+    position: absolute;
+    border: 2px solid color('orange', 'accent-4');
+    height: 100%;
+    left: 0;
+  }
 }
 
 .banner-message {
@@ -16,5 +25,6 @@
 
 .icon-wrapper {
   margin-right: 1rem;
+  margin-left: 0.5rem;
 }
 
