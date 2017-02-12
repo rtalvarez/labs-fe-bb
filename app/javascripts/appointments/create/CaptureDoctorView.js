@@ -97,7 +97,8 @@ export default class extends BaseView() {
             this.$el
                 .find(value)
                 .val(doctor.get(key))
-                .addClass(classes.VALID);
+                .addClass(classes.VALID)
+                .removeClass(classes.INVALID);
         });
 
         _.each(this._labels, (value) => {

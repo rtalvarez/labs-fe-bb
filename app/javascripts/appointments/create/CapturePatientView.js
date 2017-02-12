@@ -125,7 +125,8 @@ export default class CapturePatientView extends BaseView() {
             this.$el
                 .find(value)
                 .val(patient.get(key))
-                .addClass(classes.VALID);
+                .addClass(classes.VALID)
+                .removeClass(classes.INVALID);
         });
 
         this._datepickerView.setDate(patient.get('dateOfBirth'));

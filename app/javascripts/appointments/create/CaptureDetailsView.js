@@ -47,6 +47,7 @@ export default class extends BaseView() {
     _onAppointmentTimeSelect(time) {
         const notes = this._selectedAppointment.get('notes');
         const date = this._selectedAppointment.get('date');
+        this.$find('selectTime').addClass(this.CONSTANTS.CLASSES.VALID);
 
         this._selectedAppointment = this._appointmentsCollection.findWhere({ epochTime: +time });
         this._selectedAppointment.set({
@@ -57,6 +58,7 @@ export default class extends BaseView() {
 
     _onAppointmentDateSelect(date) {
         this._selectedAppointment.set('date', date);
+        this.$find('selectDate').addClass(this.CONSTANTS.CLASSES.VALID);
 
         this._appointmentsCollection.fetchAvailableAppointmentHours(date)
             .then(() => this._populateAvailableTimes());
