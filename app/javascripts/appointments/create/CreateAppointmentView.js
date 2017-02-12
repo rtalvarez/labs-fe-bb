@@ -7,6 +7,7 @@ import CapturePatientView from 'javascripts/appointments/create/CapturePatientVi
 import CaptureDetailsView from 'javascripts/appointments/create/CaptureDetailsView';
 import CapturePaymentView from 'javascripts/appointments/create/CapturePaymentView';
 import BannerView from 'javascripts/shared/BannerView';
+import DialogView from 'javascripts/shared/DialogView';
 
 import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHeaderPanel';
 
@@ -35,6 +36,7 @@ export default class CreateAppointmentView extends BaseView({
             captureDetailsView: '.capture-details-view',
             capturePaymentView: '.capture-payment-view',
             formHasErrors: '.form-has-errors-banner',
+            processingAppointmentDialog: '#processing-appointment-dialog'
         };
 
         this._copy = {
@@ -112,6 +114,11 @@ export default class CreateAppointmentView extends BaseView({
             el: this.$find('formHasErrors'),
             hidden: true,
         });
+
+        this._dialogView = new DialogView({
+            el: this.$find('processingAppointmentDialog'),
+            dialogId: 'processing-appointment-dialog'
+        });
     }
 
     _showError(data) {
@@ -158,6 +165,7 @@ export default class CreateAppointmentView extends BaseView({
     }
 
     _processSecondStep() {
+        this._dialogView.open();
         this._capturePaymentView.submit();
     }
 
