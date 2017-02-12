@@ -32,7 +32,7 @@ export default class extends BaseView({
             cardCountry: '#card-country'
         };
 
-        this.prefillTestingData();
+        // this.prefillTestingData();
         this.attachEvents();
     }
 
