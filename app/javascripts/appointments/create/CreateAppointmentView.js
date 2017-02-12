@@ -70,6 +70,7 @@ export default class CreateAppointmentView extends BaseView({
         this._capturePatientView._selectedPatient = this.model.get('patient');
         this._captureDoctorView._selectedDoctor = this.model.get('doctor');
         this._captureDetailsView._selectedStudies = this.model.get('studies');
+        this._captureDetailsView._selectedAppointment = this.model;
     }
 
     attachEvents() {
@@ -157,7 +158,7 @@ export default class CreateAppointmentView extends BaseView({
     }
 
     _processSecondStep() {
-
+        this._capturePaymentView.submit();
     }
 
     _processFirstStep() {
