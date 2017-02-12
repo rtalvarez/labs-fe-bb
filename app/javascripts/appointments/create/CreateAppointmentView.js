@@ -46,6 +46,30 @@ export default class CreateAppointmentView extends BaseView({
         this.initCollapsibleHeaders();
         this.initViews();
         this.attachEvents();
+        this.prefillTestData();
+    }
+
+    prefillTestData() {
+        this.model.set('date', new Date());
+        this.model.set('patient', new Backbone.Model({
+            firstName: 'Ondalacion',
+            lastName: 'Contreras',
+            dateOfBirth: new Date(),
+        }));
+        this.model.set('doctor', new Backbone.Model({
+            firstName: 'Ondalacion',
+            lastName: 'Contreras',
+        }));
+        this.model.set('studies', [new Backbone.Model({
+            name: 'estudio 1',
+            price: 10,
+            id: 1,
+            description: 'descripcion'
+        })]);
+
+        this._capturePatientView._selectedPatient = this.model.get('patient');
+        this._captureDoctorView._selectedDoctor = this.model.get('doctor');
+        this._captureDetailsView._selectedStudies = this.model.get('studies');
     }
 
     attachEvents() {
@@ -123,9 +147,17 @@ export default class CreateAppointmentView extends BaseView({
             case 1:
                 this._processFirstStep();
                 break;
+
+            case 2:
+                this._processSecondStep();
+                break;
         }
 
         this._step++;
+    }
+
+    _processSecondStep() {
+
     }
 
     _processFirstStep() {

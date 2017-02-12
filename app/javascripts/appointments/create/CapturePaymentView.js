@@ -34,13 +34,14 @@ export default class extends BaseView({
             cardCountry: '#card-country',
             paymentDisabled: '.payment-disabled',
             paymentFieldset: '.payment-fieldset',
+            submitPayment: '.submit-payment'
         };
 
         this._copy = {
             paymentDisabled: 'Favor de llenar la seccion de citas antes de proceder con el pago'
         };
 
-        // this.prefillTestingData();
+        this.prefillTestingData();
         this.attachEvents();
         this.initViews();
     }
@@ -82,10 +83,15 @@ export default class extends BaseView({
 
     _onPaymentFormSubmit(evt) {
         const $form = $(evt.target);
+
         evt.preventDefault();
         console.log('payment form', $form);
 
         window.Conekta.Token.create($form, this._onConektaSuccess, this._onConecktaError);
+    }
+
+    submit() {
+        this.$find('submitPayment').click();
     }
 
     _onConektaSuccess(data) {
