@@ -15,6 +15,7 @@ export default class extends BaseView({
         this.render(CapturePaymentViewTpl);
 
         _.bindAll(this,
+            '_enablePaymentForm',
             '_onConektaSuccess',
             '_onConektaError',
             '_onPaymentFormSubmit');
@@ -32,6 +33,7 @@ export default class extends BaseView({
             cardCP: '#card-cp',
             cardCountry: '#card-country',
             paymentDisabled: '.payment-disabled',
+            paymentFieldset: '.payment-fieldset',
         };
 
         this._copy = {
@@ -63,6 +65,19 @@ export default class extends BaseView({
         this.bindToModel('cardState', 'model', 'cardState');
         this.bindToModel('cardCP', 'model', 'cardCP');
         this.bindToModel('cardCountry', 'model', 'cardCountry');
+
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.STEP1_COMPLETE, this._enablePaymentForm);
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.STEP1_INCOMPLETE, this._disablePaymentForm);
+    }
+
+    _disablePaymentForm() {
+        this.$find('paymentFieldset').attr('disabled', true);
+        this._bannerView.show();
+    }
+
+    _enablePaymentForm() {
+        this.$find('paymentFieldset').attr('disabled', false);
+        this._bannerView.hide();
     }
 
     _onPaymentFormSubmit(evt) {

@@ -6,6 +6,7 @@ import CaptureDoctorView from 'javascripts/appointments/create/CaptureDoctorView
 import CapturePatientView from 'javascripts/appointments/create/CapturePatientView';
 import CaptureDetailsView from 'javascripts/appointments/create/CaptureDetailsView';
 import CapturePaymentView from 'javascripts/appointments/create/CapturePaymentView';
+import BannerView from 'javascripts/shared/BannerView';
 
 import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHeaderPanel';
 
@@ -32,7 +33,12 @@ export default class CreateAppointmentView extends BaseView({
             capturePatientView: '.capture-patient-view',
             captureDoctorView: '.capture-doctor-view',
             captureDetailsView: '.capture-details-view',
-            capturePaymentView: '.capture-payment-view'
+            capturePaymentView: '.capture-payment-view',
+            formHasErrors: '.form-has-errors-banner',
+        };
+
+        this._copy = {
+            formHasErrors: 'Por favor, corrige los campos en rojo y vuelve a intentar',
         };
 
         this._step = 1;
@@ -73,6 +79,13 @@ export default class CreateAppointmentView extends BaseView({
 
         this._capturePaymentView = new CapturePaymentView({
             el: $el.find(selectors.capturePaymentView)
+        });
+
+        this._bannerView = new BannerView({
+            type: 'warning',
+            msg: this._copy.formHasErrors,
+            el: this.$find('formHasErrors'),
+            hidden: true,
         });
     }
 
@@ -124,8 +137,14 @@ export default class CreateAppointmentView extends BaseView({
             console.log('submit form');
             this._firstStepSuccess();
         } else {
+            this._firstStepFailure();
             console.log('show error message');
         }
+    }
+
+    _firstStepFailure() {
+        this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.STEP1_INCOMPLETE);
+        this._bannerView.show();
     }
 
     _firstStepSuccess() {
@@ -136,6 +155,8 @@ export default class CreateAppointmentView extends BaseView({
         }, $header);
 
         this._showStep(2);
+        this._bannerView.hide();
+        this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.STEP1_COMPLETE);
     }
 
     _showStep(numStep) {

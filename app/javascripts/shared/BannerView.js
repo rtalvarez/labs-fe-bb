@@ -11,6 +11,10 @@ export default class extends BaseView() {
         };
 
         this.render(BannerViewTpl, config);
+
+        if (config.hidden) {
+            this.hide();
+        }
     }
 
     hide() {

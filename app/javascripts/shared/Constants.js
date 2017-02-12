@@ -46,6 +46,10 @@ export default {
             PAYMENT_SUCCESS: 'conekta:paymentSuccess',
             PAYMENT_ERROR: 'conekta:paymentError',
         },
+        CREATE_APPOINTMENTS: {
+            STEP1_COMPLETE: 'createAppointments-step1:complete',
+            STEP1_INCOMPLETE: 'createAppointments-step1:incomplete',
+        }
     },
 
     URLS: {
