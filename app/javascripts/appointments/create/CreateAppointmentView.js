@@ -7,7 +7,7 @@ import CapturePatientView from 'javascripts/appointments/create/CapturePatientVi
 import CaptureDetailsView from 'javascripts/appointments/create/CaptureDetailsView';
 import CapturePaymentView from 'javascripts/appointments/create/CapturePaymentView';
 import BannerView from 'javascripts/shared/BannerView';
-import DialogView from 'javascripts/shared/DialogView';
+import ProcessingPaymentDialog from 'javascripts/appointments/create/ProcessingPaymentDialog';
 
 import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHeaderPanel';
 
@@ -115,7 +115,7 @@ export default class CreateAppointmentView extends BaseView({
             hidden: true,
         });
 
-        this._dialogView = new DialogView({
+        this._dialogView = new ProcessingPaymentDialog({
             el: this.$find('processingAppointmentDialog'),
             dismissible: false,
         });
