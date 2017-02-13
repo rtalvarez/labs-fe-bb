@@ -166,6 +166,7 @@ export default class CreateAppointmentView extends BaseView({
 
     _processSecondStep() {
         this._dialogView.open();
+
         this._capturePaymentView.submit();
     }
 

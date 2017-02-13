@@ -87,7 +87,7 @@ export default class extends BaseView({
         evt.preventDefault();
         console.log('payment form', $form);
 
-        window.Conekta.Token.create($form, this._onConektaSuccess, this._onConecktaError);
+        window.Conekta.Token.create($form, this._onConektaSuccess, this._onConektaError);
     }
 
     submit() {
@@ -101,7 +101,7 @@ export default class extends BaseView({
 
     _onConektaError(data) {
         console.log('error', data);
-        this.PubSub.trigger(this.CONSTANTS.EVENTS.CONEKTA.PAYMENT_SUCCESS, data, this.model);
+        this.PubSub.trigger(this.CONSTANTS.EVENTS.CONEKTA.PAYMENT_ERROR, data, this.model);
     }
 
     prefillTestingData() {

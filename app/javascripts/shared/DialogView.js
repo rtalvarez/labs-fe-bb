@@ -25,4 +25,8 @@ export default class extends BaseView() {
     close() {
         this.$el.modal('close');
     }
+
+    reRender(config) {
+        this.render(DialogViewTpl, config);
+    }
 }
