@@ -2,13 +2,14 @@ import CONSTANTS from 'javascripts/shared/Constants';
 import PubSub from 'javascripts/PubSub';
 import DependencyInjector from 'javascripts/utils/DependencyInjector';
 
-export default (config = {}) => class extends Backbone.View.extend(config) {
-    initialize() {
-        DependencyInjector.register(config, this);
+export default (backboneConfig = {}) => class extends Backbone.View.extend(backboneConfig) {
+    initialize(config) {
+        DependencyInjector.register(backboneConfig, this);
         this.$el = $(this.el);
         this.PubSub = PubSub;
         this.CONSTANTS = CONSTANTS;
         this._boundModelElements = [];
+        this.config = config;
     }
 
     render(templateGen, data = {}, $el = this.$el) {

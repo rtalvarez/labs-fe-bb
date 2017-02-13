@@ -117,7 +117,7 @@ export default class CreateAppointmentView extends BaseView({
 
         this._dialogView = new DialogView({
             el: this.$find('processingAppointmentDialog'),
-            dialogId: 'processing-appointment-dialog'
+            dismissible: false,
         });
     }
 
