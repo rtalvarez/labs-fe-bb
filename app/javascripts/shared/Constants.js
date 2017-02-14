@@ -28,7 +28,8 @@ export default {
     EVENTS: {
         NAVIGATE: {
             TO: 'naviate:to',
-            NEW_APPOINTMENT: 'navigate:newAppointment'
+            NEW_APPOINTMENT: 'navigate:newAppointment',
+            LOGIN: 'navigate:login'
         },
         TYPEAHEAD: {
             ITEM_SELECTED: (id) => `typeahead-${id}:itemSelected`
@@ -49,6 +50,7 @@ export default {
         CREATE_APPOINTMENTS: {
             STEP1_COMPLETE: 'createAppointments-step1:complete',
             STEP1_INCOMPLETE: 'createAppointments-step1:incomplete',
+            APPOINTMENT_CREATED: 'createAppointments:created'
         }
     },
 

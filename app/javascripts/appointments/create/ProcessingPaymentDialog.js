@@ -2,6 +2,7 @@ import DialogView from 'javascripts/shared/DialogView';
 
 import ProcessingPaymentDialogBodyTpl from 'templates/appointments/create/ProcessingPaymentDialogBody';
 import ErrorPaymentDialogBodyTpl from 'templates/appointments/create/ErrorPaymentDialogBody';
+import SuccessPaymentDialogBodyTpl from 'templates/appointments/create/SuccessPaymentDialogBody';
 
 export default class extends DialogView {
     initialize(config) {
@@ -25,6 +26,14 @@ export default class extends DialogView {
 
     attachEvents() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CONEKTA.PAYMENT_ERROR, this.paymentError);
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.APPOINTMENT_CREATED, this.appointmentCreated);
+    }
+
+    appointmentCreated() {
+        this.reRender({
+            header: 'Todo listo!',
+            body: SuccessPaymentDialogBodyTpl,
+        });
     }
 
     paymentError() {

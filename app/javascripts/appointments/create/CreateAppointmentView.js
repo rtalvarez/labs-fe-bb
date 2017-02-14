@@ -48,7 +48,7 @@ export default class CreateAppointmentView extends BaseView({
         this.initCollapsibleHeaders();
         this.initViews();
         this.attachEvents();
-        this.prefillTestData();
+        // this.prefillTestData();
     }
 
     prefillTestData() {
@@ -145,6 +145,7 @@ export default class CreateAppointmentView extends BaseView({
         this.model.postAppointment(request)
             .then((resp) => {
                 console.log('resp', resp);
+                this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.APPOINTMENT_CREATED);
             });
     }
 

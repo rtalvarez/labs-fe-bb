@@ -12,6 +12,27 @@ export default (backboneConfig = {}) => class extends Backbone.View.extend(backb
         this.config = config;
     }
 
+    /**
+     * Function that properly de-bootstraps this view.
+     * It removes all DOM events, custom events and removes itself from the DOM
+     * It also kills all subviews and makes sure they also remove their events and
+     * markup from the page
+     * This is necessary in order to keep memory clean
+     * This empty view will be kept in memory ready to be re-initialized by the parent
+     * (if needed in the future)
+     */
+    destroy() {
+        this.stopListening();
+        this.$el.remove();
+
+        _.each(this.views, (view) => {
+            view.stopListening();
+            view.$el.remove();
+        });
+
+        this.views = null;
+    }
+
     render(templateGen, data = {}, $el = this.$el) {
         $el.html(templateGen(data));
     }

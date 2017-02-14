@@ -14,7 +14,8 @@ export default class AppRouter extends Backbone.Router.extend({}) {
 
     initializeRouter() {
         this._routes = {
-            'appointments/create': 'newAppointment'
+            'appointments/create': 'newAppointment',
+            'login': 'login'
         };
 
         const routerConfig = Backbone.Router.extend({
@@ -25,6 +26,7 @@ export default class AppRouter extends Backbone.Router.extend({}) {
     }
 
     navigateTo(path) {
+        console.log('Navigating to:', path);
         this._router.navigate(path, { trigger: true });
     }
 
@@ -36,8 +38,15 @@ export default class AppRouter extends Backbone.Router.extend({}) {
         this.listenTo(PubSub, CONSTANTS.EVENTS.NAVIGATE.TO, this.navigateTo.bind(this));
     }
 
+    login() {
+        console.log('Trigerin login navigate');
+        PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.LOGIN);
+    }
+
     registerRoutes() {
-        this._router.on('route:newAppointment', this.newAppointment.bind(this));
+        console.log('Register router routes');
+        this._router.on('route:newAppointment', () => this.newAppointment());
+        this._router.on('route:login', () => this.login());
 
         Backbone.history.start({ pushState: true });
     }
