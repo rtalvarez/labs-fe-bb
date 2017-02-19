@@ -1,37 +1,30 @@
 import CONSTANTS from 'javascripts/shared/Constants';
 import PubSub from 'javascripts/PubSub';
 
-export default class AppRouter extends Backbone.Router.extend({}) {
-    constructor() {
-        super();
+export default class AppRouter extends Backbone.Router.extend({
+    routes: {
+        'appointments/create': 'newAppointment',
+        'login': 'login',
+        'appointments/:id': 'viewAppointment'
     }
-
+}) {
     initialize() {
-        this.initializeRouter();
-        this.registerRoutes();
+        super.initialize();
         this.registerEvents();
-    }
 
-    initializeRouter() {
-        this._routes = {
-            'appointments/create': 'newAppointment',
-            'login': 'login'
-        };
-
-        const routerConfig = Backbone.Router.extend({
-            routes: this._routes
-        });
-
-        this._router = new routerConfig();
+        Backbone.history.start({ pushState: true });
     }
 
     navigateTo(path) {
-        console.log('Navigating to:', path);
-        this._router.navigate(path, { trigger: true });
+        this.navigate(path, { trigger: true });
     }
 
     newAppointment() {
         PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.NEW_APPOINTMENT);
+    }
+
+    viewAppointment(id) {
+        PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.VIEW_APPOINTMENT, id);
     }
 
     registerEvents() {
@@ -41,14 +34,6 @@ export default class AppRouter extends Backbone.Router.extend({}) {
     login() {
         console.log('Trigerin login navigate');
         PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.LOGIN);
-    }
-
-    registerRoutes() {
-        console.log('Register router routes');
-        this._router.on('route:newAppointment', () => this.newAppointment());
-        this._router.on('route:login', () => this.login());
-
-        Backbone.history.start({ pushState: true });
     }
 }
 

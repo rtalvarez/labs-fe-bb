@@ -33,6 +33,7 @@ export default {
             TO: 'naviate:to',
             NEW_APPOINTMENT: 'navigate:newAppointment',
             LOGIN: 'navigate:login',
+            VIEW_APPOINTMENT: 'navigate:viewAppointment'
         },
         TYPEAHEAD: {
             ITEM_SELECTED: (id) => `typeahead-${id}:itemSelected`

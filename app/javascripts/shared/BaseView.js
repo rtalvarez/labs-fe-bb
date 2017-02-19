@@ -34,7 +34,6 @@ export default (backboneConfig = {}) => class extends Backbone.View.extend(backb
     }
 
     destroyViews() {
-        console.log('destroying views', this.views);
         _.each(this.views, (view) => {
             view.stopListening();
             view.$el.empty();
