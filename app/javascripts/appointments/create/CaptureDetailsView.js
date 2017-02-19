@@ -75,7 +75,9 @@ export default class extends BaseView() {
             .addClass(classes.VALID)
             .removeClass(classes.INVALID);
 
-        this._appointmentsCollection.fetchAvailableAppointmentHours(date)
+        debugger;
+
+        this._appointmentsCollection.fetchAvailableAppointmentHours(dateObj.obj.toJSON())
             .then(() => this._populateAvailableTimes());
     }
 
@@ -137,7 +139,10 @@ export default class extends BaseView() {
 
         this._datepickerView = new DatepickerView({
             el: this.$el.find(this._selectors.selectDate),
-            id: this.CONSTANTS.DATEPICKER_IDS.APPOINTMENT_DATE
+            id: this.CONSTANTS.DATEPICKER_IDS.APPOINTMENT_DATE,
+            datePickerConfig: {
+                min: new Date()
+            }
         });
 
         this._timeSelect = new MaterializeSelectView({

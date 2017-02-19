@@ -3,8 +3,7 @@ import { DATEPICKER_OPTIONS } from 'javascripts/shared/DatepickerConfig';
 
 export default class extends BaseView() {
     initialize(config) {
-        super.initialize.call(this);
-        this._datepickerConfig = config.datepickerConfig || DATEPICKER_OPTIONS;
+        super.initialize(config);
         this._widgetId = config.id;
 
         this.initWidget();
@@ -23,7 +22,9 @@ export default class extends BaseView() {
     }
 
     initWidget() {
-        this._$datepicker = this.$el.pickadate(this._datepickerConfig);
+        const config = _.extend(this.config.datePickerConfig, DATEPICKER_OPTIONS);
+
+        this._$datepicker = this.$el.pickadate(config);
     }
 
     /**

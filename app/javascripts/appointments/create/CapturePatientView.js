@@ -99,7 +99,10 @@ export default class CapturePatientView extends BaseView() {
 
         this._datepickerView = new DatepickerView({
             el: this.$el.find(this._selectors.captureDoB),
-            id: this.CONSTANTS.DATEPICKER_IDS.PATIENTS
+            id: this.CONSTANTS.DATEPICKER_IDS.PATIENTS,
+            datePickerConfig: {
+                max: new Date()
+            }
         });
     }
 
