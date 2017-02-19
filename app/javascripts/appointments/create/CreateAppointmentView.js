@@ -8,6 +8,7 @@ import CaptureDetailsView from 'javascripts/appointments/create/CaptureDetailsVi
 import CapturePaymentView from 'javascripts/appointments/create/CapturePaymentView';
 import BannerView from 'javascripts/shared/BannerView';
 import ProcessingPaymentDialog from 'javascripts/appointments/create/ProcessingPaymentDialog';
+import ConfirmAppointmentView from 'javascripts/appointments/create/ConfirmAppointmentView';
 
 import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHeaderPanel';
 
@@ -31,12 +32,14 @@ export default class CreateAppointmentView extends BaseView({
         this._selectors = {
             step1Header: '.create-appointment-step-1-header',
             step2Header: '.create-appointment-step-2-header',
+            step3Header: '.create-appointment-step-3-header',
             capturePatientView: '.capture-patient-view',
             captureDoctorView: '.capture-doctor-view',
             captureDetailsView: '.capture-details-view',
             capturePaymentView: '.capture-payment-view',
             formHasErrors: '.form-has-errors-banner',
-            processingAppointmentDialog: '#processing-appointment-dialog'
+            processingAppointmentDialog: '#processing-appointment-dialog',
+            confirmAppointment: '.confirm-appointment-view'
         };
 
         this._copy = {
@@ -120,6 +123,10 @@ export default class CreateAppointmentView extends BaseView({
             el: this.$find('processingAppointmentDialog'),
             dismissible: false,
         });
+
+        this._confirmAppointmentView = new ConfirmAppointmentView({
+            el: this.$find('confirmAppointment')
+        })
     }
 
     _showError(data) {
