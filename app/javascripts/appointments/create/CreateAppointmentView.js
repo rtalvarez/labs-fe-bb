@@ -188,6 +188,7 @@ export default class CreateAppointmentView extends BaseView({
 
 
     _secondStepSuccess() {
+        this._renderSuccessCollapsibleHeader();
         this._confirmAppointmentView.render();
         this._showStep(3);
     }
@@ -214,15 +215,19 @@ export default class CreateAppointmentView extends BaseView({
     }
 
     _firstStepSuccess() {
-        const $header = this.$el.find(this._selectors.step1Header);
-
-        this.render(CollapsibleHeaderPanel, {
-            valid: true
-        }, $header);
-
+        this._renderSuccessCollapsibleHeader();
         this._showStep(2);
+
         this._bannerView.hide();
         this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.STEP1_COMPLETE);
+    }
+
+    _renderSuccessCollapsibleHeader() {
+        const $header = this.$find(`step${this._step}Header`);
+
+        this.render(CollapsibleHeaderPanel, {
+            valid: true,
+        }, $header);
     }
 
     _showStep(numStep) {
