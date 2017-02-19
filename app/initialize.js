@@ -23,6 +23,7 @@ $(() => {
     // This is suboptimal. TODO refactor
     Handlebars.registerPartial('CollapsibleHeaderPanel',  CollapsibleHeaderPanel);
     Handlebars.registerHelper('bannerType', (type) => CONSTANTS.BANNER_CLASSES[type]);
+    Handlebars.registerHelper('log', (context) => console.log(context));
 
     new AppView({
         el: $(CONSTANTS.SELECTORS.MAIN_VIEW)

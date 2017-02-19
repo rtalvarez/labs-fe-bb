@@ -140,14 +140,10 @@ export default class CreateAppointmentView extends BaseView({
         paymentModel.set('cardNumber', conektaResponse.id);
 
         const appointment = this.model.toJSON();
-        appointment.doctor = appointment.doctor.toJSON();
-        appointment.patient = appointment.patient.toJSON();
-        appointment.date = appointment.date.toJSON();
-        appointment.studies = _.map(appointment.studies, study => study.toJSON());
-        appointment.patient.dateOfBirth = appointment.patient.dateOfBirth.toJSON();
+        const payment = paymentModel.toJSON();
 
         const request = {
-            payment: paymentModel.toJSON(),
+            payment,
             appointment,
         };
 
@@ -170,7 +166,16 @@ export default class CreateAppointmentView extends BaseView({
             case 2:
                 this._processSecondStep();
                 break;
+
+            case 3:
+                this._processThirdStep();
+                break;
         }
+    }
+
+    _processThirdStep() {
+        this._dialogView.open();
+        this._capturePaymentView.submit();
     }
 
     _processSecondStep() {
@@ -185,8 +190,6 @@ export default class CreateAppointmentView extends BaseView({
     _secondStepSuccess() {
         this._confirmAppointmentView.render();
         this._showStep(3);
-        // this._dialogView.open();
-        // this._capturePaymentView.submit();
     }
 
     _processFirstStep() {

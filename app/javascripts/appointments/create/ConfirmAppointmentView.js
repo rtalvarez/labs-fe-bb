@@ -11,8 +11,8 @@ export default class extends BaseView() {
 
         console.log(config.appointmentModel.toJSON(), config.paymentModel.toJSON());
         super.render(ConfirmAppointmentViewTpl, {
-            appointment: config.appointmentModel,
-            payment: config.paymentModel
+            appointment: config.appointmentModel.toJSON(),
+            payment: config.paymentModel.toJSON()
         });
     }
 }

@@ -22,6 +22,8 @@ export default (config) => class extends Backbone.Model.extend(config) {
                 json = this.toJSON(value);
             } else if (Array.isArray(value)) {
                 json = _.map(value, model => this.toJSON(model));
+            } else if (value instanceof Date) {
+                json = value.toJSON();
             } else {
                 json = value;
             }

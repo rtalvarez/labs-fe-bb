@@ -10,6 +10,10 @@
     clip: rect(1px, 1px, 1px, 1px);
 }
 
+strong {
+    font-weight: bold;
+}
+
 .hidden {
     display: none !important; // Need to override materialize styles
 }
