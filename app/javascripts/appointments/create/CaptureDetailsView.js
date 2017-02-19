@@ -58,11 +58,22 @@ export default class extends BaseView() {
         });
     }
 
-    _onAppointmentDateSelect(date) {
+    _onAppointmentDateSelect(dateObj) {
+        const classes = this.CONSTANTS.CLASSES;
+
+        if (!dateObj) {
+            this._selectedAppointment.set('date', '');
+            this.$find('selectDate').removeClass(classes.VALID);
+
+            return;
+        }
+
+        const date = dateObj.date;
+
         this._selectedAppointment.set('date', date);
         this.$find('selectDate')
-            .addClass(this.CONSTANTS.CLASSES.VALID)
-            .removeClass(this.CONSTANTS.CLASSES.INVALID);
+            .addClass(classes.VALID)
+            .removeClass(classes.INVALID);
 
         this._appointmentsCollection.fetchAvailableAppointmentHours(date)
             .then(() => this._populateAvailableTimes());

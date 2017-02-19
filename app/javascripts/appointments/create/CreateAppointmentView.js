@@ -14,7 +14,8 @@ import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHea
 
 export default class CreateAppointmentView extends BaseView({
     events: {
-        'click .create-appointment-next': '_onNextStepClick'
+        'click .create-appointment-next': '_onNextStepClick',
+        'click .collapsible-header': '_onCollapsibleHeaderClick'
     },
     model: new AppointmentModel({})
 }) {
@@ -25,6 +26,7 @@ export default class CreateAppointmentView extends BaseView({
         _.bindAll(this,
             '_showError',
             '_postAppointment',
+            '_onCollapsibleHeaderClick',
             '_onNextStepClick');
 
         console.log('Init create appointment!');
@@ -39,7 +41,8 @@ export default class CreateAppointmentView extends BaseView({
             capturePaymentView: '.capture-payment-view',
             formHasErrors: '.form-has-errors-banner',
             processingAppointmentDialog: '#processing-appointment-dialog',
-            confirmAppointment: '.confirm-appointment-view'
+            confirmAppointment: '.confirm-appointment-view',
+            collapsibleHeader: '.collapsible-header'
         };
 
         this._copy = {
@@ -236,5 +239,13 @@ export default class CreateAppointmentView extends BaseView({
     _showStep(numStep) {
         this._step++;
         this.$el.find(this._selectors[`step${numStep}Header`]).click();
+    }
+
+    _onCollapsibleHeaderClick(evt) {
+        const stepNumber = $(evt.target)
+            .closest(this._selectors.collapsibleHeader)
+            .data('step');
+
+        this._step = stepNumber;
     }
 }

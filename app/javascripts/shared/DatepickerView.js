@@ -18,7 +18,7 @@ export default class extends BaseView() {
                 .pickadate('picker')
                 .get('select');
 
-            this.PubSub.trigger(evtName, date.obj);
+            this.PubSub.trigger(evtName, date);
         });
     }
 

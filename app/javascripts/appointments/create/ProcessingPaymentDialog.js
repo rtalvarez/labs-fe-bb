@@ -35,6 +35,7 @@ export default class extends DialogView {
         this.reRender({
             header: 'Error al crear la cita',
             body: AppointmentNotCreatedDialogBodyTpl,
+            hasFooter: true,
         })
     }
 
@@ -42,6 +43,7 @@ export default class extends DialogView {
         this.reRender({
             header: 'Todo listo!',
             body: AppointmentCreatedDialogBodyTpl,
+            hasFooter: true,
         });
     }
 

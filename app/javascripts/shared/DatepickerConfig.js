@@ -10,5 +10,5 @@ export const DATEPICKER_OPTIONS = {
     format: 'd !de mmmm !de yyyy',
     formatSubmit: 'yyyy/mm/dd',
     selectMonths: true,
-    selectYears: 200
+    selectYears: 200,
 };

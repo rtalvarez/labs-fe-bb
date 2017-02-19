@@ -42,7 +42,7 @@ export default class CapturePatientView extends BaseView() {
         let hasErrors = false;
 
         _.each(this._inputs, (selector, inputName) => {
-            if (_.isUndefined(patient.get(inputName))) {
+            if (!patient.get(inputName)) {
                 this.$el.find(selector).addClass(this.CONSTANTS.CLASSES.INVALID);
                 hasErrors = true;
             }
@@ -103,12 +103,21 @@ export default class CapturePatientView extends BaseView() {
         });
     }
 
-    _onPatientsDatepickerSelect(selectedDate) {
-        this._selectedPatient.set('dateOfBirth', selectedDate);
+    _onPatientsDatepickerSelect(dateObj) {
+        const classes = this.CONSTANTS.CLASSES;
 
-        this.$el.find(this._selectors.captureDoB)
-            .addClass(this.CONSTANTS.CLASSES.VALID)
-            .removeClass(this.CONSTANTS.CLASSES.INVALID);
+        if (!dateObj) {
+            this._selectedPatient.set('dateOfBirth', '');
+            this.$find('captureDoB').removeClass(classes.VALID);
+
+            return;
+        }
+
+        this._selectedPatient.set('dateOfBirth', dateObj.date);
+
+        this.$find('captureDoB')
+            .addClass(classes.VALID)
+            .removeClass(classes.INVALID);
     }
 
     _onPatientsTypeaheadSelect(data) {
