@@ -46,6 +46,38 @@ export default class extends BaseView({
         this.initViews();
     }
 
+    checkForErrors() {
+        const get = this.model.get.bind(this.model);
+        const cardNumber = get('cardNumber');
+        const cardCVC = get('cardCVC');
+        const cardExpM = get('cardExpirationM');
+        const cardExpY = get('cardExpirationY');
+        const cardCP = get('cardCP');
+        const errorFields = {
+            cardholderName: _.isUndefined(get('cardholderName')),
+            cardNumber: !cardNumber || cardNumber.length !== 16,
+            cardCVC: !cardCVC || cardCVC.length !== 3, // TODO: Amex ?
+            cardExpirationM: !cardExpM || cardExpM.length !== 2,
+            cardExpirationY: !cardExpY || cardExpY.length !== 4,
+            cardStreet: _.isUndefined(get('cardStreet')),
+            cardTown: _.isUndefined(get('cardTown')),
+            cardCity: _.isUndefined(get('cardCity')),
+            cardState: _.isUndefined(get('cardState')),
+            cardCP: !cardCP || cardCP.length !== 5,
+            cardCountry: _.isUndefined(get('cardCountry')),
+        };
+        const errors = _.chain(errorFields)
+            .map((error, fieldName) => error && { fieldName })
+            .filter(_.identity)
+            .value();
+
+        _.each(errors, (error) => {
+            this.$find(error.fieldName).addClass(this.CONSTANTS.CLASSES.INVALID);
+        });
+
+        return !_.isEmpty(errors);
+    }
+
     initViews() {
         this._bannerView = new BannerView({
             type: 'warning',
@@ -105,6 +137,8 @@ export default class extends BaseView({
     }
 
     prefillTestingData() {
+        const set = this.model.set.bind(this.model);
+
         $('#cardholder-name').val('Ondalacio Perez');
         $('#card-number').val(4242424242424242);
         $('#card-cvc').val(123);
@@ -116,5 +150,17 @@ export default class extends BaseView({
         $('#card-state').val('NL');
         $('#card-cp').val(64920);
         $('#card-country').val('Mex');
+
+        set('cardholderName', 'Ondalacio Perez');
+        set('cardNumber', '4242424242424242');
+        set('cardCVC', '123');
+        set('cardExpirationM', '10');
+        set('cardExpirationY', '2020');
+        set('cardStreet', 'Calle 123');
+        set('cardTown', 'Colonia');
+        set('cardCity', 'Ciudad');
+        set('cardState', 'NL');
+        set('cardCP', '62984');
+        set('cardCountry', 'MX');
     }
 }

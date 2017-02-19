@@ -48,7 +48,7 @@ export default class CreateAppointmentView extends BaseView({
         this.initCollapsibleHeaders();
         this.initViews();
         this.attachEvents();
-        // this.prefillTestData();
+        this.prefillTestData();
     }
 
     prefillTestData() {
@@ -73,6 +73,7 @@ export default class CreateAppointmentView extends BaseView({
         this._captureDoctorView._selectedDoctor = this.model.get('doctor');
         this._captureDetailsView._selectedStudies = this.model.get('studies');
         this._captureDetailsView._selectedAppointment = this.model;
+        this._captureDetailsView._selectedTime = 123;
     }
 
     attachEvents() {
@@ -164,9 +165,12 @@ export default class CreateAppointmentView extends BaseView({
     }
 
     _processSecondStep() {
-        this._dialogView.open();
+        const hasErrors = this._capturePaymentView.checkForErrors();
 
-        this._capturePaymentView.submit();
+        if (!hasErrors) {
+            this._dialogView.open();
+            this._capturePaymentView.submit();
+        }
     }
 
     _processFirstStep() {
