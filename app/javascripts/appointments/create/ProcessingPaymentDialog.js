@@ -29,6 +29,16 @@ export default class extends DialogView {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CONEKTA.PAYMENT_ERROR, this.paymentError);
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.APPOINTMENT_CREATED, this.appointmentCreated);
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.APPOINTMENT_NOT_CREATED, this.appointmentNotCreated);
+        this.on(this.CONSTANTS.EVENTS.DIALOG.CLOSED, this._onProcessingPaymentDialogClose);
+    }
+
+    _onProcessingPaymentDialogClose() {
+        if (this._success) {
+            console.log('success as d');
+            this.navigateToPath(this.CONSTANTS.URLS.LOGIN);
+        } else {
+            console.log('no success');
+        }
     }
 
     appointmentNotCreated() {
@@ -45,6 +55,8 @@ export default class extends DialogView {
             body: AppointmentCreatedDialogBodyTpl,
             hasFooter: true,
         });
+
+        this._success = true;
     }
 
     paymentError(conektaResponse, paymentModel) {

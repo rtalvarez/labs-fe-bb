@@ -10,6 +10,9 @@ export default class extends BaseView({
         super.initialize(config);
         this._dialogId = this.$el.attr('id');
 
+        _.bindAll(this,
+            '_onDialogClose');
+
         this._selectors = {
             dialog: `#${this._dialogId}`
         };
@@ -19,7 +22,13 @@ export default class extends BaseView({
     }
 
     initDialog() {
+        this.config.complete = this._onDialogClose;
+
         this.$el.modal(this.config);
+    }
+
+    _onDialogClose() {
+        this.trigger(this.CONSTANTS.EVENTS.DIALOG.CLOSED);
     }
 
     open() {

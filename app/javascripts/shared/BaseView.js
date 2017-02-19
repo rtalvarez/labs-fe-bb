@@ -65,6 +65,14 @@ export default (backboneConfig = {}) => class extends Backbone.View.extend(backb
             .attr('href');
 
         evt.preventDefault();
+        this._navigate(path);
+    }
+
+    navigateToPath(path) {
+        this._navigate(path);
+    }
+
+    _navigate(path) {
         PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.TO, path);
     }
 

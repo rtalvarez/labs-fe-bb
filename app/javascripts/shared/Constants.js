@@ -26,10 +26,13 @@ export default {
     },
 
     EVENTS: {
+        DIALOG: {
+            CLOSED: 'dialog:closed',
+        },
         NAVIGATE: {
             TO: 'naviate:to',
             NEW_APPOINTMENT: 'navigate:newAppointment',
-            LOGIN: 'navigate:login'
+            LOGIN: 'navigate:login',
         },
         TYPEAHEAD: {
             ITEM_SELECTED: (id) => `typeahead-${id}:itemSelected`
@@ -56,7 +59,9 @@ export default {
     },
 
     URLS: {
-        SEARCH_PATIENT: '/api/patients?query=$'
+        SEARCH_PATIENT: '/api/patients?query=$',
+        APPOINTMENT: (id) => `/appointments/${id}`,
+        LOGIN: '/login'
     },
 
     MATERIAL_SELECT_IDS: {

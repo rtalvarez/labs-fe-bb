@@ -3,7 +3,8 @@ import NavTpl from 'templates/nav/NavView';
 
 export default class NavView extends BaseView({
     events: {
-        'click .schedule-appointment-action': 'onScheduleAppointmentClick'
+        'click .schedule-appointment-action': 'onScheduleAppointmentClick',
+        'click .do-login-action': 'onLoginClick'
     }
 }) {
     initialize() {
@@ -11,6 +12,10 @@ export default class NavView extends BaseView({
     }
 
     onScheduleAppointmentClick(evt) {
+        this.navigate(evt);
+    }
+
+    onLoginClick(evt) {
         this.navigate(evt);
     }
 }
