@@ -195,7 +195,9 @@ export default class CreateAppointmentView extends BaseView({
 
     _firstStepFailure() {
         this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.STEP1_INCOMPLETE);
-        this._bannerView.show();
+        this._bannerView
+            .show()
+            .scrollTo();
     }
 
     _firstStepSuccess() {
