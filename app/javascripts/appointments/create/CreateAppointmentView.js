@@ -50,8 +50,8 @@ export default class CreateAppointmentView extends BaseView({
 
         this.initCollapsibleHeaders();
         this.initViews();
-        this.attachEvents();
         this.prefillTestData();
+        this.attachEvents();
     }
 
     prefillTestData() {
@@ -125,8 +125,10 @@ export default class CreateAppointmentView extends BaseView({
         });
 
         this._confirmAppointmentView = new ConfirmAppointmentView({
-            el: this.$find('confirmAppointment')
-        })
+            el: this.$find('confirmAppointment'),
+            appointmentModel: model,
+            paymentModel: this._capturePaymentView.model
+        });
     }
 
     _showError(data) {
@@ -181,6 +183,7 @@ export default class CreateAppointmentView extends BaseView({
 
 
     _secondStepSuccess() {
+        this._confirmAppointmentView.render();
         this._showStep(3);
         // this._dialogView.open();
         // this._capturePaymentView.submit();

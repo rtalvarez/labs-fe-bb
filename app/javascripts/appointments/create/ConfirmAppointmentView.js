@@ -4,7 +4,15 @@ import ConfirmAppointmentViewTpl from 'templates/appointments/create/ConfirmAppo
 export default class extends BaseView() {
     initialize(config) {
         super.initialize(config);
+    }
 
-        this.render(ConfirmAppointmentViewTpl);
+    render() {
+        const config = this.config;
+
+        console.log(config.appointmentModel.toJSON(), config.paymentModel.toJSON());
+        super.render(ConfirmAppointmentViewTpl, {
+            appointment: config.appointmentModel,
+            payment: config.paymentModel
+        });
     }
 }
