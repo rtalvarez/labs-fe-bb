@@ -8,7 +8,7 @@ import LoginView from 'javascripts/login/LoginView';
 export default class extends BaseView() {
     initialize() {
         super.initialize();
-        console.log('Set views hash');
+        this.views = {};
 
         this.render(AppTpl);
         this.registerEvents();
@@ -18,8 +18,6 @@ export default class extends BaseView() {
             navView: '.nav-view',
             loginView: '.login-view'
         };
-        this.views = {};
-        this._views = {};
 
 
         this.initViews();
@@ -37,7 +35,7 @@ export default class extends BaseView() {
     }
 
     onNewAppointmentNavigate() {
-        this.destroy();
+        // TODO: Destroy other views
 
         this.views.createAppointmentView = new CreateAppointmentView({
             el: this.$find('createAppointmentView')
