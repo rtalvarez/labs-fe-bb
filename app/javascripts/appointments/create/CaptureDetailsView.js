@@ -18,7 +18,8 @@ export default class extends BaseView() {
         this._selectors = {
             selectTime: '.capture-details-select-time',
             selectDate: '#capture-details-select-date',
-            notes: '#capture-details-notes'
+            notes: '#capture-details-notes',
+            selectDropdown: '.select-dropdown'
         };
 
         this._copy = {
@@ -48,6 +49,7 @@ export default class extends BaseView() {
         const notes = this._selectedAppointment.get('notes');
         const date = this._selectedAppointment.get('date');
         this.$find('selectTime').addClass(this.CONSTANTS.CLASSES.VALID);
+        this._selectedTime = time;
 
         this._selectedAppointment = this._appointmentsCollection.findWhere({ epochTime: +time });
         this._selectedAppointment.set({
@@ -58,7 +60,9 @@ export default class extends BaseView() {
 
     _onAppointmentDateSelect(date) {
         this._selectedAppointment.set('date', date);
-        this.$find('selectDate').addClass(this.CONSTANTS.CLASSES.VALID);
+        this.$find('selectDate')
+            .addClass(this.CONSTANTS.CLASSES.VALID)
+            .removeClass(this.CONSTANTS.CLASSES.INVALID);
 
         this._appointmentsCollection.fetchAvailableAppointmentHours(date)
             .then(() => this._populateAvailableTimes());
@@ -76,11 +80,22 @@ export default class extends BaseView() {
 
     checkForErrors() {
         const constants = this.CONSTANTS;
-        const hasErrors = _.isEmpty(this._selectedStudies);
+        const noStudiesSelected = _.isEmpty(this._selectedStudies);
+        const noDateSelected = _.isUndefined(this._selectedAppointment.get('date'));
+        const noTimeSelected = _.isUndefined(this._selectedTime);
+        const hasErrors = noStudiesSelected || noDateSelected || noTimeSelected;
 
-        if (hasErrors) {
+        if (noStudiesSelected) {
             this.$el.find(constants.SELECTORS.TYPEAHEAD_INPUT)
                 .addClass(constants.CLASSES.INVALID);
+        }
+
+        if (noDateSelected) {
+            this.$find('selectDate').addClass(constants.CLASSES.INVALID);
+        }
+
+        if (noTimeSelected) {
+            this.$find('selectDropdown').addClass(constants.CLASSES.INVALID);
         }
 
         this.setAppointmentData();
