@@ -19,9 +19,9 @@ export default class extends BaseView() {
     }
 
     scrollTo(timer = 1000) {
-        const $el = this.$find('bannerMessage');
+        super.scrollTo('bannerMessage', timer);
 
-        $('html, body').animate({ scrollTop: $el.height() }, timer);
+        return this;
     }
 
     message(msg) {
