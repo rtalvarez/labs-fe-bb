@@ -161,8 +161,6 @@ export default class CreateAppointmentView extends BaseView({
                 this._processSecondStep();
                 break;
         }
-
-        this._step++;
     }
 
     _processSecondStep() {
@@ -203,6 +201,7 @@ export default class CreateAppointmentView extends BaseView({
     }
 
     _showStep(numStep) {
+        this._step++;
         this.$el.find(this._selectors[`step${numStep}Header`]).click();
     }
 }

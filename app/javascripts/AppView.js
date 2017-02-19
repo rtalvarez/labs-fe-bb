@@ -51,7 +51,6 @@ export default class extends BaseView() {
     }
 
     registerEvents() {
-        console.log('Reg events');
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.NEW_APPOINTMENT, () => this.onNewAppointmentNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.LOGIN, () => this.onLoginNavigate());
     }
