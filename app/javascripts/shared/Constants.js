@@ -50,7 +50,8 @@ export default {
         CREATE_APPOINTMENTS: {
             STEP1_COMPLETE: 'createAppointments-step1:complete',
             STEP1_INCOMPLETE: 'createAppointments-step1:incomplete',
-            APPOINTMENT_CREATED: 'createAppointments:created'
+            APPOINTMENT_CREATED: 'createAppointments:created',
+            APPOINTMENT_NOT_CREATED: 'createAppointments:notCreated'
         }
     },
 

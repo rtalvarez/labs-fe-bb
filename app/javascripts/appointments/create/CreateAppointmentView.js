@@ -152,6 +152,9 @@ export default class CreateAppointmentView extends BaseView({
             .then((resp) => {
                 console.log('resp', resp);
                 this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.APPOINTMENT_CREATED);
+            })
+            .catch(resp => {
+                this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.APPOINTMENT_NOT_CREATED, resp);
             });
     }
 

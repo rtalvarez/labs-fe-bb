@@ -2,7 +2,8 @@ import DialogView from 'javascripts/shared/DialogView';
 
 import ProcessingPaymentDialogBodyTpl from 'templates/appointments/create/ProcessingPaymentDialogBody';
 import ErrorPaymentDialogBodyTpl from 'templates/appointments/create/ErrorPaymentDialogBody';
-import SuccessPaymentDialogBodyTpl from 'templates/appointments/create/SuccessPaymentDialogBody';
+import AppointmentCreatedDialogBodyTpl from 'templates/appointments/create/AppointmentCreatedDialogBody';
+import AppointmentNotCreatedDialogBodyTpl from 'templates/appointments/create/AppointmentNotCreatedDialogBody';
 
 export default class extends DialogView {
     initialize(config) {
@@ -27,12 +28,20 @@ export default class extends DialogView {
     attachEvents() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CONEKTA.PAYMENT_ERROR, this.paymentError);
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.APPOINTMENT_CREATED, this.appointmentCreated);
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.APPOINTMENT_NOT_CREATED, this.appointmentNotCreated);
+    }
+
+    appointmentNotCreated() {
+        this.reRender({
+            header: 'Error al crear la cita',
+            body: AppointmentNotCreatedDialogBodyTpl,
+        })
     }
 
     appointmentCreated() {
         this.reRender({
             header: 'Todo listo!',
-            body: SuccessPaymentDialogBodyTpl,
+            body: AppointmentCreatedDialogBodyTpl,
         });
     }
 
