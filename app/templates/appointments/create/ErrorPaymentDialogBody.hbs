@@ -1,3 +1,17 @@
 <div class="error-payment">
-    Lo sentimos, hubo un error con su pago. Por favor, vuelva a intentar mas tarde.
+    <p>
+        Lo sentimos, hubo un error con su pago. Por favor, verifica que los campos de pago sean correctos.
+    </p>
+
+    {{#if conektaResponse.message_to_purchaser }}
+        <p>
+            <strong>Informacion adicional:</strong>
+            <span>
+                {{ conektaResponse.message_to_purchaser }}
+            </span>
+        </p>
+    {{/if}}
+</div>
+
+<div class="testing">
 </div>

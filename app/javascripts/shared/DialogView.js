@@ -1,7 +1,11 @@
 import BaseView from 'javascripts/shared/BaseView';
 import DialogViewTpl from 'templates/shared/DialogView';
 
-export default class extends BaseView() {
+export default class extends BaseView({
+    events: {
+        'click .modal-close': 'close'
+    }
+}) {
     initialize(config) {
         super.initialize(config);
         this._dialogId = this.$el.attr('id');

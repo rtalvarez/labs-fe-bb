@@ -43,6 +43,10 @@ export default (backboneConfig = {}) => class extends Backbone.View.extend(backb
         $el.html(templateGen(data));
     }
 
+    renderTemplate(templateGen, data) {
+        return templateGen(data);
+    }
+
     getModel() {
         return this.model;
     }

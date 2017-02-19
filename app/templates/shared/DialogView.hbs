@@ -7,7 +7,13 @@
     </div>
     {{#if hasFooter}}
         <div class="modal-footer">
-            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">{{ okText }}</a>
+            <a href="#" class="modal-action modal-close btn waves-effect waves-light">
+                {{#if okText}}
+                    {{ okText }}
+                {{ else }}
+                    Ok
+                {{/if}}
+            </a>
         </div>
     {{/if}}
 </div>

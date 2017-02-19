@@ -45,11 +45,18 @@ export default class extends DialogView {
         });
     }
 
-    paymentError() {
+    paymentError(conektaResponse, paymentModel) {
         console.log('pego en paymenterror');
+        const bodyTpl = this.renderTemplate(ErrorPaymentDialogBodyTpl, {
+            conektaResponse,
+        });
+
+        console.log('body', bodyTpl);
         this.reRender({
             header: 'Pago no exitoso',
-            body: ErrorPaymentDialogBodyTpl
+            body: bodyTpl,
+            hasFooter: true,
+            conektaResponse,
         });
     }
 }
