@@ -47,7 +47,7 @@ export default class extends BaseView() {
 
     _onAppointmentTimeSelect(time) {
         const notes = this._selectedAppointment.get('notes');
-        const date = this._selectedAppointment.get('date');
+        const date = new Date(+time);
         this.$find('selectTime').addClass(this.CONSTANTS.CLASSES.VALID);
         this._selectedTime = time;
 
@@ -68,20 +68,19 @@ export default class extends BaseView() {
             return;
         }
 
-        const date = dateObj.date;
+        const date = dateObj.obj;
 
         this._selectedAppointment.set('date', date);
         this.$find('selectDate')
             .addClass(classes.VALID)
             .removeClass(classes.INVALID);
 
-        debugger;
-
-        this._appointmentsCollection.fetchAvailableAppointmentHours(dateObj.obj.toJSON())
+        this._appointmentsCollection.fetchAvailableAppointmentHours(date.toJSON())
             .then(() => this._populateAvailableTimes());
     }
 
     _populateAvailableTimes() {
+        console.log('col', this._appointmentsCollection)
         this._timeSelect.render();
     }
 

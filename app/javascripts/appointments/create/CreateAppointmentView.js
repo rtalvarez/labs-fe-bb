@@ -150,7 +150,6 @@ export default class CreateAppointmentView extends BaseView({
             appointment,
         };
 
-        console.log('post app', request);
         this.model.postAppointment(request)
             .then((resp) => {
                 console.log('resp', resp);

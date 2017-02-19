@@ -2,11 +2,11 @@ export default class {
     constructor() {}
 
     formatDate(date) {
-        const dateObj = new Date(date);
-        const month = '0' + (dateObj.getMonth() + 1);
-        const day = '0' + dateObj.getDate();
-
-        return `${dateObj.getFullYear()}-${this._formatDigit(month)}-${this._formatDigit(day)}`;
+        if (date instanceof Date) {
+            return _.first(date.toJSON().split('T'));
+        } else if (typeof date === 'string') {
+            return _.first(date.split('T'));
+        }
     }
 
     _formatDigit(digit) {

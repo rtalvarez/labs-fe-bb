@@ -116,7 +116,7 @@ export default class CapturePatientView extends BaseView() {
             return;
         }
 
-        this._selectedPatient.set('dateOfBirth', dateObj.date);
+        this._selectedPatient.set('dateOfBirth', dateObj.obj);
 
         this.$find('captureDoB')
             .addClass(classes.VALID)

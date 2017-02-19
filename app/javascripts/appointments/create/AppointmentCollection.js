@@ -20,28 +20,29 @@ export default class extends BaseCollection({
 
         return $.get('/api/appointments?date=' + formattedDate)
             .then((resp) => JSON.parse(resp))
-            .then((items) => this._mapToAvailableAppointments(items))
+            .then((items) => this._mapToAvailableAppointments(items, date))
             .then((items) => this.add(items));
     }
 
-    _mapToAvailableAppointments(appointments) {
+    _mapToAvailableAppointments(appointments, requestedDate) {
         const data = _.map(appointments, (app) => {
             const date = new Date(app.date);
 
             return date.getHours();
         });
 
+        const baseDate = new Date(requestedDate);
+        baseDate.setMinutes(0);
+        baseDate.setSeconds(0);
+        baseDate.setMilliseconds(0);
+
         const diff = _.difference(this.AVAILABLE_APPOINTMENT_TIMES, data);
 
         return _.map(diff, (time) => {
-            const date = new Date();
+            const slotDate = new Date(baseDate.toJSON());
+            slotDate.setHours(time);
 
-            date.setMinutes(0);
-            date.setSeconds(0);
-            date.setMilliseconds(0);
-            date.setHours(time);
-
-            return { date };
+            return { date: slotDate };
         });
     }
 }
