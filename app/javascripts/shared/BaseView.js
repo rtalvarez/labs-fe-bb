@@ -12,6 +12,12 @@ export default (backboneConfig = {}) => class extends Backbone.View.extend(backb
         this.config = config;
     }
 
+    scrollTo(selector, timer = 1000) {
+        const $el = this.$find(selector);
+
+        $('html, body').animate({ scrollTop: $el.height() }, timer);
+    }
+
     /**
      * Function that properly de-bootstraps this view.
      * It removes all DOM events, custom events and removes itself from the DOM

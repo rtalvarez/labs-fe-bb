@@ -38,7 +38,8 @@ export default class extends BaseView({
         };
 
         this._copy = {
-            paymentDisabled: 'Favor de llenar la seccion de citas antes de proceder con el pago'
+            paymentDisabled: 'Favor de llenar la seccion de citas antes de proceder con el pago',
+            paymentInvalid: 'Favor de revisar los campos en rojo y volver a intentar'
         };
 
         this.prefillTestingData();
@@ -75,7 +76,17 @@ export default class extends BaseView({
             this.$find(error.fieldName).addClass(this.CONSTANTS.CLASSES.INVALID);
         });
 
-        return !_.isEmpty(errors);
+        const hasErrors = !_.isEmpty(errors);
+
+        if (hasErrors) {
+            this._bannerView
+                .message(this._copy.paymentInvalid)
+                .scrollTo();
+        } else {
+            this._bannerView.hide();
+        }
+
+        return hasErrors;
     }
 
     initViews() {

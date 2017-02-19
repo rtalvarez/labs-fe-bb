@@ -168,9 +168,15 @@ export default class CreateAppointmentView extends BaseView({
         const hasErrors = this._capturePaymentView.checkForErrors();
 
         if (!hasErrors) {
-            this._dialogView.open();
-            this._capturePaymentView.submit();
+            this._secondStepSuccess();
         }
+    }
+
+
+    _secondStepSuccess() {
+        this._showStep(3);
+        // this._dialogView.open();
+        // this._capturePaymentView.submit();
     }
 
     _processFirstStep() {

@@ -7,7 +7,8 @@ export default class extends BaseView() {
         super.initialize(config);
 
         this._selectors = {
-            banner: '.banner'
+            banner: '.banner',
+            bannerMessage: '.banner-message'
         };
 
         this.render(BannerViewTpl, config);
@@ -17,15 +18,34 @@ export default class extends BaseView() {
         }
     }
 
+    scrollTo(timer = 1000) {
+        const $el = this.$find('bannerMessage');
+
+        $('html, body').animate({ scrollTop: $el.height() }, timer);
+    }
+
+    message(msg) {
+        this.$find('bannerMessage').text(msg);
+        this.show();
+
+        return this;
+    }
+
     hide() {
         this.$find('banner').addClass(this.CONSTANTS.CLASSES.HIDDEN);
+
+        return this;
     }
 
     show() {
         this.$find('banner').removeClass(this.CONSTANTS.CLASSES.HIDDEN);
+
+        return this;
     }
 
     toggle() {
         this.$find('banner').toggleClass(this.CONSTANTS.CLASSES.HIDDEN);
+
+        return this;
     }
 }
