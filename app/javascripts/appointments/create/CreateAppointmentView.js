@@ -50,6 +50,7 @@ export default class CreateAppointmentView extends BaseView({
         };
 
         this._step = 1;
+        this.views = {};
 
         this.initCollapsibleHeaders();
         this.initViews();
@@ -75,11 +76,11 @@ export default class CreateAppointmentView extends BaseView({
             description: 'descripcion'
         })]);
 
-        this._capturePatientView._selectedPatient = this.model.get('patient');
-        this._captureDoctorView._selectedDoctor = this.model.get('doctor');
-        this._captureDetailsView._selectedStudies = this.model.get('studies');
-        this._captureDetailsView._selectedAppointment = this.model;
-        this._captureDetailsView._selectedTime = 123;
+        this.views._capturePatient._selectedPatient = this.model.get('patient');
+        this.views._captureDoctor._selectedDoctor = this.model.get('doctor');
+        this.views._captureDetails._selectedStudies = this.model.get('studies');
+        this.views._captureDetails._selectedAppointment = this.model;
+        this.views._captureDetails._selectedTime = 123;
     }
 
     attachEvents() {
@@ -96,41 +97,41 @@ export default class CreateAppointmentView extends BaseView({
         const model = this.model;
         const selectors = this._selectors;
 
-        this._capturePatientView = new CapturePatientView({
+        this.views._capturePatient = new CapturePatientView({
             el: $el.find(selectors.capturePatientView),
             appointmentModel: model,
         });
 
-        this._captureDoctorView = new CaptureDoctorView({
+        this.views._captureDoctor = new CaptureDoctorView({
             el: $el.find(selectors.captureDoctorView),
             appointmentModel: model,
         });
 
-        this._captureDetailsView = new CaptureDetailsView({
+        this.views._captureDetails = new CaptureDetailsView({
             el: $el.find(selectors.captureDetailsView),
             appointmentModel: model,
         });
 
-        this._capturePaymentView = new CapturePaymentView({
+        this.views._capturePayment = new CapturePaymentView({
             el: $el.find(selectors.capturePaymentView)
         });
 
-        this._bannerView = new BannerView({
+        this.views._banner = new BannerView({
             type: 'warning',
             msg: this._copy.formHasErrors,
             el: this.$find('formHasErrors'),
             hidden: true,
         });
 
-        this._dialogView = new ProcessingPaymentDialog({
+        this.views._processingPaymentDialog = new ProcessingPaymentDialog({
             el: this.$find('processingAppointmentDialog'),
             dismissible: false,
         });
 
-        this._confirmAppointmentView = new ConfirmAppointmentView({
+        this.views._confirmAppointment = new ConfirmAppointmentView({
             el: this.$find('confirmAppointment'),
             appointmentModel: model,
-            paymentModel: this._capturePaymentView.model
+            paymentModel: this.views._capturePayment.model
         });
     }
 
@@ -179,12 +180,12 @@ export default class CreateAppointmentView extends BaseView({
     }
 
     _processThirdStep() {
-        this._dialogView.open();
-        this._capturePaymentView.submit();
+        this.views._processingPaymentDialog.open();
+        this.views._capturePayment.submit();
     }
 
     _processSecondStep() {
-        const hasErrors = this._capturePaymentView.checkForErrors();
+        const hasErrors = this.views._capturePayment.checkForErrors();
 
         if (!hasErrors) {
             this._secondStepSuccess();
@@ -194,14 +195,14 @@ export default class CreateAppointmentView extends BaseView({
 
     _secondStepSuccess() {
         this._renderSuccessCollapsibleHeader();
-        this._confirmAppointmentView.render();
+        this.views._confirmAppointment.render();
         this._showStep(3);
     }
 
     _processFirstStep() {
-        const patientErrors = this._capturePatientView.checkForErrors();
-        const doctorErrors = this._captureDoctorView.checkForErrors();
-        const detailsErrors = this._captureDetailsView.checkForErrors();
+        const patientErrors = this.views._capturePatient.checkForErrors();
+        const doctorErrors = this.views._captureDoctor.checkForErrors();
+        const detailsErrors = this.views._captureDetails.checkForErrors();
 
         if (!patientErrors && !doctorErrors && !detailsErrors) {
             console.log('submit form');
@@ -214,7 +215,7 @@ export default class CreateAppointmentView extends BaseView({
 
     _firstStepFailure() {
         this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.STEP1_INCOMPLETE);
-        this._bannerView
+        this.views._banner
             .show()
             .scrollTo();
     }
@@ -223,7 +224,7 @@ export default class CreateAppointmentView extends BaseView({
         this._renderSuccessCollapsibleHeader();
         this._showStep(2);
 
-        this._bannerView.hide();
+        this.views._banner.hide();
         this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.STEP1_COMPLETE);
     }
 
