@@ -35,8 +35,9 @@ export default class extends BaseView() {
     }
 
     onNewAppointmentNavigate() {
-        // TODO: Destroy other views
+        // TODO: Destroy other views: improve this
 
+        console.log('instantiate create appointment', this.views);
         this.views.createAppointmentView = new CreateAppointmentView({
             el: this.$find('createAppointmentView')
         });
@@ -44,6 +45,7 @@ export default class extends BaseView() {
 
     onLoginNavigate() {
 
+        console.log('instantiate login', this.views);
         // TODO: Destroy other views
         this.views.loginView = new LoginView({
             el: this.$find('loginView')
@@ -51,6 +53,7 @@ export default class extends BaseView() {
     }
 
     registerEvents() {
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.TO, () => this.destroyViews());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.NEW_APPOINTMENT, () => this.onNewAppointmentNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.LOGIN, () => this.onLoginNavigate());
     }
