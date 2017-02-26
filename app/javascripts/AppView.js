@@ -6,6 +6,8 @@ import NavView from 'javascripts/nav/NavView';
 import LoginView from 'javascripts/login/LoginView';
 import ViewAppointmentView from 'javascripts/appointments/ViewAppointmentView';
 
+import GoogleOAuth from 'javascripts/utils/GoogleOAuth';
+
 export default class extends BaseView() {
     initialize() {
         super.initialize();
@@ -33,6 +35,8 @@ export default class extends BaseView() {
         this.navView = new NavView({
             el: this.$find('navView')
         });
+
+        this.googleAuth = new GoogleOAuth();
     }
 
     onNewAppointmentNavigate() {
