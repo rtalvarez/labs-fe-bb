@@ -1,8 +1,40 @@
-.google-logo {
-    padding: 1rem;
+.do-login {
+    display: inline-block;
+    background-color: #4285F4; // As per google guidelines
+    border-radius: 2px;
 
-    > svg {
-        height: 100%;
-        width: 100%;
+    > span {
+        display: inline-block;
+        vertical-align: middle;
     }
+}
+
+.provider-logo {
+    height: 3rem;
+    width: 3rem;
+    margin: 0 0.3rem;
+
+    > figure {
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+
+    img {
+        height: 55%;
+        width: 55%;
+        align-self: center;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.google-logo {
+    background-color: white;
+    border-radius: 2px;
+}
+
+.provider-logo-text {
+    color: white;
+    padding: 1rem;
 }
