@@ -39,6 +39,7 @@ export default {
         },
         NAVIGATE: {
             TO: 'naviate:to',
+            HOME: 'nagivate:home',
             NEW_APPOINTMENT: 'navigate:newAppointment',
             LOGIN: 'navigate:login',
             VIEW_APPOINTMENT: 'navigate:viewAppointment'

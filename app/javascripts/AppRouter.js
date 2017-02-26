@@ -5,7 +5,8 @@ export default class AppRouter extends Backbone.Router.extend({
     routes: {
         'appointments/create': 'newAppointment',
         'login': 'login',
-        'appointments/:id': 'viewAppointment'
+        'appointments/:id': 'viewAppointment',
+        'home': 'home'
     }
 }) {
     initialize() {
@@ -13,10 +14,17 @@ export default class AppRouter extends Backbone.Router.extend({
         this.registerEvents();
 
         Backbone.history.start({ pushState: true });
+        window.c = this;
     }
 
     navigateTo(path) {
+        console.log('navigateTo', path)
         this.navigate(path, { trigger: true });
+    }
+
+    home() {
+        console.log('Trigerin home navigate');
+        PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.HOME);
     }
 
     newAppointment() {
@@ -32,7 +40,6 @@ export default class AppRouter extends Backbone.Router.extend({
     }
 
     login() {
-        console.log('Trigerin login navigate');
         PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.LOGIN);
     }
 }

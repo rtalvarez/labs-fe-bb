@@ -5,6 +5,7 @@ import CreateAppointmentView from 'javascripts/appointments/create/CreateAppoint
 import NavView from 'javascripts/nav/NavView';
 import LoginView from 'javascripts/login/LoginView';
 import ViewAppointmentView from 'javascripts/appointments/ViewAppointmentView';
+import HomeView from 'javascripts/home/HomeView';
 
 import GoogleOAuth from 'javascripts/utils/GoogleOAuth';
 
@@ -20,7 +21,8 @@ export default class extends BaseView() {
             createAppointmentView: '.create-appointment-view',
             navView: '.nav-view',
             loginView: '.login-view',
-            viewAppointmentView: '.view-appointment-view'
+            viewAppointmentView: '.view-appointment-view',
+            homeView: '.home-view'
         };
 
         this.initAuth();
@@ -63,7 +65,15 @@ export default class extends BaseView() {
         });
     }
 
+    onHomeNavigate() {
+        this.views.homeView = new HomeView({
+            el: this.$find('homeView'),
+        });
+    }
+
     registerEvents() {
+        console.log('register events');
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.HOME, () => this.onHomeNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.TO, () => this.destroyViews());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.NEW_APPOINTMENT, () => this.onNewAppointmentNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.LOGIN, () => this.onLoginNavigate());

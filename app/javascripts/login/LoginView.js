@@ -15,10 +15,11 @@ export default class extends BaseView({
         this.render(LoginViewTpl);
     }
 
-    onGoogleLoginClick() {
-        console.log('t', this);
+    onGoogleLoginClick(evt) {
+        evt.preventDefault();
+
         this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.INITIATE.GOOGLE, {
-            returnUrl: '/profile'
+            returnRoute: 'home'
         });
     }
 }
