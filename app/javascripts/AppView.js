@@ -23,8 +23,14 @@ export default class extends BaseView() {
             viewAppointmentView: '.view-appointment-view'
         };
 
+        this.initAuth();
         this.initViews();
         this.initRouter();
+    }
+
+    initAuth() {
+        console.log('new google oauth')
+        this.googleAuth = new GoogleOAuth();
     }
 
     initRouter() {
@@ -35,8 +41,6 @@ export default class extends BaseView() {
         this.navView = new NavView({
             el: this.$find('navView')
         });
-
-        this.googleAuth = new GoogleOAuth();
     }
 
     onNewAppointmentNavigate() {
@@ -47,7 +51,8 @@ export default class extends BaseView() {
 
     onLoginNavigate() {
         this.views.loginView = new LoginView({
-            el: this.$find('loginView')
+            el: this.$find('loginView'),
+            googleAuth: this.googleAuth,
         });
     }
 

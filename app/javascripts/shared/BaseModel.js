@@ -1,5 +1,11 @@
+import PubSub from 'javascripts/PubSub';
+import CONSTANTS from 'javascripts/shared/Constants';
+
 export default (config) => class extends Backbone.Model.extend(config) {
-    initialize() {}
+    initialize() {
+        this.PubSub = PubSub;
+        this.CONSTANTS = CONSTANTS;
+    }
 
     post(url, data) {
         return $.ajax({

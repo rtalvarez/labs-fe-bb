@@ -1,6 +1,24 @@
-export default class GoogleOAuth {
-    constructor() {
+import BaseModel from 'javascripts/shared/BaseModel';
+
+export default class GoogleOAuth extends BaseModel() {
+    initialize() {
+        super.initialize();
+
         gapi.load('client:auth2', () => this.initClient());
+        this.attachEvents();
+    }
+
+    attachEvents() {
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.INITIATE.GOOGLE, () => this.signIn());
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.TERMINATE.GOOGLE, () => this.signOut());
+    }
+
+    signIn() {
+        this.GoogleAuth.signIn();
+    }
+
+    signOut() {
+        this.GoogleAuth.signOut();
     }
 
     initClient() {
@@ -15,12 +33,12 @@ export default class GoogleOAuth {
                 // Listen for sign-in state changes.
                 this.GoogleAuth.isSignedIn.listen(() => this.updateSigninStatus());
                 window.google = this.GoogleAuth;
-            })
+            });
     }
 
     updateSigninStatus(isSignedIn) {
         console.log(isSignedIn);
-        this.isSignedIn = isSignedIn;
+        this.set('isSignedIn', isSignedIn);
 
         if (isSignedIn) {
             this.extractData();
@@ -32,23 +50,10 @@ export default class GoogleOAuth {
         this.GoogleUser = this.GoogleAuth.currentUser.get();
         this.GoogleUserProfile = this.GoogleUser.getBasicProfile();
         this.GoogleAuthResponse = this.GoogleUser.getAuthResponse();
-    }
 
-
-    getUserName() {
-        return this.isSignedIn ? this.GoogleUserProfile.getName() : '';
-    }
-
-    getEmail() {
-        return this.isSignedIn ? this.GoogleUserProfile.getEmail() : '';
-    }
-
-    getIdToken() {
-        return this.isSignedIn ? this.GoogleAuthResponse.id_token : '';
-    }
-
-    getDateOfBirth() {
-        return this.isSignedIn ? this.birthday : null;
+        this.set('userName', this.GoogleUserProfile.getName());
+        this.set('email', this.GoogleUserProfile.getEmail());
+        this.set('idToken', this.GoogleAuthResponse.id_token);
     }
 
     fetchDateOfBirth() {
@@ -66,7 +71,6 @@ export default class GoogleOAuth {
         const birthdays = resp.result.birthdays;
         const hasYear = _.findWhere(birthdays, (birthday) => birthday.date.year);
 
-        this.birthday = hasYear || _.first(birthdays);
-        return this.birthday;
+        this.set('dateOfBirth', hasYear || _.first(birthdays));
     }
 }

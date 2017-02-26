@@ -26,6 +26,14 @@ export default {
     },
 
     EVENTS: {
+        AUTH: {
+            INITIATE: {
+                GOOGLE: 'googleAuth:initiate'
+            },
+            TERMINATE: {
+                GOOGLE: 'googleAuth:terminate'
+            }
+        },
         DIALOG: {
             CLOSED: 'dialog:closed',
         },
