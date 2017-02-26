@@ -6,6 +6,7 @@
  */
 import AppView from 'javascripts/AppView';
 import CONSTANTS from 'javascripts/shared/Constants';
+import IconTemplates from 'javascripts/utils/IconTemplates';
 
 import CollapsibleHeaderPanel from 'templates/appointments/create/CollapsibleHeaderPanel';
 
@@ -16,6 +17,11 @@ $(() => {
     Handlebars.registerPartial('CollapsibleHeaderPanel',  CollapsibleHeaderPanel);
     Handlebars.registerHelper('bannerType', (type) => CONSTANTS.BANNER_CLASSES[type]);
     Handlebars.registerHelper('log', (context) => console.log(context));
+    Handlebars.registerHelper('include-icon', function(iconName) {
+        // Since the icon does not contain any user generated input,
+        // It is XSS safe to unescape all markup.
+        return new Handlebars.SafeString(IconTemplates[iconName]());
+    });
 
     new AppView({
         el: $(CONSTANTS.SELECTORS.MAIN_VIEW)
