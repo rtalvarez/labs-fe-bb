@@ -3,7 +3,11 @@
         <a href="#" class="brand-logo">Titulo Principal</a>
         <ul id="nav-mobile" class="right">
             <li><a class="schedule-appointment-action" href="/appointments/create">Agendar cita</a></li>
-            <li><a class="do-login-action" href="/login">Registrate</a></li>
+            {{#if isLoggedIn}}
+                <li><a class="profile-link" href="/profile">Mi perfil</a></li>
+            {{ else }}
+                <li><a class="do-login-action" href="/login">Registrate</a></li>
+            {{/if}}
         </ul>
     </div>
 </nav>

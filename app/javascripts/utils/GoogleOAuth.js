@@ -19,6 +19,7 @@ export default class GoogleOAuth extends BaseModel() {
                 if (evtData.returnRoute) {
                     console.log('success login', evtData.returnRoute);
                     this.PubSub.trigger(this.CONSTANTS.EVENTS.NAVIGATE.TO, evtData.returnRoute);
+                    this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE);
                 }
             })
     }

@@ -32,6 +32,9 @@ export default {
             },
             TERMINATE: {
                 GOOGLE: 'googleAuth:terminate'
+            },
+            OK: {
+                GOOGLE: 'googleAuth:ok'
             }
         },
         DIALOG: {
