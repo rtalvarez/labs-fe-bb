@@ -2,8 +2,8 @@ import BaseView from 'javascripts/shared/BaseView';
 import CaptureDetailsViewTpl from 'templates/appointments/create/CaptureDetailsView';
 
 import PillsTypeaheadView from 'javascripts/shared/PillsTypeaheadView';
-import AppointmentCollection from 'javascripts/appointments/create/AppointmentCollection';
-import AppointmentModel from 'javascripts/appointments/create/AppointmentModel';
+import AppointmentCollection from 'javascripts/shared/AppointmentCollection';
+import AppointmentModel from 'javascripts/shared/AppointmentModel';
 import StudyCollection from 'javascripts/appointments/create/StudyCollection';
 import DatepickerView from 'javascripts/shared/DatepickerView';
 import MaterializeSelectView from 'javascripts/shared/MaterializeSelectView';

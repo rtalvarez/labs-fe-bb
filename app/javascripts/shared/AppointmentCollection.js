@@ -1,5 +1,5 @@
 import BaseCollection from 'javascripts/shared/BaseCollection';
-import AppointmentModel from 'javascripts/appointments/create/AppointmentModel';
+import AppointmentModel from 'javascripts/shared/AppointmentModel';
 
 export default class extends BaseCollection({
     model: AppointmentModel,

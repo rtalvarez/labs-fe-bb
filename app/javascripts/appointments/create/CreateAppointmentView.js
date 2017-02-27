@@ -1,7 +1,7 @@
 import BaseView from 'javascripts/shared/BaseView';
 import CreateAppointmentViewTpl from 'templates/appointments/create/CreateAppointmentView';
 
-import AppointmentModel from 'javascripts/appointments/create/AppointmentModel';
+import AppointmentModel from 'javascripts/shared/AppointmentModel';
 import CaptureDoctorView from 'javascripts/appointments/create/CaptureDoctorView';
 import CapturePatientView from 'javascripts/appointments/create/CapturePatientView';
 import CaptureDetailsView from 'javascripts/appointments/create/CaptureDetailsView';
