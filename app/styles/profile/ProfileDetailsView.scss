@@ -9,6 +9,11 @@ $pill-color: color("teal", "lighten-3");
     border-radius: 2px;
 }
 
+.profile-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
 .profile-section {
     width: 50%;
     text-align: center;
