@@ -6,7 +6,8 @@ export default class AppRouter extends Backbone.Router.extend({
         'appointments/create': 'newAppointment',
         'login': 'login',
         'appointments/:id': 'viewAppointment',
-        'home': 'home'
+        'home': 'home',
+        'profile': 'profile'
     }
 }) {
     initialize() {
@@ -23,8 +24,11 @@ export default class AppRouter extends Backbone.Router.extend({
     }
 
     home() {
-        console.log('Trigerin home navigate');
         PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.HOME);
+    }
+
+    profile() {
+        PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.PROFILE);
     }
 
     newAppointment() {

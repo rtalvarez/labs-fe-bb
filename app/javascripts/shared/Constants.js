@@ -45,7 +45,8 @@ export default {
             HOME: 'nagivate:home',
             NEW_APPOINTMENT: 'navigate:newAppointment',
             LOGIN: 'navigate:login',
-            VIEW_APPOINTMENT: 'navigate:viewAppointment'
+            VIEW_APPOINTMENT: 'navigate:viewAppointment',
+            PROFILE: 'navigate:profile'
         },
         TYPEAHEAD: {
             ITEM_SELECTED: (id) => `typeahead-${id}:itemSelected`

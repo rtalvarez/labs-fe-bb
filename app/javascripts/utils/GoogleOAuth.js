@@ -6,6 +6,7 @@ export default class GoogleOAuth extends BaseModel() {
 
         gapi.load('client:auth2', () => this.initClient());
         this.attachEvents();
+        window.g = this;
     }
 
     attachEvents() {
@@ -16,10 +17,10 @@ export default class GoogleOAuth extends BaseModel() {
     signIn(evtData = {}) {
         this.GoogleAuth.signIn()
             .then(() => {
+            this.extractData(); // Might cause problems?
+
                 if (evtData.returnRoute) {
-                    console.log('success login', evtData.returnRoute);
                     this.PubSub.trigger(this.CONSTANTS.EVENTS.NAVIGATE.TO, evtData.returnRoute);
-                    this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE);
                 }
             })
     }
@@ -39,12 +40,13 @@ export default class GoogleOAuth extends BaseModel() {
 
                 // Listen for sign-in state changes.
                 this.GoogleAuth.isSignedIn.listen(() => this.updateSigninStatus());
+                this.updateSigninStatus(this.GoogleAuth.isSignedIn.get());
+
                 window.google = this.GoogleAuth;
             });
     }
 
     updateSigninStatus(isSignedIn) {
-        console.log(isSignedIn);
         this.set('isSignedIn', isSignedIn);
 
         if (isSignedIn) {
@@ -61,11 +63,14 @@ export default class GoogleOAuth extends BaseModel() {
         this.set('userName', this.GoogleUserProfile.getName());
         this.set('email', this.GoogleUserProfile.getEmail());
         this.set('idToken', this.GoogleAuthResponse.id_token);
+        this.set('imageUrl', this.GoogleUserProfile.getImageUrl());
+
+        this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE);
     }
 
     fetchDateOfBirth() {
         try {
-            gapi.client.people.people({
+            gapi.client.people.people.get({
                 resourceName: 'people/me'
             })
                 .then((resp) => this.setDateOfBirth(resp));

@@ -10,6 +10,7 @@ export default (backboneConfig = {}) => class extends Backbone.View.extend(backb
         this.CONSTANTS = CONSTANTS;
         this._boundModelElements = [];
         this.config = config;
+        this.views = {};
     }
 
     scrollTo(selector, timer = 1000) {

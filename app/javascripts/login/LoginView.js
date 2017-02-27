@@ -19,7 +19,7 @@ export default class extends BaseView({
         evt.preventDefault();
 
         this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.INITIATE.GOOGLE, {
-            returnRoute: 'home'
+            returnRoute: 'profile'
         });
     }
 }
