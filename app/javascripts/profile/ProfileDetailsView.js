@@ -13,6 +13,15 @@ export default class extends BaseView({
             '_onProfileSectionViewClick');
 
         this.render(ProfileDetailsViewTpl);
+        this.attachEvents();
+    }
+
+    attachEvents() {
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE, () => this.onGoogleAuth());
+    }
+
+    onGoogleAuth() {
+
     }
 
     _onProfileSectionViewClick(evt) {
