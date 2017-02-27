@@ -46,6 +46,6 @@ export default class extends BaseModel({
     }
 
     postAppointment(request) {
-        return this.post('/api/appointments/create', request);
+        return this.$post('/api/appointments/create', request);
     }
 }

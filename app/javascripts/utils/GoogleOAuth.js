@@ -40,7 +40,7 @@ export default class GoogleOAuth extends BaseModel() {
         };
 
         console.log('POSTING user');
-        this.post('/api/patients/create', user);
+        this.$post('/api/patients/create', user);
     }
 
     initClient() {
@@ -66,7 +66,16 @@ export default class GoogleOAuth extends BaseModel() {
         if (isSignedIn) {
             this.extractData();
             this.fetchDateOfBirth();
+            this.fetchUserId();
         }
+    }
+
+    fetchUserId() {
+        this.$get('/api/patients/me', {
+            googleToken: this.get('idToken'),
+            email: this.get('email'),
+        })
+            .then(({ id }) => this.set('userId', id));
     }
 
     extractData() {

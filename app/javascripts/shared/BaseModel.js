@@ -7,7 +7,19 @@ export default (config) => class extends Backbone.Model.extend(config) {
         this.CONSTANTS = CONSTANTS;
     }
 
-    post(url, data) {
+    $get(url, queryParams) {
+        const params = _.reduce(queryParams, (sum, value, param) => {
+            if (sum === '') {
+                return `?${param}=${value}`;
+            }
+
+            return `${sum}&${param}=${value}`;
+        }, '');
+
+        return $.get(`${url}${params}`);
+    }
+
+    $post(url, data) {
         return $.ajax({
             method: 'POST',
             headers: {

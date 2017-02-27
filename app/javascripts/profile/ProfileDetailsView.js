@@ -1,10 +1,12 @@
 import BaseView from 'javascripts/shared/BaseView';
 import ProfileDetailsViewTpl from 'templates/profile/ProfileDetailsView';
+import AppointmentCollection from 'javascripts/shared/AppointmentCollection';
 
 export default class extends BaseView({
     events: {
         'click .profile-section-view': '_onProfileSectionViewClick'
-    }
+    },
+    collection: new AppointmentCollection(),
 }) {
     initialize(config) {
         super.initialize(config);
@@ -13,15 +15,7 @@ export default class extends BaseView({
             '_onProfileSectionViewClick');
 
         this.render(ProfileDetailsViewTpl);
-        this.attachEvents();
-    }
-
-    attachEvents() {
-        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE, () => this.onGoogleAuth());
-    }
-
-    onGoogleAuth() {
-
+        console.log('col', this.collection);
     }
 
     _onProfileSectionViewClick(evt) {
