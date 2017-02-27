@@ -1,12 +1,21 @@
 .do-login {
     display: inline-block;
-    background-color: #4285F4; // As per google guidelines
     border-radius: 2px;
+    width: 80%;
+    margin-bottom: 1rem;
 
     > span {
         display: inline-block;
         vertical-align: middle;
     }
+}
+
+.google-login {
+    background-color: #4285F4; // As per google guidelines
+}
+
+.facebook-login {
+    background-color: #4267B2; // Facebook blue
 }
 
 .provider-logo {

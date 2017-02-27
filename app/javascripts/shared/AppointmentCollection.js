@@ -15,6 +15,10 @@ export default class extends BaseCollection({
         return this.map((model) => model.getSelectOption());
     }
 
+    fetchUserAppointments(userId, googleAuthToken) {
+
+    }
+
     fetchAvailableAppointmentHours(date) {
         const formattedDate = this.DateFormatter.formatDate(date);
 

@@ -1,13 +1,21 @@
 <section class="login-view-content">
     <h2>Bienvenido!</h2>
 
-    <p class="login-providers-note">Para su comodidad, favor de ingresar usando uno de sus perfiles existentes:</p>
-    <ul class="login-providers">
-        <li class="login-provider google">
-            <a href="#" class="do-login google-login">
-                <span class="provider-logo google-logo">{{ include-icon 'GoogleLogoSmall' }}</span>
-                <span class="provider-logo-text">Registro usando Google</span>
-            </a>
-        </li>
-    </ul>
+    <div class="panel view-content">
+        <p class="login-providers-note flow-text">Para su comodidad, favor de ingresar usando uno de sus perfiles existentes:</p>
+        <ul class="login-providers">
+            <li class="login-provider google">
+                <a href="#" class="do-login google-login">
+                    <span class="provider-logo google-logo">{{ include-icon 'GoogleLogoSmall' }}</span>
+                    <span class="provider-logo-text flow-text">Registro usando Google</span>
+                </a>
+            </li>
+            <li class="login-provider facebook">
+                <a href="#" class="do-login facebook-login">
+                    <span class="provider-logo facebook-logo">{{ include-icon 'FacebookLogoSmall' }}</span>
+                    <span class="provider-logo-text flow-text">Registro usando Facebook</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </section>
