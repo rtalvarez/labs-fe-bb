@@ -17,7 +17,8 @@ export default class GoogleOAuth extends BaseModel() {
     signIn(evtData = {}) {
         this.GoogleAuth.signIn()
             .then(() => {
-            this.extractData(); // Might cause problems?
+                this.extractData(); // Might cause problems?
+                this.createUser();
 
                 if (evtData.returnRoute) {
                     this.PubSub.trigger(this.CONSTANTS.EVENTS.NAVIGATE.TO, evtData.returnRoute);
@@ -27,6 +28,19 @@ export default class GoogleOAuth extends BaseModel() {
 
     signOut() {
         this.GoogleAuth.signOut();
+    }
+
+    createUser() {
+        const user = {
+            firstName: this.get('firstName'),
+            lastName: this.get('lastName'),
+            dateOfBirth: this.get('dateOfBirth'),
+            email: this.get('email'),
+            googleToken: this.get('idToken')
+        };
+
+        console.log('POSTING user');
+        this.post('/api/patients/create', user);
     }
 
     initClient() {
@@ -64,6 +78,8 @@ export default class GoogleOAuth extends BaseModel() {
         this.set('email', this.GoogleUserProfile.getEmail());
         this.set('idToken', this.GoogleAuthResponse.id_token);
         this.set('imageUrl', this.GoogleUserProfile.getImageUrl());
+        this.set('firstName', this.GoogleUserProfile.getGivenName());
+        this.set('lastName', this.GoogleUserProfile.getFamilyName());
 
         this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE);
     }
@@ -81,8 +97,10 @@ export default class GoogleOAuth extends BaseModel() {
 
     setDateOfBirth(resp) {
         const birthdays = resp.result.birthdays;
-        const hasYear = _.findWhere(birthdays, (birthday) => birthday.date.year);
+        const hasYear = _.filter(birthdays, birthday => birthday.date.year);
+        const birthday = hasYear.length ? _.first(hasYear).date : _.first(birthdays).date;
+        const date = new Date(birthday.year, birthday.month - 1, birthday.day);
 
-        this.set('dateOfBirth', hasYear || _.first(birthdays));
+        this.set('dateOfBirth', date);
     }
 }
