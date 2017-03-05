@@ -77,6 +77,7 @@ export default class extends BaseView() {
         this.views.profile = new ProfileView({
             el: this.$find('profileView'),
             googleAuth: this.googleAuth,
+            facebookAuth: this.facebookAuth,
         });
     }
 

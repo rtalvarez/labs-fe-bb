@@ -25,7 +25,7 @@ export default class extends BaseModel() {
 
     onLoginStatusComplete(response) {
         console.log('r', response);
-        this.fetchUserInfo();
+        return this.fetchUserInfo();
     }
 
     getLoginStatus() {
@@ -34,7 +34,12 @@ export default class extends BaseModel() {
 
     login(evtData) {
         this._login()
-            .then(response => this.onLoginStatusComplete(response));
+            .then(response => this.onLoginStatusComplete(response))
+            .then(() => {
+                if (evtData.returnRoute) {
+                    this.PubSub.trigger(this.CONSTANTS.EVENTS.NAVIGATE.TO, evtData.returnRoute);
+                }
+            });
     }
 
     logout() {
@@ -55,6 +60,9 @@ export default class extends BaseModel() {
             email: response.email,
             imageUrl: response.picture.data.url,
         });
+
+        console.log('trigger auth event');
+        this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK);
     }
 
     _login() {
