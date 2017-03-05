@@ -11,26 +11,18 @@ export default class extends BaseView() {
             'profileDetails': '.profile-details-view'
         };
 
-        this._authClients = {
-            google: config.googleAuth,
-            facebook: config.facebookAuth,
-        };
-
-        this.attachEvents();
+        this.preRender();
     }
 
-    attachEvents() {
-        console.log('attach auth events');
-        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE, () => this.onAuthClientComplete('google'));
-        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK, () => this.onAuthClientComplete('facebook'));
-    }
+    preRender() {
+        if (this.config.authClient) {
+            const templateData = this.getTemplateData();
 
-    onAuthClientComplete(authClientName) {
-        const templateData = this.getTemplateData(authClientName);
-        console.log('t', templateData);
-
-        this.render(ProfileViewTpl, templateData);
-        this.initViews();
+            this.render(ProfileViewTpl, templateData);
+            this.initViews();
+        } else {
+            this.navigateToPath('/');
+        }
     }
 
     initViews() {
@@ -39,8 +31,8 @@ export default class extends BaseView() {
         });
     }
 
-    getTemplateData(authClientName) {
-        const authClient = this._authClients[authClientName];
+    getTemplateData() {
+        const authClient = this.config.authClient;
 
         return {
             name: authClient.get('userName'),

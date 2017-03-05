@@ -70,7 +70,9 @@ export default (backboneConfig = {}) => class extends Backbone.View.extend(backb
             .attr('href');
 
         evt.preventDefault();
-        this._navigate(path);
+        if (window.location.pathname !== path) {
+            this._navigate(path);
+        }
     }
 
     navigateToPath(path) {

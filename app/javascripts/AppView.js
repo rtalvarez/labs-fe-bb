@@ -35,6 +35,11 @@ export default class extends BaseView() {
     initAuth() {
         this.googleAuth = new GoogleOAuth();
         this.facebookAuth = new FacebookOAuth();
+
+        this._authClients = {
+            facebook: this.facebookAuth,
+            google: this.googleAuth,
+        };
     }
 
     initRouter() {
@@ -76,8 +81,7 @@ export default class extends BaseView() {
     onProfileNavigate() {
         this.views.profile = new ProfileView({
             el: this.$find('profileView'),
-            googleAuth: this.googleAuth,
-            facebookAuth: this.facebookAuth,
+            authClient: this.activeAuth
         });
     }
 
@@ -89,5 +93,13 @@ export default class extends BaseView() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.NEW_APPOINTMENT, () => this.onNewAppointmentNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.LOGIN, () => this.onLoginNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.VIEW_APPOINTMENT, (id) => this.onViewAppointmentNavigate(id));
+
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE, () => this.onAuthClientComplete('google'));
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK, () => this.onAuthClientComplete('facebook'));
+    }
+
+    onAuthClientComplete(authClientName) {
+        this.activeAuth = this._authClients[authClientName];
+        console.log('set auth client', this.activeAuth);
     }
 }
