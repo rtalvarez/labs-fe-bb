@@ -35,6 +35,7 @@ export default class extends BaseView() {
         const authClient = this.config.authClient;
 
         return {
+            authProviderName: authClient.get('providerName'),
             name: authClient.get('userName'),
             dateOfBirth: authClient.get('dateOfBirth'),
             email: authClient.get('email'),

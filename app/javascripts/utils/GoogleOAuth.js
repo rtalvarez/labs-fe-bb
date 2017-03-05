@@ -4,6 +4,7 @@ export default class GoogleOAuth extends BaseModel() {
     initialize() {
         super.initialize();
 
+        this.set('providerName', 'Google');
         gapi.load('client:auth2', () => this.initClient());
         this.attachEvents();
         window.g = this;

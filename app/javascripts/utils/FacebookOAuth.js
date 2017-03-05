@@ -6,6 +6,7 @@ export default class extends BaseModel() {
 
         this.attachEvents();
 
+        this.set('providerName', 'Facebook');
         if (window.FB) {
             this.onFacebookInit();
         }
