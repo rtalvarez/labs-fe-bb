@@ -32,6 +32,26 @@
 
 </head>
 <body>
+<script>
+    window.fbAsyncInit = function() {
+        var evt = new Event('facebook-init');
+        FB.init({
+            appId      : '1376323009106658',
+            xfbml      : true,
+            version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+        window.dispatchEvent(evt);
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
   <main class="main-view"></main>
 </body>
 </html>

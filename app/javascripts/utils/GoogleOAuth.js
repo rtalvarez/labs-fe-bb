@@ -83,12 +83,14 @@ export default class GoogleOAuth extends BaseModel() {
         this.GoogleUserProfile = this.GoogleUser.getBasicProfile();
         this.GoogleAuthResponse = this.GoogleUser.getAuthResponse();
 
-        this.set('userName', this.GoogleUserProfile.getName());
-        this.set('email', this.GoogleUserProfile.getEmail());
-        this.set('idToken', this.GoogleAuthResponse.id_token);
-        this.set('imageUrl', this.GoogleUserProfile.getImageUrl());
-        this.set('firstName', this.GoogleUserProfile.getGivenName());
-        this.set('lastName', this.GoogleUserProfile.getFamilyName());
+        this.set({
+            userName: this.GoogleUserProfile.getName(),
+            email: this.GoogleUserProfile.getEmail(),
+            idToken: this.GoogleAuthResponse.id_token,
+            imageUrl: this.GoogleUserProfile.getImageUrl(),
+            firstName: this.GoogleUserProfile.getGivenName(),
+            lastName: this.GoogleUserProfile.getFamilyName(),
+        });
 
         this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE);
     }

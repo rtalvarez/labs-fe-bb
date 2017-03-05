@@ -28,7 +28,8 @@ export default {
     EVENTS: {
         AUTH: {
             INITIATE: {
-                GOOGLE: 'googleAuth:initiate'
+                GOOGLE: 'googleAuth:initiate',
+                FACEBOOK: 'facebookAuth:initiate',
             },
             TERMINATE: {
                 GOOGLE: 'googleAuth:terminate'

@@ -9,6 +9,7 @@ import HomeView from 'javascripts/home/HomeView';
 import ProfileView from 'javascripts/profile/ProfileView';
 
 import GoogleOAuth from 'javascripts/utils/GoogleOAuth';
+import FacebookOAuth from 'javascripts/utils/FacebookOAuth';
 
 export default class extends BaseView() {
     initialize() {
@@ -33,6 +34,7 @@ export default class extends BaseView() {
 
     initAuth() {
         this.googleAuth = new GoogleOAuth();
+        this.facebookAuth = new FacebookOAuth();
     }
 
     initRouter() {

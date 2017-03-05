@@ -30,11 +30,23 @@
     }
 
     img {
-        height: 55%;
-        width: 55%;
         align-self: center;
         display: block;
         margin: 0 auto;
+    }
+}
+
+.google-logo {
+    img {
+        height: 55%;
+        width: 55%;
+    }
+}
+
+.facebook-logo {
+    img {
+        height: 100%;
+        width: 100%;
     }
 }
 
