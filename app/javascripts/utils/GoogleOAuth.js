@@ -16,15 +16,8 @@ export default class GoogleOAuth extends BaseModel() {
     }
 
     signIn(evtData = {}) {
-        this.GoogleAuth.signIn()
-            .then(() => {
-                this.extractData(); // Might cause problems?
-                this.createUser();
-
-                if (evtData.returnRoute) {
-                    this.PubSub.trigger(this.CONSTANTS.EVENTS.NAVIGATE.TO, evtData.returnRoute);
-                }
-            })
+        this.returnRoute = evtData.returnRoute;
+        this.GoogleAuth.signIn();
     }
 
     signOut() {
@@ -40,8 +33,9 @@ export default class GoogleOAuth extends BaseModel() {
             googleToken: this.get('idToken')
         };
 
-        console.log('POSTING user');
-        this.$post('/api/patients/create', user);
+        console.log('POSTING user', user);
+        return this.$post('/api/patients/create', user)
+            .then(response => response.id);
     }
 
     initClient() {
@@ -54,7 +48,7 @@ export default class GoogleOAuth extends BaseModel() {
                 this.GoogleAuth = gapi.auth2.getAuthInstance();
 
                 // Listen for sign-in state changes.
-                this.GoogleAuth.isSignedIn.listen(() => this.updateSigninStatus());
+                this.GoogleAuth.isSignedIn.listen((isSignedIn) => this.updateSigninStatus(isSignedIn));
                 this.updateSigninStatus(this.GoogleAuth.isSignedIn.get());
 
                 window.google = this.GoogleAuth;
@@ -62,21 +56,47 @@ export default class GoogleOAuth extends BaseModel() {
     }
 
     updateSigninStatus(isSignedIn) {
+        console.log('isS', isSignedIn);
         this.set('isSignedIn', isSignedIn);
 
         if (isSignedIn) {
-            this.extractData();
-            this.fetchDateOfBirth();
-            this.fetchUserId();
+            this.processSignedInUser();
         }
     }
 
+    processSignedInUser() {
+        this.extractData();
+        this.fetchDateOfBirth()
+            .then(() => this.fetchUserId())
+            .then(userId => {
+                const dfd = new $.Deferred();
+
+                if (userId === 0) {
+                    this.createUser()
+                        .then(id => dfd.resolve(id));
+                } else {
+                    dfd.resolve(userId);
+                }
+
+                return dfd.promise();
+            })
+            .then(() => {
+                this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE);
+
+                if (this.returnRoute) {
+                    this.PubSub.trigger(this.CONSTANTS.EVENTS.NAVIGATE.TO, this.returnRoute);
+                }
+            });
+    }
+
     fetchUserId() {
-        this.$get('/api/patients/me', {
+        return this.$get('/api/patients/me', {
+            provider: 'google',
             googleToken: this.get('idToken'),
             email: this.get('email'),
         })
-            .then(({ id }) => this.set('userId', id));
+            .then(({ id }) => this.set('userId', id))
+            .then(() => this.get('userId'));
     }
 
     extractData() {
@@ -92,13 +112,11 @@ export default class GoogleOAuth extends BaseModel() {
             firstName: this.GoogleUserProfile.getGivenName(),
             lastName: this.GoogleUserProfile.getFamilyName(),
         });
-
-        this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE);
     }
 
     fetchDateOfBirth() {
         try {
-            gapi.client.people.people.get({
+            return gapi.client.people.people.get({
                 resourceName: 'people/me'
             })
                 .then((resp) => this.setDateOfBirth(resp));
@@ -114,5 +132,7 @@ export default class GoogleOAuth extends BaseModel() {
         const date = new Date(birthday.year, birthday.month - 1, birthday.day);
 
         this.set('dateOfBirth', date);
+
+        return date;
     }
 }
