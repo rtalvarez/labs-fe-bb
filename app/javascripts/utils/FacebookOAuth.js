@@ -37,6 +37,11 @@ export default class extends BaseOAuth {
         this.getLoginStatus()
             .then(() => this.fetchUserInfo())
             .then(() => this.fetchUserId())
+            .then(id => this.onFetchedUserId(id))
+            .then(() => {
+                console.log('trigger auth event');
+                this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK);
+            })
     }
 
     fetchUserId() {
