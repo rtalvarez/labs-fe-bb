@@ -1,6 +1,6 @@
-import BaseModel from 'javascripts/shared/BaseModel';
+import BaseOAuth from 'javascripts/utils/BaseOAuth';
 
-export default class extends BaseModel() {
+export default class extends BaseOAuth {
     initialize(config) {
         super.initialize(config);
 
@@ -18,25 +18,62 @@ export default class extends BaseModel() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.INITIATE.FACEBOOK, (evtData) => this.login(evtData));
     }
 
-    onFacebookInit() {
-        console.log('init');
-        this.FBAuth = window.FB;
-        this.getLoginStatus();
+    createUser() {
+        const user = {
+            firstName: this.get('firstName'),
+            lastName: this.get('lastName'),
+            dateOfBirth: this.get('dateOfBirth'),
+            email: this.get('email'),
+            facebookUserId: this.get('facebookUserId'),
+        };
+
+        return this._postUser(user);
     }
 
-    onLoginStatusComplete(response) {
-        console.log('r', response);
-        return this.fetchUserInfo();
+    onFacebookInit() {
+        console.log('init');
+
+        this.FBAuth = window.FB;
+        this.getLoginStatus()
+            .then(() => this.fetchUserInfo())
+            .then(() => this.fetchUserId())
+    }
+
+    fetchUserId() {
+        const data = {
+            provider: 'facebook',
+            facebookToken: this.get('idToken'),
+            email: this.get('email'),
+            facebookUserId: this.get('facebookUserId'),
+        };
+
+        return super.fetchUserId(data);
     }
 
     getLoginStatus() {
-        this.FBAuth.getLoginStatus((response) => this.onLoginStatusComplete(response));
+        const dfd = $.Deferred();
+
+        this.FBAuth.getLoginStatus(response => {
+            console.log('r', response);
+            if (response.status === 'connected') {
+                dfd.resolve(response);
+            } else {
+                dfd.reject(response);
+            }
+        });
+
+        return dfd.promise();
     }
 
     login(evtData) {
         this._login()
-            .then(response => this.onLoginStatusComplete(response))
+            .then(() => this.fetchUserInfo())
+            .then(() => this.fetchUserId())
+            .then(id => this.onFetchedUserId(id))
             .then(() => {
+                console.log('trigger auth event');
+                this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK);
+
                 if (evtData.returnRoute) {
                     this.PubSub.trigger(this.CONSTANTS.EVENTS.NAVIGATE.TO, evtData.returnRoute);
                 }
@@ -60,10 +97,10 @@ export default class extends BaseModel() {
             lastName: response.last_name,
             email: response.email,
             imageUrl: response.picture.data.url,
+            facebookUserId: response.id,
+            idToken: this.FBAuth.getAccessToken(),
         });
 
-        console.log('trigger auth event');
-        this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK);
     }
 
     _login() {

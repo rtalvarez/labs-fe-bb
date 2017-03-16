@@ -1,8 +1,8 @@
-import BaseModel from 'javascripts/shared/BaseModel';
+import BaseOAuth from 'javascripts/utils/BaseOAuth';
 
-export default class GoogleOAuth extends BaseModel() {
-    initialize() {
-        super.initialize();
+export default class GoogleOAuth extends BaseOAuth {
+    initialize(config) {
+        super.initialize(config);
 
         this.set('providerName', 'Google');
         gapi.load('client:auth2', () => this.initClient());
@@ -33,9 +33,7 @@ export default class GoogleOAuth extends BaseModel() {
             googleToken: this.get('idToken')
         };
 
-        console.log('POSTING user', user);
-        return this.$post('/api/patients/create', user)
-            .then(response => response.id);
+        return this._postUser(user);
     }
 
     initClient() {
@@ -56,7 +54,6 @@ export default class GoogleOAuth extends BaseModel() {
     }
 
     updateSigninStatus(isSignedIn) {
-        console.log('isS', isSignedIn);
         this.set('isSignedIn', isSignedIn);
 
         if (isSignedIn) {
@@ -68,18 +65,7 @@ export default class GoogleOAuth extends BaseModel() {
         this.extractData();
         this.fetchDateOfBirth()
             .then(() => this.fetchUserId())
-            .then(userId => {
-                const dfd = new $.Deferred();
-
-                if (userId === 0) {
-                    this.createUser()
-                        .then(id => dfd.resolve(id));
-                } else {
-                    dfd.resolve(userId);
-                }
-
-                return dfd.promise();
-            })
+            .then(userId => this.onFetchedUserId(userId))
             .then(() => {
                 this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE);
 
@@ -90,13 +76,13 @@ export default class GoogleOAuth extends BaseModel() {
     }
 
     fetchUserId() {
-        return this.$get('/api/patients/me', {
+        const data = {
             provider: 'google',
             googleToken: this.get('idToken'),
             email: this.get('email'),
-        })
-            .then(({ id }) => this.set('userId', id))
-            .then(() => this.get('userId'));
+        };
+
+        return super.fetchUserId(data);
     }
 
     extractData() {
