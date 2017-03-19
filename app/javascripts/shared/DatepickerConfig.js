@@ -5,7 +5,7 @@ export const DATEPICKER_OPTIONS = {
     weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb' ],
     today: 'hoy',
     clear: 'borrar',
-    close: 'cerrar',
+    close: 'ok',
     firstDay: 1,
     format: 'd !de mmmm !de yyyy',
     formatSubmit: 'yyyy/mm/dd',

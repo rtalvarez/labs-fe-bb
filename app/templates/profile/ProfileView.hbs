@@ -1,6 +1,14 @@
 <div class="profile-view-content view-content">
     <h4>Mi perfil</h4>
 
+    <div class="add-dob-datepicker-wrapper">
+        <input name="capturePatient-DoB"
+               type="date"
+               id="capturePatient-DoB"
+               class="datepicker add-dob-datepicker" required>
+        <label for="capturePatient-DoB">Fecha de nacimiento</label>
+    </div>
+
     <div class="panel">
         <div class="missing-dob-banner"></div>
         <figure class="user-figure-content">
@@ -19,4 +27,5 @@
         <small class="auth-provider-name">Conectado utilizando tu perfil de {{ authProviderName }}</small>
         <div class="profile-details-view"></div>
     </div>
+
 </div>

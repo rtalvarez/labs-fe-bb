@@ -19,15 +19,23 @@ export default (config) => class extends Backbone.Model.extend(config) {
         return $.get(`${url}${params}`);
     }
 
-    $post(url, data) {
+    _$request(url, data, method) {
         return $.ajax({
-            method: 'POST',
+            method,
             headers: {
                 'Content-Type': 'application/json'
             },
             url,
             data: JSON.stringify(data),
         });
+    }
+
+    $put(url, data) {
+        return this._$request(url, data, 'PUT');
+    }
+
+    $post(url, data) {
+        return this._$request(url, data, 'POST');
     }
 
     toJSON(_model = this) {

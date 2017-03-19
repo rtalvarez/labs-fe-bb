@@ -1,8 +1,9 @@
 import BaseView from 'javascripts/shared/BaseView';
 import ProfileViewTpl from 'templates/profile/ProfileView';
-
 import ProfileDetailsView from 'javascripts/profile/ProfileDetailsView';
 import BannerView from 'javascripts/shared/BannerView';
+import MissingDoBBannerContent from 'templates/profile/MissingDoBBannerContent';
+import DatepickerView from 'javascripts/shared/DatepickerView';
 
 export default class extends BaseView() {
     initialize(config) {
@@ -11,13 +12,34 @@ export default class extends BaseView() {
         this._selectors = {
             profileDetails: '.profile-details-view',
             missingDoBBanner: '.missing-dob-banner',
+            addDoB: '.add-dob-action',
+            addDoBDatepicker: '.add-dob-datepicker',
+            addDoBDatepickerWrapper: '.add-dob-datepicker-wrapper',
         };
 
-        this._copy = {
-            missingDoBBanner: 'Te recomendamos <strong>proveer tu fecha de nacimiento</strong> para agilizar la creacion de citas',
-        };
-
+        this.userModel = config.userModel;
         this.preRender();
+    }
+
+    attachEvents() {
+        this.$find('addDoB').click((evt) => this.onAddDoBClick(evt));
+        const datepickerId = this.CONSTANTS.DATEPICKER_IDS.ADD_DOB;
+
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.DATEPICKER.CLOSE(datepickerId), (data) => this._onDoBDatepickerSelect(data));
+    }
+
+    _onDoBDatepickerSelect(date) {
+        console.log('d', date.obj.toJSON());
+        this.userModel.setDoB(date.obj.toJSON());
+    }
+
+    onAddDoBClick(evt) {
+        evt.preventDefault();
+        this.$find('addDoBDatepickerWrapper').removeClass(this.CONSTANTS.CLASSES.HIDDEN);
+
+        setTimeout(() => {
+            this.views.dobDatepicker.open();
+        });
     }
 
     preRender() {
@@ -26,6 +48,7 @@ export default class extends BaseView() {
 
             this.render(ProfileViewTpl, templateData);
             this.initViews();
+            this.attachEvents();
         } else {
             this.navigateToPath('/');
         }
@@ -38,9 +61,17 @@ export default class extends BaseView() {
 
         this.views.missingDoBBanner = new BannerView({
             type: 'warning',
-            msg: this._copy.missingDoBBanner,
+            msg: MissingDoBBannerContent,
             el: this.$find('missingDoBBanner'),
         });
+
+        this.views.dobDatepicker = new DatepickerView({
+            el: this.$find('addDoBDatepicker'),
+            id: this.CONSTANTS.DATEPICKER_IDS.ADD_DOB,
+            datePickerConfig: {
+                max: new Date()
+            }
+        })
     }
 
     getTemplateData() {

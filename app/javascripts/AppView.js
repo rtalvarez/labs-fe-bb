@@ -8,6 +8,8 @@ import ViewAppointmentView from 'javascripts/appointments/ViewAppointmentView';
 import HomeView from 'javascripts/home/HomeView';
 import ProfileView from 'javascripts/profile/ProfileView';
 
+import UserModel from 'javascripts/shared/UserModel';
+
 import GoogleOAuth from 'javascripts/utils/GoogleOAuth';
 import FacebookOAuth from 'javascripts/utils/FacebookOAuth';
 
@@ -79,9 +81,14 @@ export default class extends BaseView() {
     }
 
     onProfileNavigate() {
+        const userId = this.activeAuth.get('userId')
+
         this.views.profile = new ProfileView({
             el: this.$find('profileView'),
-            authClient: this.activeAuth
+            authClient: this.activeAuth,
+            userModel: new UserModel({
+                userId,
+            }),
         });
     }
 

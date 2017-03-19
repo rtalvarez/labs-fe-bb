@@ -54,7 +54,8 @@ export default {
             ITEM_SELECTED: (id) => `typeahead-${id}:itemSelected`
         },
         DATEPICKER: {
-            ITEM_SELECTED: (id) => `datepicker-${id}:itemSelected`
+            ITEM_SELECTED: (id) => `datepicker-${id}:itemSelected`,
+            CLOSE: (id) => `datepicker-${id}:close`,
         },
         CHIPS: {
             DELETE: 'chip.delete'
@@ -92,6 +93,7 @@ export default {
 
     DATEPICKER_IDS: {
         PATIENTS: 'patients',
-        APPOINTMENT_DATE: 'appointmentDate'
+        APPOINTMENT_DATE: 'appointmentDate',
+        ADD_DOB: 'addDoB',
     }
 }

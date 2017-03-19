@@ -10,6 +10,12 @@ export default class extends BaseView() {
         this.attachEvents();
     }
 
+    _onDatepickerCloseClick(evt) {
+        evt.preventDefault();
+
+        this._$datepicker.trigger('close');
+    }
+
     attachEvents() {
         this._$datepicker.on('change', () => {
             const evtName = this.CONSTANTS.EVENTS.DATEPICKER.ITEM_SELECTED(this._widgetId);
@@ -23,8 +29,35 @@ export default class extends BaseView() {
 
     initWidget() {
         const config = _.extend(this.config.datePickerConfig, DATEPICKER_OPTIONS);
+        config.onClose = () => this._onDatepickerClose();
 
         this._$datepicker = this.$el.pickadate(config);
+    }
+
+    _getDatepickerValue() {
+        return this._$datepicker
+            .pickadate('picker')
+            .get('select');
+    }
+
+    _onDatepickerClose() {
+        const evtName = this.CONSTANTS.EVENTS.DATEPICKER.CLOSE(this._widgetId);
+        const date = this._getDatepickerValue();
+
+        this.PubSub.trigger(evtName, date)
+    }
+
+    open() {
+        this._$datepicker
+            .pickadate('picker')
+            .open();
+
+        // setTimeout(() => {
+        //     console.log('set event');
+        //     $('.picker__close').click(() => {
+        //         console.log('set asd ')
+        //     })
+        // }, 100);
     }
 
     /**
