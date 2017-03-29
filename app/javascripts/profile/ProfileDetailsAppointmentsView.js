@@ -5,7 +5,8 @@ export default class extends BaseView() {
     initialize(config) {
         super.initialize(config);
 
-        this.render(ProfileDetailsAppointmentsViewTpl);
-        console.log('t', this.collection);
+        this.render(ProfileDetailsAppointmentsViewTpl, {
+            appointments: this.collection.toJSON()
+        });
     }
 }

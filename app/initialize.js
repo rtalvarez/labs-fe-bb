@@ -22,6 +22,9 @@ $(() => {
         // It is XSS safe to unescape all markup.
         return new Handlebars.SafeString(IconTemplates[iconName]());
     });
+    Handlebars.registerHelper('indexOne', value => {
+        return parseInt(value) + 1;
+    });
 
     new AppView({
         el: $(CONSTANTS.SELECTORS.MAIN_VIEW)

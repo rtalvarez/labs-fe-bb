@@ -9,12 +9,26 @@ export default class extends BaseModel({
             '_onStudiesChange',
             '_onDateChange');
 
-        if (data.date instanceof Date) {
-            this.set('epochTime', data.date.getTime());
+        if (!(data.date instanceof Date)) {
+            this.set('date', new Date(data.date));
         }
 
+        this.augment();
+        this._onDateChange();
         this.attachEvents();
     }
+
+    augment() {
+        const today = (new Date()).getTime();
+        const epochTime = this.get('date').getTime();
+        const isPast = today > epochTime;
+
+        this.set({
+            epochTime,
+            isPast,
+        });
+    }
+
 
     attachEvents() {
         this.on('change:date', this._onDateChange);
