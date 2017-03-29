@@ -81,7 +81,11 @@ export default class extends BaseView() {
     }
 
     onProfileNavigate() {
-        const userId = this.activeAuth.get('userId')
+        const userId = this.activeAuth && this.activeAuth.get('userId');
+
+        if (!userId) {
+            return this.navigateToPath('home');
+        }
 
         this.views.profile = new ProfileView({
             el: this.$find('profileView'),

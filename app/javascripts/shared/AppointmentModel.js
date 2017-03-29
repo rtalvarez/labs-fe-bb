@@ -9,7 +9,7 @@ export default class extends BaseModel({
             '_onStudiesChange',
             '_onDateChange');
 
-        if (data.date) {
+        if (data.date instanceof Date) {
             this.set('epochTime', data.date.getTime());
         }
 

@@ -15,8 +15,11 @@ export default class extends BaseCollection({
         return this.map((model) => model.getSelectOption());
     }
 
-    fetchUserAppointments(userId, googleAuthToken) {
-
+    fetchAppointments() {
+        console.log('fetching 2');
+        return this.$get('/api/appointments')
+            .then(response => JSON.parse(response))
+            .then(appointments => this.add(appointments));
     }
 
     fetchAvailableAppointmentHours(date) {

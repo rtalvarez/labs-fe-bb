@@ -9,5 +9,16 @@ export default class extends BaseView({
         super.initialize(config);
 
         this.render(ProfileDetailsViewTpl);
+        console.log('fetching');
+        this.fetchAppointments();
+    }
+
+    fetchAppointments() {
+        this.collection.fetchAppointments()
+            .then(() => this.renderAppointmentsHistory());
+    }
+
+    renderAppointmentsHistory() {
+        console.log('apps', this.collection.get());
     }
 }
