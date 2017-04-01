@@ -39,17 +39,28 @@ export default (config) => class extends Backbone.Model.extend(config) {
     }
 
     toJSON(_model = this) {
-        const attrs = _.clone(_model.attributes);
+        const attrs = _model.attributes ? _.clone(_model.attributes) : _model;
         const result = {};
 
         _.each(attrs, (value, name) => {
             let json;
+
+            if (value === undefined) {
+                console.warn('WARN: Attempted to JSONIFY undefined value at object:', _model, ' with key: ', name);
+                return;
+            }
+
             if (value instanceof Backbone.Model) {
                 json = this.toJSON(value);
-            } else if (Array.isArray(value)) {
-                json = _.map(value, model => this.toJSON(model));
+            } else if (Array.isArray(value) || value.models) {
+                const elements = Array.isArray(value) ? value : value.models;
+
+                json = _.map(elements, model => this.toJSON(model));
             } else if (value instanceof Date) {
                 json = value.toJSON();
+            } else if (typeof value === 'object') {
+                _.each(value, model => this.toJSON(model));
+                json = value;
             } else {
                 json = value;
             }

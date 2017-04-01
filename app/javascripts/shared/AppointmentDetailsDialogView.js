@@ -6,8 +6,7 @@ export default class extends DialogView {
         super.initialize(config);
 
         const appointment = this.model.toJSON();
-        appointment.displayStudies = _.map(appointment.studies, study => study.name).join(',');
-        debugger;
+        appointment.studyDisplayNames = this.model.get('studyDisplayNames');
         const tplBody = this.renderTemplate(AppointmentDetailsDialogViewTpl, {
             appointment,
         });

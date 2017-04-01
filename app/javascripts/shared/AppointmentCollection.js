@@ -9,6 +9,15 @@ export default class extends BaseCollection({
         super.initialize();
 
         this.AVAILABLE_APPOINTMENT_TIMES = _.range(8, 19, 1);
+        this.attachEvents();
+    }
+
+    attachEvents() {
+        this.on('update', () => this.onUpdate());
+    }
+
+    onUpdate() {
+        // this.each(appointment => appointment.get('studies').trigger('update'));
     }
 
     getSelectOptions() {
@@ -19,7 +28,7 @@ export default class extends BaseCollection({
         console.log('fetching 2');
         return this.$get('/api/appointments')
             .then(response => JSON.parse(response))
-            .then(appointments => this.add(appointments));
+            .then(appointments => this.set(appointments));
     }
 
     fetchAvailableAppointmentHours(date) {

@@ -1,5 +1,7 @@
 import BaseModel from 'javascripts/shared/BaseModel';
 
+import StudyCollection from 'javascripts/appointments/create/StudyCollection';
+
 export default class extends BaseModel({
 }) {
     initialize(data) {
@@ -13,19 +15,26 @@ export default class extends BaseModel({
             this.set('date', new Date(data.date));
         }
 
-        this.augment();
+
+        this.augment(data);
         this._onDateChange();
         this.attachEvents();
     }
 
-    augment() {
+    augment(data) {
         const today = (new Date()).getTime();
         const epochTime = this.get('date').getTime();
         const isPast = today > epochTime;
+        const studies = new StudyCollection(data.studies);
+        const studyDisplayNames = studies.getDisplayNames();
 
         this.set({
             epochTime,
             isPast,
+            studies,
+            studyDisplayNames,
+        }, {
+            silent: true
         });
     }
 

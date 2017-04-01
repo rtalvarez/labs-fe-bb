@@ -7,6 +7,18 @@ export default class extends BaseCollection({
     initialize() {
         super.initialize();
         this._typeaheadData = {};
+
+        this.attachEvents();
+    }
+
+    attachEvents() {
+        this.on('update', () => this.onUpdate());
+    }
+
+    onUpdate() {}
+
+    getDisplayNames() {
+        return this.map(model => model.get('name')).join(', ');
     }
 
     fetch(query) {
