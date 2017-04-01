@@ -1,0 +1,25 @@
+<div class="appointment-details-dialog-view-content">
+    <ul class="details-list">
+        <li class="detail detail-header">
+            {{#if appointment.isPast}}
+                <span class="appointment-icon"><i class="material-icons">done</i></span>
+            {{else}}
+                <span class="appointment-icon"><i class="material-icons">schedule</i></span>
+            {{/if}}
+            <strong class="appointment-number">1</strong>
+            <span class="appointment-date">{{ appointment.displayDate }}</span>
+        </li>
+        <li class="detail detail-doctor">
+            <span class="detail-key">Doctor:</span>
+            <span class="detail-value">{{ appointment.doctor.firstName }}</span>
+        </li>
+        <li class="detail detail-studies">
+            <span class="detail-key">Estudios:</span>
+            <span class="detail-value">{{ appointment.displayStudies }}</span>
+        </li>
+        <li class="detail detail-cost">
+            <span class="detail-key">Costo:</span>
+            <span class="detail-value">$123</span>
+        </li>
+    </ul>
+</div>

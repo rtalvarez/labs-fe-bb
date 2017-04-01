@@ -1,0 +1,54 @@
+@import "colors";
+
+.details-list {
+    background-color: color("grey", "lighten-4");
+    border: 1px solid color("grey", "base");
+    border-radius: 5px;
+}
+
+.detail {
+    display: flex;
+    padding: 0.5rem;
+    border-bottom: 1px solid color("grey", "base");
+    justify-content: space-between;
+}
+
+.detail-value {
+    text-align: right;
+}
+
+.detail-key,
+.detail-value {
+    flex: 1;
+}
+
+.detail-header {
+    position: relative;
+}
+
+.appointment-number {
+    text-align: center;
+    border: 1px solid color("teal", "base");
+    border-radius: 52%;
+    padding: 7px 15px;
+    position: absolute;
+    left: 45%;
+    top: 0;
+    background-color: white;
+    color: color("teal", "base");
+}
+
+.detail-header {
+    background-color: color("teal", "lighten-4");
+}
+
+.appointment-icon {
+    color: color("teal", "base");
+    flex: 1;
+}
+
+.appointment-date {
+    flex: 1;
+    text-align: right;
+    white-space: nowrap;
+}

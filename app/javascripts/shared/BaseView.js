@@ -44,6 +44,15 @@ export default (backboneConfig = {}) => class extends Backbone.View.extend(backb
         this.views = {};
     }
 
+    destroyView(name) {
+        const view = this.views[name];
+
+        view.stopListening();
+        view.$el.empty();
+
+        delete this.views[name];
+    }
+
     render(templateGen, data = {}, $el = this.$el) {
         $el.html(templateGen(data));
     }
