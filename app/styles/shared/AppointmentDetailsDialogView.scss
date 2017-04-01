@@ -26,16 +26,21 @@
     position: relative;
 }
 
-.appointment-number {
+.appointment-header-icon {
     text-align: center;
     border: 1px solid color("teal", "base");
     border-radius: 52%;
-    padding: 7px 15px;
+    padding: 6px 10px;
     position: absolute;
     left: 45%;
     top: 0;
     background-color: white;
     color: color("teal", "base");
+
+    > i {
+        top: 3px;
+        position: relative;
+    }
 }
 
 .detail-header {
