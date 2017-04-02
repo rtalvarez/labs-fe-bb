@@ -35,7 +35,11 @@ export default class CapturePatientView extends BaseView() {
     }
 
     getTemplateData() {
-        return this.config.auth ? this.config.auth.getTemplateData() : {};
+        const data = this.config.auth ? this.config.auth.getTemplateData() : {};
+        data.canSearch = this.config.canSearch;
+        data.isLogedIn = !!this.config.auth;
+
+        return data;
     }
 
     initModels() {
@@ -96,11 +100,13 @@ export default class CapturePatientView extends BaseView() {
     }
 
     initViews() {
-        this._typeaheadView = new TypeaheadView({
-            el: this.$el.find(this.CONSTANTS.SELECTORS.TYPEAHEAD_VIEW),
-            collection: this._patientsTypeaheadCollection,
-            id: this.CONSTANTS.TYPEAHEAD_IDS.PATIENTS,
-        });
+        if (this.config.canSearch) {
+            this._typeaheadView = new TypeaheadView({
+                el: this.$el.find(this.CONSTANTS.SELECTORS.TYPEAHEAD_VIEW),
+                collection: this._patientsTypeaheadCollection,
+                id: this.CONSTANTS.TYPEAHEAD_IDS.PATIENTS,
+            });
+        }
 
         this._datepickerView = new DatepickerView({
             el: this.$el.find(this._selectors.captureDoB),

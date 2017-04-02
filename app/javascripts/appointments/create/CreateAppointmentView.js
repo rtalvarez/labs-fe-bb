@@ -101,6 +101,7 @@ export default class CreateAppointmentView extends BaseView({
             el: $el.find(selectors.capturePatientView),
             appointmentModel: model,
             auth: this.config.auth,
+            canSearch: false,
         });
 
         this.views._captureDoctor = new CaptureDoctorView({

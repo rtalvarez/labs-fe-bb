@@ -1,33 +1,38 @@
 <section class="capture-patient-view-content section">
     <h5>Datos del Paciente</h5>
-    trolls: {{ name }}
 
-    <span>Buscar paciente:</span>
-    <div class="typeahead-view"></div>
+    {{#if canSearch }}
+        <span>Buscar paciente:</span>
+        <div class="typeahead-view"></div>
+    {{/if}}
 
-    <section class="row">
-        <div class="input-field col s4">
-            <input name="capturePatient-firstName"
-                   id="capturePatient-firstName"
-                   type="text"
-                   pattern="[A-Za-z ]+"
-                   class="validate" required>
-            <label for="capturePatient-firstName">Nombre</label>
-        </div>
-        <div class="input-field col s4">
-            <input name="capturePatient-lastName"
-                   id="capturePatient-lastName"
-                   type="text"
-                   pattern="[A-Za-z ]+"
-                   class="validate" required>
-            <label for="capturePatient-lastName">Apellidos</label>
-        </div>
-        <div class="input-field col s4">
-            <input name="capturePatient-DoB"
-                   type="date"
-                   id="capturePatient-DoB"
-                   class="datepicker" required>
-            <label for="capturePatient-DoB">Fecha de nacimiento</label>
-        </div>
-    </section>
+    {{#if isLogedIn}}
+        <p class="flow-text">Sus datos de paciente han sido registrados con la informacion de su perfil de {{ authProviderName }}!</p>
+    {{else}}
+        <section class="row">
+            <div class="input-field col s4">
+                <input name="capturePatient-firstName"
+                       id="capturePatient-firstName"
+                       type="text"
+                       pattern="[A-Za-z ]+"
+                       class="validate" required>
+                <label for="capturePatient-firstName">Nombre</label>
+            </div>
+            <div class="input-field col s4">
+                <input name="capturePatient-lastName"
+                       id="capturePatient-lastName"
+                       type="text"
+                       pattern="[A-Za-z ]+"
+                       class="validate" required>
+                <label for="capturePatient-lastName">Apellidos</label>
+            </div>
+            <div class="input-field col s4">
+                <input name="capturePatient-DoB"
+                       type="date"
+                       id="capturePatient-DoB"
+                       class="datepicker" required>
+                <label for="capturePatient-DoB">Fecha de nacimiento</label>
+            </div>
+        </section>
+    {{/if}}
 </section>
