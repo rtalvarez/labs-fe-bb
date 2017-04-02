@@ -10,6 +10,8 @@ import PatientModel from 'javascripts/appointments/create/PatientModel';
 export default class CapturePatientView extends BaseView() {
     initialize(config) {
         super.initialize(config);
+        this.isLogedIn = !!config.auth;
+
         const data = this.getTemplateData();
         this.render(CapturePatientViewTpl, data);
         this._appointmentModel = config.appointmentModel;
@@ -37,13 +39,22 @@ export default class CapturePatientView extends BaseView() {
     getTemplateData() {
         const data = this.config.auth ? this.config.auth.getTemplateData() : {};
         data.canSearch = this.config.canSearch;
-        data.isLogedIn = !!this.config.auth;
+        data.isLogedIn = this.isLogedIn;
 
         return data;
     }
 
     initModels() {
+        const auth = this.config.auth;
         this._selectedPatient = new PatientModel({});
+
+        if (this.isLogedIn) {
+            this._selectedPatient.set({
+                firstName: auth.get('firstName'),
+                lastName: auth.get('lastName'),
+                dateOfBirth: auth.get('dateOfBirth'),
+            });
+        }
     }
 
     checkForErrors() {
@@ -108,13 +119,15 @@ export default class CapturePatientView extends BaseView() {
             });
         }
 
-        this._datepickerView = new DatepickerView({
-            el: this.$el.find(this._selectors.captureDoB),
-            id: this.CONSTANTS.DATEPICKER_IDS.PATIENTS,
-            datePickerConfig: {
-                max: new Date()
-            }
-        });
+        if (!this._selectedPatient.get('dateOfBirth')) {
+            this._datepickerView = new DatepickerView({
+                el: this.$el.find(this._selectors.captureDoB),
+                id: this.CONSTANTS.DATEPICKER_IDS.PATIENTS,
+                datePickerConfig: {
+                    max: new Date()
+                }
+            });
+        }
     }
 
     _onPatientsDatepickerSelect(dateObj) {

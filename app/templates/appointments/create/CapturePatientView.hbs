@@ -7,7 +7,27 @@
     {{/if}}
 
     {{#if isLogedIn}}
-        <p class="flow-text">Sus datos de paciente han sido registrados con la informacion de su perfil de {{ authProviderName }}!</p>
+        {{#if dateOfBirth}}
+            <section class="row">
+                <div class="col s12">
+                    <p class="flow-text">Sus datos de paciente han sido registrados con la informacion de su perfil de {{ authProviderName }}!</p>
+                </div>
+            </section>
+        {{else}}
+            <section class="row">
+                <div class="col s12">
+                    <p class="flow-text">No hemos podido encontrar su fecha de nacimiento en los datos del perfil. Favor de proporcionar su fecha de nacimiento.</p>
+                </div>
+
+                <div class="input-field col s6">
+                    <input name="capturePatient-DoB"
+                           type="date"
+                           id="capturePatient-DoB"
+                           class="datepicker" required>
+                    <label for="capturePatient-DoB">Fecha de nacimiento</label>
+                </div>
+            </section>
+        {{/if}}
     {{else}}
         <section class="row">
             <div class="input-field col s4">
