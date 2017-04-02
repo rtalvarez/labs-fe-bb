@@ -1,12 +1,12 @@
 <nav class="nav-view-content teal lighten-1">
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Titulo Principal</a>
+        <a href="/home" class="brand-logo center">Titulo Principal</a>
         <ul id="nav-mobile" class="right">
             <li><a class="schedule-appointment-action" href="/appointments/create">Agendar cita</a></li>
             {{#if isLoggedIn}}
-                <li><a class="visit-profile-action" href="/profile">Mi perfil</a></li>
+                <li class="profile-item"><a class="visit-profile-action" href="/profile">Mi perfil</a></li>
             {{ else }}
-                <li><a class="do-login-action" href="/login">Registrate</a></li>
+                <li class="create-appointment"><a class="do-login-action" href="/login">Registrate</a></li>
             {{/if}}
         </ul>
     </div>
