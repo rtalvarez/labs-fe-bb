@@ -22,9 +22,18 @@ export default class NavView extends BaseView({
         this._selectors = {
             profile: '.profile-item',
             createAppointment: '.create-appointment',
+            menuButton: '.menu-button',
         };
 
         this.attachEvents();
+        this.initSideNav();
+    }
+
+    initSideNav() {
+        this.$find('menuButton').sideNav({
+            closeOnClick: true,
+            draggable: true,
+        });
     }
 
     attachEvents() {
@@ -45,7 +54,8 @@ export default class NavView extends BaseView({
     onUserLogin() {
         this.render(NavTpl, {
             isLoggedIn: true
-        }) ;
+        });
+        this.initSideNav();
     }
 
     onBrandLogoClick(evt) {
