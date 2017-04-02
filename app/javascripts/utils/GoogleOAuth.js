@@ -67,7 +67,7 @@ export default class GoogleOAuth extends BaseOAuth {
             .then(() => this.fetchUserId())
             .then(userId => this.onFetchedUserId(userId))
             .then(() => {
-                this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE);
+                this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE, this);
 
                 if (this.returnRoute) {
                     this.PubSub.trigger(this.CONSTANTS.EVENTS.NAVIGATE.TO, this.returnRoute);

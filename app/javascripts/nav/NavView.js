@@ -37,7 +37,7 @@ export default class NavView extends BaseView({
     }
 
     attachEvents() {
-        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE, () => this.onUserLogin());
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE, (googleClient) => this.onUserLogin(googleClient));
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK, () => this.onUserLogin());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.PROFILE, () => this.onProfileNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.CREATE_APPOINTMENTS, () => this.onCreateAppointmentNavigate());
@@ -51,11 +51,19 @@ export default class NavView extends BaseView({
         this.$find('profile').addClass(this.CONSTANTS.CLASSES.ACTIVE);
     }
 
-    onUserLogin() {
-        this.render(NavTpl, {
-            isLoggedIn: true
-        });
+    onUserLogin(auth) {
+        this.auth = auth;
+        const data = this.getTemplateData();
+
+        this.render(NavTpl, data);
         this.initSideNav();
+    }
+
+    getTemplateData() {
+        const data = this.auth.getTemplateData();
+        data.isLoggedIn = true;
+
+        return data;
     }
 
     onBrandLogoClick(evt) {
