@@ -6,6 +6,10 @@ import ProfileDetailsAppointmentsView from 'javascripts/profile/ProfileDetailsAp
 
 export default class extends BaseView({
     collection: new AppointmentCollection(),
+    events: {
+        'click .new-appointment-action': '_onNewAppointmentActionClick',
+        'click .logout-action': '_onLogoutActionClick',
+    }
 }) {
     initialize(config) {
         super.initialize(config);
@@ -15,7 +19,6 @@ export default class extends BaseView({
         };
 
         this.render(ProfileDetailsViewTpl);
-        console.log('fetching');
         this.fetchAppointments();
     }
 
@@ -29,5 +32,17 @@ export default class extends BaseView({
             collection: this.collection,
             el: this.$find('appointments'),
         });
+    }
+
+    _onNewAppointmentActionClick(event) {
+        event.preventDefault();
+
+        this.navigateToPath('/appointments/create');
+    }
+
+    _onLogoutActionClick(event) {
+        event.preventDefault();
+
+        this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.LOGOUT);
     }
 }

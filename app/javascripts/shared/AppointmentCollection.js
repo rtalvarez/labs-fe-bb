@@ -25,7 +25,6 @@ export default class extends BaseCollection({
     }
 
     fetchAppointments() {
-        console.log('fetching 2');
         return this.$get('/api/appointments')
             .then(response => JSON.parse(response))
             .then(appointments => this.set(appointments));

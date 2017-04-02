@@ -12,7 +12,6 @@ export default class GoogleOAuth extends BaseOAuth {
 
     attachEvents() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.INITIATE.GOOGLE, (evtData) => this.signIn(evtData));
-        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.TERMINATE.GOOGLE, () => this.signOut());
     }
 
     signIn(evtData = {}) {
@@ -22,6 +21,7 @@ export default class GoogleOAuth extends BaseOAuth {
 
     signOut() {
         this.GoogleAuth.signOut();
+        this.PubSub.trigger(this.CONSTANTS.EVENTS.AUTH.TERMINATE.GOOGLE);
     }
 
     createUser() {
@@ -72,6 +72,9 @@ export default class GoogleOAuth extends BaseOAuth {
                 if (this.returnRoute) {
                     this.PubSub.trigger(this.CONSTANTS.EVENTS.NAVIGATE.TO, this.returnRoute);
                 }
+            })
+            .then(() => {
+                this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.LOGOUT, () => this.signOut());
             });
     }
 

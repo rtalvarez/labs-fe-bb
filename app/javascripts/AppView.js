@@ -96,6 +96,15 @@ export default class extends BaseView() {
         });
     }
 
+    onAuthClientLogout(provider) {
+        this.destroyViews();
+        delete this.activeAuth;
+
+        this.initAuth();
+        this.initViews();
+        this.navigateToPath('/home');
+    }
+
     registerEvents() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.TO, () => this.destroyViews());
 
@@ -107,6 +116,8 @@ export default class extends BaseView() {
 
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE, () => this.onAuthClientComplete('google'));
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK, () => this.onAuthClientComplete('facebook'));
+
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.TERMINATE.GOOGLE, () => this.onAuthClientLogout('google'));
     }
 
     onAuthClientComplete(authClientName) {

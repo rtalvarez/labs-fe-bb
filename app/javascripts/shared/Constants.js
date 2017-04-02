@@ -27,12 +27,14 @@ export default {
 
     EVENTS: {
         AUTH: {
+            LOGOUT: 'providerAuth:logout',
             INITIATE: {
                 GOOGLE: 'googleAuth:initiate',
                 FACEBOOK: 'facebookAuth:initiate',
             },
             TERMINATE: {
-                GOOGLE: 'googleAuth:terminate'
+                GOOGLE: 'googleAuth:terminate',
+                FACEBOOK: 'facebookAuth:terminate',
             },
             OK: {
                 GOOGLE: 'googleAuth:ok',
