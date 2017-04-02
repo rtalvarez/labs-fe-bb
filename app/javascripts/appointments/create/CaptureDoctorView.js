@@ -8,8 +8,10 @@ import DoctorCollection from 'javascripts/appointments/create/DoctorCollection';
 
 export default class extends BaseView() {
     initialize(config) {
-        super.initialize();
-        this.render(CaptureDoctorViewTpl);
+        super.initialize(config);
+        const data = this.getTemplateData();
+
+        this.render(CaptureDoctorViewTpl, data);
         this._appointmentModel = config.appointmentModel;
 
         this._selectors = {
@@ -24,6 +26,12 @@ export default class extends BaseView() {
         this.initViews();
         this.attachEvents();
         this.setInputData();
+    }
+
+    getTemplateData() {
+        return {
+            canSearch: this.config.canSearch,
+        };
     }
 
     initModel() {
@@ -76,11 +84,13 @@ export default class extends BaseView() {
     }
 
     initViews() {
-        this._typeaheadView = new TypeaheadView({
-            el: this.$el.find(this.CONSTANTS.SELECTORS.TYPEAHEAD_VIEW),
-            collection: this._doctorsTypeaheadCollection,
-            id: this.CONSTANTS.TYPEAHEAD_IDS.DOCTORS,
-        });
+        if (this.config.canSearch) {
+            this._typeaheadView = new TypeaheadView({
+                el: this.$el.find(this.CONSTANTS.SELECTORS.TYPEAHEAD_VIEW),
+                collection: this._doctorsTypeaheadCollection,
+                id: this.CONSTANTS.TYPEAHEAD_IDS.DOCTORS,
+            });
+        }
     }
 
     _onDoctorsTypeaheadSelect(data) {

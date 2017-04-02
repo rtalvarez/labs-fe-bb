@@ -107,6 +107,7 @@ export default class CreateAppointmentView extends BaseView({
         this.views._captureDoctor = new CaptureDoctorView({
             el: $el.find(selectors.captureDoctorView),
             appointmentModel: model,
+            canSearch: false,
         });
 
         this.views._captureDetails = new CaptureDetailsView({

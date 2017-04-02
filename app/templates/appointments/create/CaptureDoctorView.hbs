@@ -1,8 +1,10 @@
 <section class="capture-doctor-view-content section">
     <h5>Datos del Doctor</h5>
 
-    <span>Buscar doctor:</span>
-    <div class="typeahead-view"></div>
+    {{#if canSearch}}
+        <span>Buscar doctor:</span>
+        <div class="typeahead-view"></div>
+    {{/if}}
 
     <section class="row">
         <div class="input-field col s6">
