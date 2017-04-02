@@ -31,6 +31,7 @@ export default class extends BaseView() {
     _onDoBDatepickerSelect(date) {
         console.log('d', date.obj.toJSON());
         this.userModel.setDoB(date.obj.toJSON());
+        this.views.missingDoBBanner.hide();
     }
 
     onAddDoBClick(evt) {
@@ -59,19 +60,21 @@ export default class extends BaseView() {
             el: this.$find('profileDetails')
         });
 
-        this.views.missingDoBBanner = new BannerView({
-            type: 'warning',
-            msg: MissingDoBBannerContent,
-            el: this.$find('missingDoBBanner'),
-        });
+        if (!this.config.authClient.get('dateOfBirth')) {
+            this.views.missingDoBBanner = new BannerView({
+                type: 'warning',
+                msg: MissingDoBBannerContent,
+                el: this.$find('missingDoBBanner'),
+            });
 
-        this.views.dobDatepicker = new DatepickerView({
-            el: this.$find('addDoBDatepicker'),
-            id: this.CONSTANTS.DATEPICKER_IDS.ADD_DOB,
-            datePickerConfig: {
-                max: new Date()
-            }
-        })
+            this.views.dobDatepicker = new DatepickerView({
+                el: this.$find('addDoBDatepicker'),
+                id: this.CONSTANTS.DATEPICKER_IDS.ADD_DOB,
+                datePickerConfig: {
+                    max: new Date()
+                }
+            });
+        }
     }
 
     getTemplateData() {
