@@ -45,7 +45,7 @@ export default class extends BaseView() {
 
     preRender() {
         if (this.config.authClient) {
-            const templateData = this.getTemplateData();
+            const templateData = this.config.authClient.getTemplateData();
 
             this.render(ProfileViewTpl, templateData);
             this.initViews();
@@ -75,17 +75,5 @@ export default class extends BaseView() {
                 }
             });
         }
-    }
-
-    getTemplateData() {
-        const authClient = this.config.authClient;
-
-        return {
-            authProviderName: authClient.get('providerName'),
-            name: authClient.get('userName'),
-            dateOfBirth: authClient.get('dateOfBirth'),
-            email: authClient.get('email'),
-            imageUrl: authClient.get('imageUrl')
-        };
     }
 }

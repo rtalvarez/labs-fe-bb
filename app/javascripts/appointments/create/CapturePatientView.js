@@ -9,8 +9,9 @@ import PatientModel from 'javascripts/appointments/create/PatientModel';
 
 export default class CapturePatientView extends BaseView() {
     initialize(config) {
-        super.initialize();
-        this.render(CapturePatientViewTpl);
+        super.initialize(config);
+        const data = this.getTemplateData();
+        this.render(CapturePatientViewTpl, data);
         this._appointmentModel = config.appointmentModel;
 
         this._selectors = {
@@ -31,6 +32,10 @@ export default class CapturePatientView extends BaseView() {
 
         this.attachEvents();
         this.setInputData();
+    }
+
+    getTemplateData() {
+        return this.config.auth ? this.config.auth.getTemplateData() : {};
     }
 
     initModels() {

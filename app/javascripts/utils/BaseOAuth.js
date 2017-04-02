@@ -28,4 +28,14 @@ export default class extends BaseModel() {
         return this.$post('/api/patients/create', user)
             .then(response => response.id);
     }
+
+    getTemplateData() {
+        return {
+            authProviderName: this.get('providerName'),
+            name: this.get('userName'),
+            dateOfBirth: this.get('dateOfBirth'),
+            email: this.get('email'),
+            imageUrl: this.get('imageUrl')
+        };
+    }
 }

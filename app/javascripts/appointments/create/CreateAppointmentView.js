@@ -19,8 +19,8 @@ export default class CreateAppointmentView extends BaseView({
     },
     model: new AppointmentModel({})
 }) {
-    initialize() {
-        super.initialize();
+    initialize(config) {
+        super.initialize(config);
         this.render(CreateAppointmentViewTpl, this);
 
         _.bindAll(this,
@@ -100,6 +100,7 @@ export default class CreateAppointmentView extends BaseView({
         this.views._capturePatient = new CapturePatientView({
             el: $el.find(selectors.capturePatientView),
             appointmentModel: model,
+            auth: this.config.auth,
         });
 
         this.views._captureDoctor = new CaptureDoctorView({

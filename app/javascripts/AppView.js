@@ -56,7 +56,8 @@ export default class extends BaseView() {
 
     onNewAppointmentNavigate() {
         this.views.createAppointmentView = new CreateAppointmentView({
-            el: this.$find('createAppointmentView')
+            el: this.$find('createAppointmentView'),
+            auth: this.activeAuth,
         });
     }
 
