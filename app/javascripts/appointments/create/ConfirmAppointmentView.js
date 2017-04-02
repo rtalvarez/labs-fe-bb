@@ -9,7 +9,6 @@ export default class extends BaseView() {
     render() {
         const config = this.config;
 
-        console.log(config.appointmentModel.toJSON(), config.paymentModel.toJSON());
         super.render(ConfirmAppointmentViewTpl, {
             appointment: config.appointmentModel.toJSON(),
             payment: config.paymentModel.toJSON()

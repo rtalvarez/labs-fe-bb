@@ -1,6 +1,7 @@
 import BaseView from 'javascripts/shared/BaseView';
 import CreateAppointmentViewTpl from 'templates/appointments/create/CreateAppointmentView';
 
+import AppointmentDetailsView from 'javascripts/appointments/create/AppointmentDetailsView';
 import AppointmentModel from 'javascripts/shared/AppointmentModel';
 import CaptureDoctorView from 'javascripts/appointments/create/CaptureDoctorView';
 import CapturePatientView from 'javascripts/appointments/create/CapturePatientView';
@@ -35,10 +36,12 @@ export default class CreateAppointmentView extends BaseView({
             step1Header: '.create-appointment-step-1-header',
             step2Header: '.create-appointment-step-2-header',
             step3Header: '.create-appointment-step-3-header',
+            step4Header: '.create-appointment-step-4-header',
             capturePatientView: '.capture-patient-view',
             captureDoctorView: '.capture-doctor-view',
             captureDetailsView: '.capture-details-view',
             capturePaymentView: '.capture-payment-view',
+            appointmentDetailsView: '.appointment-details-view',
             formHasErrors: '.form-has-errors-banner',
             processingAppointmentDialog: '#processing-appointment-dialog',
             confirmAppointment: '.confirm-appointment-view',
@@ -56,6 +59,7 @@ export default class CreateAppointmentView extends BaseView({
         this.initViews();
         this.prefillTestData();
         this.attachEvents();
+        this.prefillTestData();
     }
 
     prefillTestData() {
@@ -96,11 +100,18 @@ export default class CreateAppointmentView extends BaseView({
         const $el = this.$el;
         const model = this.model;
         const selectors = this._selectors;
+        const auth = this.config.auth;
+
+        this.views._appointmentDetails = new AppointmentDetailsView({
+            el: this.$find('appointmentDetailsView'),
+            appointmentModel: model,
+            auth,
+        });
 
         this.views._capturePatient = new CapturePatientView({
             el: $el.find(selectors.capturePatientView),
             appointmentModel: model,
-            auth: this.config.auth,
+            auth,
             canSearch: false,
         });
 
@@ -179,27 +190,39 @@ export default class CreateAppointmentView extends BaseView({
             case 3:
                 this._processThirdStep();
                 break;
+
+            case 4:
+                this._processFourthStep();
+                break;
         }
     }
 
-    _processThirdStep() {
+    _processSecondStep() {
+        this._secondStepSuccess();
+    }
+
+    _secondStepSuccess() {
+        this._showStep(3);
+    }
+
+    _processFourthStep() {
         this.views._processingPaymentDialog.open();
         this.views._capturePayment.submit();
     }
 
-    _processSecondStep() {
+    _processThirdStep() {
         const hasErrors = this.views._capturePayment.checkForErrors();
 
         if (!hasErrors) {
-            this._secondStepSuccess();
+            this._thirdStepSuccess();
         }
     }
 
 
-    _secondStepSuccess() {
+    _thirdStepSuccess() {
         this._renderSuccessCollapsibleHeader();
         this.views._confirmAppointment.render();
-        this._showStep(3);
+        this._showStep(4);
     }
 
     _processFirstStep() {
@@ -228,6 +251,7 @@ export default class CreateAppointmentView extends BaseView({
         this._showStep(2);
 
         this.views._banner.hide();
+        this.views._appointmentDetails.render();
         this.PubSub.trigger(this.CONSTANTS.EVENTS.CREATE_APPOINTMENTS.STEP1_COMPLETE);
     }
 

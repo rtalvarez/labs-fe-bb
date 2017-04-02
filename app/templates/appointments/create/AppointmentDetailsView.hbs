@@ -1,0 +1,25 @@
+<div class="appointment-details-view-content">
+    <section class="confirm-section patient-section">
+        <h5>Paciente</h5>
+        <strong class="patient-name-desc">Nombre:</strong>
+        <span class="patient-name">{{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</span>
+    </section>
+    <div class="divider"></div>
+    <section class="confirm-section doctor-section">
+        <h5>Doctor</h5>
+        <strong class="doctor-name-desc">Nombre:</strong>
+        <span class="doctor-name">{{ appointment.doctor.firstName }} {{ appointment.doctor.lastName }}</span>
+    </section>
+    <div class="divider"></div>
+    <section class="confirm-section appointment-section">
+        <h5>Cita</h5>
+        <div>
+            <strong class="doctor-name-desc">Dia y hora:</strong>
+            <span class="appointment-data">{{ appointment.displayDate }}</span>
+        </div>
+        <div>
+            <strong class="doctor-name-desc">Estudios: </strong>
+            <span class="appointment-data">{{ appointment.studyDisplayNames }}</span>
+        </div>
+    </section>
+</div>
