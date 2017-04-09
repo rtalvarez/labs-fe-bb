@@ -33,6 +33,13 @@ exports.startServer = function(port, path, callback) {
         return conektaProxy.web(req, res);
     });
 
+    app.all('/fonts/', function(request, response) {
+        var splitted = request.url.split('/'),
+            filename = splitted[splitted.length - 1];
+
+        return response.sendFile(sysPath.resolve(sysPath.join(path, '/fonts/roboto/' + filename)));
+    });
+
     app.all(/.css/, function(request, response) {
         return response.sendfile(sysPath.resolve(sysPath.join(path, 'stylesheets/app.css')));
     });
