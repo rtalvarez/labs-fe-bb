@@ -7,8 +7,14 @@ export default class extends BaseModel() {
 
     fetchUserId(data) {
         return this.$get('/api/patients/me', data)
-            .then(({ id }) => this.set('userId', id))
-            .then(() => this.get('userId'));
+            .then(response => {
+                this.set({
+                    userId: response.id,
+                    isAdmin: response.isAdmin,
+                });
+
+                return response.id;
+            });
     }
 
     onFetchedUserId(userId) {
@@ -35,7 +41,8 @@ export default class extends BaseModel() {
             name: this.get('userName'),
             dateOfBirth: this.get('dateOfBirth'),
             email: this.get('email'),
-            imageUrl: this.get('imageUrl')
+            imageUrl: this.get('imageUrl'),
+            isAdmin: this.get('isAdmin'),
         };
     }
 }

@@ -50,7 +50,8 @@ export default {
             NEW_APPOINTMENT: 'navigate:newAppointment',
             LOGIN: 'navigate:login',
             VIEW_APPOINTMENT: 'navigate:viewAppointment',
-            PROFILE: 'navigate:profile'
+            PROFILE: 'navigate:profile',
+            ADMIN: 'navigate:admin'
         },
         TYPEAHEAD: {
             ITEM_SELECTED: (id) => `typeahead-${id}:itemSelected`

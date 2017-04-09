@@ -1,5 +1,6 @@
 import AppTpl from 'templates/AppView';
 import AppRouter from 'javascripts/AppRouter';
+import AdminView from 'javascripts/admin/AdminView';
 import BaseView from 'javascripts/shared/BaseView';
 import CreateAppointmentView from 'javascripts/appointments/create/CreateAppointmentView';
 import NavView from 'javascripts/nav/NavView';
@@ -21,6 +22,7 @@ export default class extends BaseView() {
         this.registerEvents();
 
         this._selectors = {
+            adminView: '.admin-view',
             createAppointmentView: '.create-appointment-view',
             navView: '.nav-view',
             loginView: '.login-view',
@@ -106,9 +108,17 @@ export default class extends BaseView() {
         this.navigateToPath('/home');
     }
 
+    onAdminNavigate() {
+        this.views.admin = new AdminView({
+            el: this.$find('adminView'),
+            authClient: this.activeAuth,
+        });
+    }
+
     registerEvents() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.TO, () => this.destroyViews());
 
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.ADMIN, () => this.onAdminNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.HOME, () => this.onHomeNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.PROFILE, () => this.onProfileNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.NEW_APPOINTMENT, () => this.onNewAppointmentNavigate());

@@ -7,6 +7,7 @@ export default class NavView extends BaseView({
         'click .do-login-action': 'onLoginClick',
         'click .visit-profile-action': 'onProfileLinkClick',
         'click .brand-logo': 'onBrandLogoClick',
+        'click .visit-admin-portal-action': 'onAdminClick',
     }
 }) {
     initialize(config) {
@@ -17,9 +18,11 @@ export default class NavView extends BaseView({
             'onLoginClick',
             'onProfileLinkClick',
             'onBrandLogoClick',
+            'onAdminClick',
             'onScheduleAppointmentClick');
 
         this._selectors = {
+            admin: '.admin',
             profile: '.profile-item',
             createAppointment: '.create-appointment',
             menuButton: '.menu-button',
@@ -41,6 +44,11 @@ export default class NavView extends BaseView({
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK, (facebookClient) => this.onUserLogin(facebookClient));
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.PROFILE, () => this.onProfileNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.CREATE_APPOINTMENTS, () => this.onCreateAppointmentNavigate());
+    }
+
+    onAdminClick(evt) {
+        this.$find('admin').addClass(this.CONSTANTS.CLASSES.ACTIVE);
+        this.navigate(evt);
     }
 
     onCreateAppointmentNavigate() {

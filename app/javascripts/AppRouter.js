@@ -3,11 +3,12 @@ import PubSub from 'javascripts/PubSub';
 
 export default class AppRouter extends Backbone.Router.extend({
     routes: {
-        'appointments/create': 'newAppointment',
-        'login': 'login',
         'appointments/:id': 'viewAppointment',
-        'home': 'home',
-        'profile': 'profile'
+        'appointments/create': 'newAppointment',
+        login: 'login',
+        home: 'home',
+        profile: 'profile',
+        admin: 'admin'
     }
 }) {
     initialize() {
@@ -21,6 +22,10 @@ export default class AppRouter extends Backbone.Router.extend({
     navigateTo(path) {
         console.log('navigateTo', path)
         this.navigate(path, { trigger: true });
+    }
+
+    admin() {
+        PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.ADMIN);
     }
 
     home() {

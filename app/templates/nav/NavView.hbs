@@ -18,6 +18,11 @@
                     <a class="do-login-action" href="/login">Registrate</a>
                 </li>
             {{/if}}
+            {{#if isAdmin}}
+                <li class="admin">
+                    <a href="/admin" class="visit-admin-portal-action">Administrar</a>
+                </li>
+            {{/if}}
         </ul>
 
         <!--MOBILE VIEW-->
@@ -63,6 +68,11 @@
             {{ else }}
                 <li class="create-appointment">
                     <a class="do-login-action" href="/login">Registrate</a>
+                </li>
+            {{/if}}
+            {{#if isAdmin}}
+                <li class="admin">
+                    <a href="/admin" class="visit-admin-portal-action">Administrar</a>
                 </li>
             {{/if}}
         </ul>
