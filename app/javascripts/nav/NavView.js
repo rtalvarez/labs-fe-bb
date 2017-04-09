@@ -38,7 +38,7 @@ export default class NavView extends BaseView({
 
     attachEvents() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.GOOGLE, (googleClient) => this.onUserLogin(googleClient));
-        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK, () => this.onUserLogin());
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.AUTH.OK.FACEBOOK, (facebookClient) => this.onUserLogin(facebookClient));
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.PROFILE, () => this.onProfileNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.CREATE_APPOINTMENTS, () => this.onCreateAppointmentNavigate());
     }
