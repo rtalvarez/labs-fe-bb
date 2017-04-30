@@ -10,6 +10,10 @@
     clip: rect(1px, 1px, 1px, 1px);
 }
 
+thead {
+    border-bottom: 0; //Calendar override
+}
+
 body {
     background-color: color("grey", "lighten-4");
 }

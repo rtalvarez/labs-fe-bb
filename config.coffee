@@ -16,6 +16,9 @@ exports.config =
         before: [
           'node_modules/underscore/underscore.js',
           'node_modules/jquery/dist/jquery.js',
+          'node_modules/fullcalendar/node_modules/moment/min/moment.min.js',
+          'node_modules/fullcalendar/dist/fullcalendar.js',
+          'node_modules/fullcalendar/dist/locale/es.js',
           'node_modules/backbone/backbone.js',
           'node_modules/materialize-css/dist/js/materialize.min.js',
         ]
@@ -44,9 +47,13 @@ exports.config =
   npm:
     styles:
       'materialize-css': ['dist/css/materialize.css']
+      'fullcalendar': ['dist/fullcalendar.css']
     static: [
       'node_modules/underscore/underscore.js',
       'node_modules/jquery/dist/jquery.js',
+      'node_modules/fullcalendar/node_modules/moment/min/moment.min.js',
+      'node_modules/fullcalendar/dist/fullcalendar.js',
+      'node_modules/fullcalendar/dist/locale/es.js',
       'node_modules/backbone/backbone.js',
       'node_modules/materialize-css/dist/js/materialize.min.js',
     ]

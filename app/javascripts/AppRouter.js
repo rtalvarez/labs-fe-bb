@@ -3,8 +3,8 @@ import PubSub from 'javascripts/PubSub';
 
 export default class AppRouter extends Backbone.Router.extend({
     routes: {
-        'appointments/:id': 'viewAppointment',
         'appointments/create': 'newAppointment',
+        // 'appointments/:id': 'viewAppointment',
         login: 'login',
         home: 'home',
         profile: 'profile',
