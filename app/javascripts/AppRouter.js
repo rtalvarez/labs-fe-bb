@@ -8,7 +8,8 @@ export default class AppRouter extends Backbone.Router.extend({
         login: 'login',
         home: 'home',
         profile: 'profile',
-        admin: 'admin'
+        admin: 'admin',
+        '*path': 'home',
     }
 }) {
     initialize() {
