@@ -11,6 +11,7 @@ export default class extends BaseModel() {
                 this.set({
                     userId: response.id,
                     isAdmin: response.isAdmin,
+                    dateOfBirth: response.dateOfBirth,
                 });
 
                 return response.id;
