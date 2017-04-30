@@ -1,4 +1,21 @@
+@import "../shared/variables";
+
 .profile-actions {
     display: flex;
-    justify-content: space-between;
+
+    @media #{$medium-and-up} {
+        justify-content: space-between;
+        flex-wrap: nowrap;
+
+        > button {
+            margin-top: 0;
+        }
+    }
+
+    flex-wrap: wrap;
+    justify-content: center;
+
+    > button {
+        margin-top: 0.5rem;
+    }
 }
