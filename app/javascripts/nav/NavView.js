@@ -54,6 +54,7 @@ export default class NavView extends BaseView({
     }
 
     onHomeActionClick(evt) {
+        this.$find('profile').removeClass(this.CONSTANTS.CLASSES.ACTIVE);
         this.navigate(evt);
     }
 

@@ -36,56 +36,56 @@
             </ul>
         </div>
     </div>
+</nav>
 
-    <!--MOBILE VIEW-->
-    <ul class="side-nav" id="side-nav">
-        <li>
-            <div class="userView side-nav-user-info">
-                <div class="background">
-                    <img class="side-nav-user-background" src="/images/images_background_1.png">
-                </div>
-                {{#if isLoggedIn}}
-                    <a class="visit-profile-action" href="/profile">
-                        <img class="circle" src="{{ imageUrl }}" alt="Imagen de perfil">
-                    </a>
-                    <a class="visit-profile-action" href="/profile">
-                        <span class="flow-text white-text name">{{ name }}</span>
-                    </a>
-                    <a class="visit-profile-action" href="/profile">
-                        <span class="flow-text white-text email">{{ email }}</span>
-                    </a>
-                {{else}}
-                    <a class="visit-profile-action" href="/login">
-                        <img class="circle" src="images/ghost_user.png" alt="Imagen de perfil">
-                    </a>
-                    <a class="visit-profile-action" href="/login">
-                        <span class="flow-text white-text name">Usuario sin registrar</span>
-                    </a>
-                {{/if}}
+<!--MOBILE VIEW-->
+<ul class="side-nav" id="side-nav">
+    <li>
+        <div class="userView side-nav-user-info">
+            <div class="background">
+                <img class="side-nav-user-background" src="/images/images_background_1.png">
             </div>
-        </li>
-        <li>
-            <a class="schedule-appointment-action" href="/appointments/create">
-                <i class="material-icons">assignment</i>
-                <strong>Agendar cita</strong>
+            {{#if isLoggedIn}}
+                <a class="visit-profile-action" href="/profile">
+                    <img class="circle" src="{{ imageUrl }}" alt="Imagen de perfil">
+                </a>
+                <a class="visit-profile-action" href="/profile">
+                    <span class="flow-text white-text name">{{ name }}</span>
+                </a>
+                <a class="visit-profile-action" href="/profile">
+                    <span class="flow-text white-text email">{{ email }}</span>
+                </a>
+            {{else}}
+                <a class="visit-profile-action" href="/login">
+                    <img class="circle" src="images/ghost_user.png" alt="Imagen de perfil">
+                </a>
+                <a class="visit-profile-action" href="/login">
+                    <span class="flow-text white-text name">Usuario sin registrar</span>
+                </a>
+            {{/if}}
+        </div>
+    </li>
+    <li>
+        <a class="schedule-appointment-action" href="/appointments/create">
+            <i class="material-icons">assignment</i>
+            <strong>Agendar cita</strong>
+        </a>
+    </li>
+    {{#if isLoggedIn}}
+        <li class="profile-item">
+            <a class="visit-profile-action" href="/profile">
+                <i class="material-icons">perm_identity</i>
+                <strong>Mi perfil</strong>
             </a>
         </li>
-        {{#if isLoggedIn}}
-            <li class="profile-item">
-                <a class="visit-profile-action" href="/profile">
-                    <i class="material-icons">perm_identity</i>
-                    <strong>Mi perfil</strong>
-                </a>
-            </li>
-        {{ else }}
-            <li class="create-appointment">
-                <a class="do-login-action" href="/login">Registrate</a>
-            </li>
-        {{/if}}
-        {{#if isAdmin}}
-            <li class="admin">
-                <a href="/admin" class="visit-admin-portal-action">Administrar</a>
-            </li>
-        {{/if}}
-    </ul>
-</nav>
+    {{ else }}
+        <li class="create-appointment">
+            <a class="do-login-action" href="/login">Registrate</a>
+        </li>
+    {{/if}}
+    {{#if isAdmin}}
+        <li class="admin">
+            <a href="/admin" class="visit-admin-portal-action">Administrar</a>
+        </li>
+    {{/if}}
+</ul>
