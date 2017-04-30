@@ -8,6 +8,7 @@ export default class NavView extends BaseView({
         'click .visit-profile-action': 'onProfileLinkClick',
         'click .brand-logo': 'onBrandLogoClick',
         'click .visit-admin-portal-action': 'onAdminClick',
+        'click .visit-home-action': 'onHomeActionClick',
     }
 }) {
     initialize(config) {
@@ -19,6 +20,7 @@ export default class NavView extends BaseView({
             'onProfileLinkClick',
             'onBrandLogoClick',
             'onAdminClick',
+            'onHomeActionClick',
             'onScheduleAppointmentClick');
 
         this._selectors = {
@@ -48,6 +50,10 @@ export default class NavView extends BaseView({
 
     onAdminClick(evt) {
         this.$find('admin').addClass(this.CONSTANTS.CLASSES.ACTIVE);
+        this.navigate(evt);
+    }
+
+    onHomeActionClick(evt) {
         this.navigate(evt);
     }
 

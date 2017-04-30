@@ -1,5 +1,7 @@
 @import 'colors';
 
+$panel-boxShadow: 0 1px 1px rgba(0,0,0,.1), 0 1px 4px rgba(0,0,0,.14);
+
 // These styles make it so that the element is invisible to regular users, but it's still in the DOM
 // That way, it will still be accessible to screen readers
 .a11y-desc {
@@ -52,8 +54,12 @@ strong {
     background-color: white;
     border: 1px solid color("grey", "lighten-2");
     border-radius: 1px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1), 0 1px 4px rgba(0,0,0,.14);
+    box-shadow: $panel-boxShadow;
     padding: 1rem;
+}
+
+.shadowed {
+    box-shadow: $panel-boxShadow;
 }
 
 .view-content {
