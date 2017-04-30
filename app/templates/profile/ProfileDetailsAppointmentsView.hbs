@@ -1,22 +1,30 @@
 <div class="profile-details-appointments-view-content">
-    <ul class="collection">
-        {{#each appointments}}
-            <li class="collection-item avatar">
-                <i class="material-icons circle green">folder</i>
-                <span class="title">Cita #{{indexOne @index}}</span>
-                <div class="details-1">Dia y hora: {{ this.displayDate }}</div>
-                <div class="details-2">
-                    <a href="#" class="see-details-action" data-id="{{ this.id }}">Ver detalles</a>
-                </div>
-                </p>
-                {{#if this.isPast}}
-                    <span class="secondary-content"><i class="material-icons">done</i></span>
-                {{else}}
-                    <span class="secondary-content"><i class="material-icons">schedule</i></span>
-                {{/if}}
-            </li>
-        {{/each}}
-    </ul>
+    {{#if appointments.length}}
+        <ul class="collection">
+            {{#each appointments}}
+                <li class="collection-item avatar">
+                    <i class="material-icons circle green">folder</i>
+                    <span class="title">Cita #{{indexOne @index}}</span>
+                    <div class="details-1">Dia y hora: {{ this.displayDate }}</div>
+                    <div class="details-2">
+                        <a href="#" class="see-details-action" data-id="{{ this.id }}">Ver detalles</a>
+                    </div>
+                    </p>
+                    {{#if this.isPast}}
+                        <span class="secondary-content"><i class="material-icons">done</i></span>
+                    {{else}}
+                        <span class="secondary-content"><i class="material-icons">schedule</i></span>
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <div class="no-appointments">
+            <p>No hay citas en tu historial</p>
+            <i class="material-icons large">description</i>
+            <p>Todas tus citas, pasadas y futuras, apareceran aqui</p>
+        </div>
+    {{/if}}
 </div>
 
 <div class="modal" id="appointment-details-dialog"></div>
