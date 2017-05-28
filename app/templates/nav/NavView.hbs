@@ -16,6 +16,9 @@
         <!--DESKTOP VIEW-->
         <div class="right-nav">
             <ul class="hide-on-med-and-down">
+                <li class="contact">
+                    <a class="contact-action" href="/contact">Contacto</a>
+                </li>
                 <li>
                     <a class="schedule-appointment-action" href="/appointments/create">Agendar cita</a>
                 </li>
@@ -80,7 +83,10 @@
         </li>
     {{ else }}
         <li class="create-appointment">
-            <a class="do-login-action" href="/login">Registro</a>
+            <a class="do-login-action" href="/login">
+                <i class="material-icons">person_pin</i>
+                <strong>Registro</strong>
+            </a>
         </li>
     {{/if}}
     {{#if isAdmin}}
@@ -88,4 +94,10 @@
             <a href="/admin" class="visit-admin-portal-action">Administrar</a>
         </li>
     {{/if}}
+    <li class="contact">
+        <a class="contact-action" href="/contact">
+            <i class="material-icons">assignment</i>
+            <strong>Contacto</strong>
+        </a>
+    </li>
 </ul>

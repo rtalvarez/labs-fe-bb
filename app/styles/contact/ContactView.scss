@@ -1,0 +1,59 @@
+@import "../shared/colors";
+
+.contact-view-content {
+    .address {
+        > span {
+            display: inline-block;
+        }
+    }
+
+    .email-card,
+    .contact-card,
+    .address-card {
+        display: flex;
+        align-items: center;
+    }
+
+    .email-icon-wrapper,
+    .phone-icon-wrapper,
+    .nav-icon-wrapper {
+        display: flex;
+        flex-direction: column;
+        color: color("teal", "darken-2");
+    }
+
+    .email-icon,
+    .phone-icon,
+    .nav-icon {
+        align-self: center;
+        margin-bottom: 1rem;
+    }
+
+    .open-maps {
+        display: inline-block;
+    }
+
+    .email-info,
+    .contact-info,
+    .address-fields {
+        flex: 1;
+    }
+
+    .write-us,
+    .open-maps,
+    .call-us {
+        text-align: center;
+    }
+
+    .email-icon-wrapper,
+    .contact-icon-wrapper,
+    .location-icon-wrapper {
+        flex-basis: 20%;
+        margin-right: 2rem;
+    }
+
+    .divider {
+        margin: 1rem 0;
+    }
+}
+

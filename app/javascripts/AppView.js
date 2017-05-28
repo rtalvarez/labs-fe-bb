@@ -8,6 +8,7 @@ import LoginView from 'javascripts/login/LoginView';
 import ViewAppointmentView from 'javascripts/appointments/ViewAppointmentView';
 import HomeView from 'javascripts/home/HomeView';
 import ProfileView from 'javascripts/profile/ProfileView';
+import ContactView from 'javascripts/contact/ContactView';
 
 import UserModel from 'javascripts/shared/UserModel';
 
@@ -28,7 +29,8 @@ export default class extends BaseView() {
             loginView: '.login-view',
             viewAppointmentView: '.view-appointment-view',
             homeView: '.home-view',
-            profileView: '.profile-view'
+            profileView: '.profile-view',
+            contactView: '.contact-view',
         };
 
         this.initAuth();
@@ -115,9 +117,16 @@ export default class extends BaseView() {
         });
     }
 
+    onContactNavigate() {
+        this.views.contact = new ContactView({
+            el: this.$find('contactView'),
+        });
+    }
+
     registerEvents() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.TO, () => this.destroyViews());
 
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.CONTACT, () => this.onContactNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.ADMIN, () => this.onAdminNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.HOME, () => this.onHomeNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.PROFILE, () => this.onProfileNavigate());

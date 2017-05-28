@@ -9,6 +9,7 @@ export default class AppRouter extends Backbone.Router.extend({
         home: 'home',
         profile: 'profile',
         admin: 'admin',
+        contact: 'contact',
         '*path': 'home',
     }
 }) {
@@ -23,6 +24,10 @@ export default class AppRouter extends Backbone.Router.extend({
     navigateTo(path) {
         console.log('navigateTo', path)
         this.navigate(path, { trigger: true });
+    }
+
+    contact() {
+        PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.CONTACT);
     }
 
     admin() {
