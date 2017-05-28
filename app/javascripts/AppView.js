@@ -9,6 +9,7 @@ import ViewAppointmentView from 'javascripts/appointments/ViewAppointmentView';
 import HomeView from 'javascripts/home/HomeView';
 import ProfileView from 'javascripts/profile/ProfileView';
 import ContactView from 'javascripts/contact/ContactView';
+import FooterView from 'javascripts/footer/FooterView';
 
 import UserModel from 'javascripts/shared/UserModel';
 
@@ -31,6 +32,7 @@ export default class extends BaseView() {
             homeView: '.home-view',
             profileView: '.profile-view',
             contactView: '.contact-view',
+            footerView: '.footer-view',
         };
 
         this.initAuth();
@@ -54,7 +56,11 @@ export default class extends BaseView() {
     
     initViews() {
         this.navView = new NavView({
-            el: this.$find('navView')
+            el: this.$find('navView'),
+        });
+
+        this.footerView = new FooterView({
+            el: this.$find('footerView'),
         });
     }
 
