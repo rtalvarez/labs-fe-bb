@@ -57,9 +57,9 @@ export default class CreateAppointmentView extends BaseView({
 
         this.initCollapsibleHeaders();
         this.initViews();
-        this.prefillTestData();
+        // this.prefillTestData();
         this.attachEvents();
-        this.prefillTestData();
+        // this.prefillTestData();
     }
 
     prefillTestData() {
