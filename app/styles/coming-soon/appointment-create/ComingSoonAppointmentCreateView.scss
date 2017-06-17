@@ -4,10 +4,14 @@
     .coming-soon-icon-wrapper {
         align-items: center;
         display: flex;
-        color: color("teal", "darken-2");
+        justify-content: space-between;
     }
 
-    .coming-soon-icon {
-        margin-right: 1rem;
+    .coming-soon-image {
+        margin-bottom: 1rem;
+    }
+
+    .coming-soon-text {
+        text-align: center;
     }
 }

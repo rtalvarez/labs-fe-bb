@@ -12,6 +12,8 @@
     .address-card {
         display: flex;
         align-items: center;
+        //flex-wrap: wrap;
+        //justify-content: center;
     }
 
     .email-icon-wrapper,
@@ -37,6 +39,7 @@
     .contact-info,
     .address-fields {
         flex: 1;
+        overflow: scroll;
     }
 
     .write-us,

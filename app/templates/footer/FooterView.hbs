@@ -18,9 +18,15 @@
                 <li class="footer-link">
                     <a class="about-action grey-text text-lighten-3" href="/about"><small>Acerca de nosotros</small></a>
                 </li>
-                <li class="footer-link">
-                    <a class="profile-action grey-text text-lighten-3" href="/profile"><small>Perfil</small></a>
-                </li>
+                {{#if isLoggedIn}}
+                    <li class="footer-link">
+                        <a class="profile-action grey-text text-lighten-3" href="/profile"><small>Perfil</small></a>
+                    </li>
+                {{ else }}
+                    <li class="footer-link">
+                        <a class="login-action grey-text text-lighten-3" href="/login"><small>Registro</small></a>
+                    </li>
+                {{/if}}
             </ul>
         </div>
     </div>
