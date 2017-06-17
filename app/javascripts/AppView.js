@@ -67,6 +67,8 @@ export default class extends BaseView() {
     }
 
     onNewAppointmentNavigate() {
+        this.destroyViews();
+
         this.views.createAppointmentView = new CreateAppointmentView({
             el: this.$find('createAppointmentView'),
             auth: this.activeAuth,
@@ -74,6 +76,8 @@ export default class extends BaseView() {
     }
 
     onLoginNavigate() {
+        this.destroyViews();
+
         this.views.loginView = new LoginView({
             el: this.$find('loginView'),
             googleAuth: this.googleAuth,
@@ -81,6 +85,8 @@ export default class extends BaseView() {
     }
 
     onViewAppointmentNavigate(id) {
+        this.destroyViews();
+
         this.views.viewAppointment = new ViewAppointmentView({
             el: this.$find('viewAppointmentView'),
             appointmentId: id
@@ -88,6 +94,8 @@ export default class extends BaseView() {
     }
 
     onHomeNavigate() {
+        this.destroyViews();
+
         this.views.homeView = new HomeView({
             el: this.$find('homeView'),
         });
@@ -99,6 +107,8 @@ export default class extends BaseView() {
         if (!userId) {
             return this.navigateToPath('home');
         }
+
+        this.destroyViews();
 
         this.views.profile = new ProfileView({
             el: this.$find('profileView'),
@@ -119,6 +129,8 @@ export default class extends BaseView() {
     }
 
     onAdminNavigate() {
+        this.destroyViews();
+
         this.views.admin = new AdminView({
             el: this.$find('adminView'),
             authClient: this.activeAuth,
@@ -126,12 +138,16 @@ export default class extends BaseView() {
     }
 
     onContactNavigate() {
+        this.destroyViews();
+
         this.views.contact = new ContactView({
             el: this.$find('contactView'),
         });
     }
 
     onComingSoonAppointmentCreateNavigate() {
+        this.destroyViews();
+
         this.views.comingSoonAppointmentCreateView = new ComingSoonAppointmentCreateView({
             el: this.$find('comingSoonAppointmentCreateView'),
         });
