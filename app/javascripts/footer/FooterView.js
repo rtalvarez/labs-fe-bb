@@ -9,6 +9,7 @@ export default class extends BaseView({
         'click .about-action': 'navigateToAction',
         'click .profile-action': 'navigateToAction',
         'click .login-action': 'navigateToAction',
+        'click .coming-soon-appointment-action': 'navigateToAction',
     }
 }) {
     initialize(config) {
