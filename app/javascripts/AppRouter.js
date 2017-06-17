@@ -3,6 +3,7 @@ import PubSub from 'javascripts/PubSub';
 
 export default class AppRouter extends Backbone.Router.extend({
     routes: {
+        'coming-soon/appointment-create': 'comingSoonAppointmentCreate',
         'appointments/create': 'newAppointment',
         // 'appointments/:id': 'viewAppointment',
         login: 'login',
@@ -24,6 +25,10 @@ export default class AppRouter extends Backbone.Router.extend({
     navigateTo(path) {
         console.log('navigateTo', path)
         this.navigate(path, { trigger: true });
+    }
+
+    comingSoonAppointmentCreate() {
+        PubSub.trigger(CONSTANTS.EVENTS.NAVIGATE.COMING_SOON_APPOINTMENT_CREATE);
     }
 
     contact() {

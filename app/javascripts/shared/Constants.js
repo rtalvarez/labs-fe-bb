@@ -45,6 +45,7 @@ export default {
             CLOSED: 'dialog:closed',
         },
         NAVIGATE: {
+            COMING_SOON_APPOINTMENT_CREATE: 'navigate:comingSoonAppointmentCreate',
             CONTACT: 'navigate:contact',
             TO: 'naviate:to',
             HOME: 'nagivate:home',

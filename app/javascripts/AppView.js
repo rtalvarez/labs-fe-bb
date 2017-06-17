@@ -10,6 +10,7 @@ import HomeView from 'javascripts/home/HomeView';
 import ProfileView from 'javascripts/profile/ProfileView';
 import ContactView from 'javascripts/contact/ContactView';
 import FooterView from 'javascripts/footer/FooterView';
+import ComingSoonAppointmentCreateView from 'javascripts/coming-soon/appointment-create/ComingSoonAppointmentCreateView';
 
 import UserModel from 'javascripts/shared/UserModel';
 
@@ -33,6 +34,7 @@ export default class extends BaseView() {
             profileView: '.profile-view',
             contactView: '.contact-view',
             footerView: '.footer-view',
+            comingSoonAppointmentCreateView: '.coming-soon-appointment-create-view',
         };
 
         this.initAuth();
@@ -129,9 +131,16 @@ export default class extends BaseView() {
         });
     }
 
+    onComingSoonAppointmentCreateNavigate() {
+        this.views.comingSoonAppointmentCreateView = new ComingSoonAppointmentCreateView({
+            el: this.$find('comingSoonAppointmentCreateView'),
+        });
+    }
+
     registerEvents() {
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.TO, () => this.destroyViews());
 
+        this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.COMING_SOON_APPOINTMENT_CREATE, () => this.onComingSoonAppointmentCreateNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.CONTACT, () => this.onContactNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.ADMIN, () => this.onAdminNavigate());
         this.listenTo(this.PubSub, this.CONSTANTS.EVENTS.NAVIGATE.HOME, () => this.onHomeNavigate());

@@ -1,0 +1,13 @@
+@import "../../shared/colors";
+
+.coming-soon-appointment-create-view-content {
+    .coming-soon-icon-wrapper {
+        align-items: center;
+        display: flex;
+        color: color("teal", "darken-2");
+    }
+
+    .coming-soon-icon {
+        margin-right: 1rem;
+    }
+}

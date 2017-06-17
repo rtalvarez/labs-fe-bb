@@ -1,3 +1,13 @@
 .app-view {
     padding-top: 4rem;
+    flex: 1;
+}
+
+html, body, main {
+    height: 100%;
+}
+
+.main-view {
+    display: flex;
+    flex-direction: column;
 }
