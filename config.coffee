@@ -37,6 +37,8 @@ exports.config =
       joinTo: 'javascripts/templates.js'
 
   plugins:
+    digest:
+      referenceFiles: /\.(html|hbs)/
     babel:
       ignore: [
         /^(bower_components|vendor|node_modules)/

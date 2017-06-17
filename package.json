@@ -21,6 +21,7 @@
     "clean-css-brunch": ">= 1.0 < 1.5",
     "coffee-script-brunch": ">= 1.0 < 1.5",
     "css-brunch": ">= 1.0 < 1.5",
+    "digest-brunch": "^1.6.0",
     "express": "^4.14.0",
     "fullcalendar": "^3.3.1",
     "handlebars-brunch": ">= 1.0 < 1.5",
