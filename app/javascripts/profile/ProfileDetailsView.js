@@ -7,7 +7,8 @@ import ProfileDetailsAppointmentsView from 'javascripts/profile/ProfileDetailsAp
 export default class extends BaseView({
     collection: new AppointmentCollection(),
     events: {
-        'click .new-appointment-action': '_onNewAppointmentActionClick',
+        'click .coming-soon-appointment-action': 'navigateToAction',
+        'click .new-appointment-action': 'navigateToAction',
         'click .logout-action': '_onLogoutActionClick',
     }
 }) {
@@ -34,10 +35,10 @@ export default class extends BaseView({
         });
     }
 
-    _onNewAppointmentActionClick(event) {
-        event.preventDefault();
+    navigateToAction(evt) {
+        evt.preventDefault();
 
-        this.navigateToPath('/appointments/create');
+        this.navigate(evt);
     }
 
     _onLogoutActionClick(event) {

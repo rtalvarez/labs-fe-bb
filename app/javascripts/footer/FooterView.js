@@ -37,4 +37,11 @@ export default class extends BaseView({
 
         this.render(FooterViewTpl, data);
     }
+
+    getTemplateData() {
+        const data = this.auth.getTemplateData();
+        data.isLoggedIn = true;
+
+        return data;
+    }
 }
